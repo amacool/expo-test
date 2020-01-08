@@ -14,6 +14,10 @@ const images = {
   kidPhotoTemplate: require("../../src/assets/images/baby5-fix.png"),
   logiTemplate: require("../../src/assets/images/freekidslogo.png"),
   blankPhoto: require("../../src/assets/images/blank.png"),
+  messageIcon: require("../../src/assets/images/header-message.png"),
+  headerCheckIcon: require("../../src/assets/images/header-check.png"),
+  cardTopSlot: require("../../src/assets/images/cardtop-slot.png"),
+  buttonGradient: require("../../src/assets/images/button-gradient.png"),
 
   phoneIcon: require("../../src/assets/images/phone.png"),
   phoneIcon1: require("../../src/assets/images/phone1.png"),

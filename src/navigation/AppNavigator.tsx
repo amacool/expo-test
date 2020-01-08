@@ -8,6 +8,7 @@ import IDCreateScreen from "../screens/idcreatescreen/IDCreateScreen";
 import IDEditScreen from "../screens/ideditscreen/IDEditScreen";
 import IDViewScreen from "../screens/idviewscreen/IDViewScreen";
 import InfoScreen from "../screens/infoscreen/InfoScreen";
+import CartScreen from "../screens/cartscreen/CartScreen";
 
 
 
@@ -17,6 +18,7 @@ const TabRoutes: NavigationRouteConfigMap = {
   Home: { screen: HomeScreen },
   Created: { screen: CreatedScreen },
   Create_id: { screen: IDCreateScreen },
+  Cart: { screen: CartScreen },
   Info: { screen: InfoScreen },
 };
 let tabsOptions: TabNavigatorConfig = {
@@ -28,9 +30,19 @@ let tabsOptions: TabNavigatorConfig = {
     },
     style: {
       backgroundColor: "#fff",
+      borderTopRightRadius: 10,
+      borderTopLeftRadius: 10,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: -12,
+      },
+      shadowOpacity: 0.58,
+      shadowRadius: 16.00,
+
+      elevation: 24,
       overflow: "visible",
-      borderWidth: 0,
-      elevation: 0,
+      borderWidth: 1,
       position: "absolute",
       left: 0,
       right: 0,
@@ -67,7 +79,7 @@ const MainRoutes: NavigationRouteConfigMap = {
   editid: { screen: IDEditScreen },
   viewid: { screen: IDViewScreen },
   created: { screen: TabNavigator("Created") },
-  // cart: { screen: TabNavigator('Cart')},
+  cart: { screen: TabNavigator('Cart')},
   create_id: { screen: TabNavigator("Create_id") },
 
   info: { screen: TabNavigator("Info") },

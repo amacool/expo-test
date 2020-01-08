@@ -7,18 +7,18 @@ import states from "../../constants/States";
 import moment from "moment";
 import navigationStore from "../../stores/navigationStore";
 import images from "../../assets/images";
-import TabBarIcon from "../../components/TabBarIcon";
+import TabBarBigIcon from "../../components/TabBarBigIcon";
 import ViewScreenSnapStore from "../../stores/viewScreenSnapStore";
 
 const DEVICE_HEIGHT = Dimensions.get("window").height;
 
 export default class IDCreateScreen extends React.Component<screenUtils.Props, screenUtils.State> {
   public static navigationOptions = {
-    title: "Create ID",
+    title: "Add",
     // title: "Create your Kid's ID",
-    tabBarLabel: "Create",
+    tabBarLabel: "Add",
     tabBarIcon: ({ focused }) => (
-      <TabBarIcon
+      <TabBarBigIcon
         focused={focused}
         active={images.tabCreateNew}
         inactive={images.tabCreateNewUnselected}

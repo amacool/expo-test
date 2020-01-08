@@ -71,7 +71,7 @@ export const render = (compRef: IDCreateScreen) => (
   //   scrollEnabled={false}
   // >
   <Container>
-    <HeaderComponent />
+    <HeaderComponent title="Create ID" message back/>
     <Content style={styles.container} disableKBDismissScroll={true}>
       <View style={styles.welcomeContainer}>
         <IDCard ref={(ref) => (compRef.imageRef = ref)} {...compRef.state.idcardRender} />

@@ -6,6 +6,8 @@ import IDCard from "../../components/IdCard";
 import { widthPercentageToDP as wp } from "../../helpers/Responsive";
 import HomeScreen from "./HomeScreen";
 import { styles } from "./Styles";
+import HeaderComponent from "../../components/headerComponent";
+import GradientButton from "../../components/GradientButton";
 
 export interface Props { }
 
@@ -25,36 +27,14 @@ export interface State {
 
 export const render = (compRef: HomeScreen) => (
   <View style={styles.container}>
-    <LinearGradient
-      colors={["#47F7F7", "#08A5A5"]}
-      style={[
-        { alignContent: "center", justifyContent: "center", alignItems: "center", width: "100%" },
-        true == isIphoneXorAbove() ? { height: wp("40") } : { height: wp("34") },
-      ]}
-    >
-      <Text
-        style={{
-          fontSize: wp("8"),
-          marginTop: wp("1"),
-          alignSelf: "center",
-          color: "#fff",
-          fontFamily: "Roboto",
-          fontWeight: "600",
-        }}
-      >
-        FREE KIDS ID
-      </Text>
-    </LinearGradient>
+    <HeaderComponent title="Home" message/>
     {!!compRef.state.isFontLoaded && (
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        {/* <View style={styles.headerContainer}>
-        <Text style={styles.headerTitle}>Wallets Kids ID</Text>
-      </View> */}
         <View style={styles.bodyContainer}>
           <Text
             style={[
               styles.headerBodayTitle,
-              { color: "#000", fontWeight: "400", fontFamily: "Poppins-Regular" },
+              { color: "#000", fontWeight: "400", fontFamily: "Metropolis-Medium" },
             ]}
           >
             New Way To
@@ -62,10 +42,10 @@ export const render = (compRef: HomeScreen) => (
           <Text
             style={[
               styles.headerBodayTitle,
-              { color: "#000", fontWeight: "400", fontFamily: "Poppins-Regular" },
+              { color: "#000", fontWeight: "400", fontFamily: "Metropolis-Medium" },
             ]}
           >
-            Keep Your Child Safe
+            Keep Your Dog Safe
           </Text>
         </View>
         <View style={styles.welcomeContainer}>
@@ -80,18 +60,16 @@ export const render = (compRef: HomeScreen) => (
         <View style={styles.bottomContainer}>
           <Text
             style={[
-              styles.bottomTitle,
-              { width: wp("50"), fontFamily: "Poppins-Regular", color: "#000", fontWeight: "400" },
+              styles.headerBodayTitle,
+              { fontFamily: "Metropolis-Medium", color: "#000", fontWeight: "400" },
             ]}
           >
-            Don't Risk It. Keep Your Child Safe.
+            Don't Risk It. Keep Your Dog Safe.
           </Text>
         </View>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={compRef._handleHelpPress} style={styles.claimBotton}>
-            <Text style={styles.claimText}>CREATE YOUR KIDS ID</Text>
-          </TouchableOpacity>
+          <GradientButton title="CREATE YOUR DOG'S ID" onPress={compRef._handleHelpPress}/>
         </View>
       </ScrollView>
     )}

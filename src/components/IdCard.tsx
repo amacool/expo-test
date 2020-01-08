@@ -1,7 +1,7 @@
 // @ts-ignore
 import { Font } from "expo";
 import moment from "moment";
-import { Card, CardItem, Text, View } from "native-base";
+import { Card, CardItem, Text, View, Title } from "native-base";
 import React from "react";
 import { Image, Linking, NativeModules, StyleSheet } from "react-native";
 import images from "../assets/images";
@@ -21,6 +21,8 @@ export default class IDCard extends React.Component<IDCardInterface> {
       "sf-heavy": require("../assets/fonts/SF-Compact-Display-Heavy.ttf"),
       "sf-regular": require("../assets/fonts/SF-UI-Display-Regular.ttf"),
       "grvibo-regular": require("../assets/fonts/GreatVibes-Regular.ttf"),
+      'Metropolis-Bold': require("../assets/fonts/Metropolis-Bold.otf"),
+      'Metropolis-Medium': require("../assets/fonts/Metropolis-Medium.otf"),
     });
     this.setState({
       isFontLoaded: true,
@@ -50,15 +52,13 @@ export default class IDCard extends React.Component<IDCardInterface> {
     return (
       !!this.state.isFontLoaded && (
         <Card style={[styles.cardContainer, styles.noPadding]}>
-          <CardItem header bordered style={styles.cardHeader}>
-            <Text style={styles.headerState} uppercase>
-              {this.props.state || "Free Kids Id"}
-            </Text>
-            <Text style={styles.headerIssueDate} uppercase>
-              Issue Date: {moment(this.props.issueDate || new Date()).format("MM-DD-YYYY")}
-            </Text>
+          <CardItem header style={styles.cardHeader}>
+            <Image source={images.cardTopSlot}  style={{position: 'absolute', top: -20, zIndex: 10,}}/>
+            <Title style={[styles.headerState,  {fontFamily: "Metropolis-Bold",}]} uppercase>
+              PET IDENTIFICATION
+            </Title>
           </CardItem>
-          <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={{ flex: 1, flexDirection: 'row', borderWidth: 0 }}>
             <View style={styles.avatarImageView}>
               <View style={{ flex: .9 }}>
                 {this.props.photo && (
@@ -71,31 +71,19 @@ export default class IDCard extends React.Component<IDCardInterface> {
                   />
                 )}
               </View>
-              <View style={{ flex: .1, justifyContent: 'center', alignItems: 'center' }}>
-                {!!this.state.isFontLoaded && name && name !== "" && (
-                  <Text
-                    style={{
-                      color: Colors.signColor,
-                      fontSize: PlatformConstants.interfaceIdiom == 'pad' ? 35 : 22,
-                      fontFamily: "grvibo-regular",
-                      textAlign: 'center'
-                    }}
-                  >{name}
-                  </Text>
-                )}
-              </View>
-
             </View>
             <View style={styles.informationView}>
-              <View style={[styles.inforDetailContainer]}>
+              <View>
                 <Text
                   uppercase
                   numberOfLines={1} adjustsFontSizeToFit
                   style={[
                     styles.inforName,
                     {
-                      fontSize: PlatformConstants.interfaceIdiom == 'pad' ? 40 : 30,
-                      //paddingLeft: PlatformConstants.interfaceIdiom == 'pad' ? 15 : 0
+                      paddingHorizontal: 0,
+                      paddingBottom: 5,
+                      fontSize: PlatformConstants.interfaceIdiom == 'pad' ? wp("5.5") : wp("5.1"),
+                      fontFamily: "Metropolis-Bold",
                     }
                   ]}
                 >
@@ -105,11 +93,6 @@ export default class IDCard extends React.Component<IDCardInterface> {
 
               {!!this.props.contact1 && (
                 <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                  <Image
-                    style={styles.inforIcon}
-                    resizeMode="contain"
-                    source={images.phoneIcon}
-                  />
                   <Text style={styles.inforTitle}>{this.props.contact1.name || "Mom"}:</Text>
                   <Text style={styles.inforDetail} onPress={this._handlePress}>
                     {this.props.contact1.phone || "555 555 5555"}
@@ -118,11 +101,6 @@ export default class IDCard extends React.Component<IDCardInterface> {
               )}
               {!!this.props.contact2 && (
                 <View style={[styles.inforDetailContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                  <Image
-                    style={styles.inforIcon}
-                    resizeMode="contain"
-                    source={images.phoneIcon}
-                  />
                   <Text style={styles.inforTitle}>{this.props.contact2.name || "Dad"}:</Text>
                   <Text style={styles.inforDetail}>
                     {this.props.contact2.phone || "555 555 5555"}
@@ -131,11 +109,6 @@ export default class IDCard extends React.Component<IDCardInterface> {
               )}
               {!!this.props.birthday && (
                 <View style={[styles.inforDetailContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                  <Image
-                    style={styles.inforIcon}
-                    resizeMode="contain"
-                    source={images.birthdayIcon}
-                  />
                   <Text style={styles.inforTitle}>Birthday:</Text>
                   <Text style={styles.inforDetail}>
                     {moment(this.props.birthday || new Date()).format("MM-DD-YYYY")}
@@ -143,21 +116,12 @@ export default class IDCard extends React.Component<IDCardInterface> {
                 </View>
               )}
               <View style={[styles.inforDetailContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                <Image
-                  style={styles.inforIcon}
-                  resizeMode="contain"
-                  source={images.medicalIcon}
-                />
-                <Text style={styles.inforTitle}>Medical:</Text>
-                <Text style={styles.inforDetail}>{this.props.medical || "Medical"}</Text>
+                <Text style={styles.inforTitle} uppercase>Breed:</Text>
+                <Text style={styles.inforDetail}>{this.props.medical || "Breed"}</Text>
               </View>
               <View style={[styles.inforDetailNoteContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                <Image style={styles.inforIcon} resizeMode="contain" source={images.noteIcon} />
-                <Text style={styles.inforTitle}>Notes:</Text>
+                <Text style={styles.inforTitle} uppercase>Note:</Text>
                 <Text style={styles.inforDetail}>{this.props.note || "Note"}</Text>
-              </View>
-              <View style={[styles.inforDetailNoteContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                <Image style={styles.logoImage} source={images.logiTemplate} />
               </View>
             </View>
           </View>
@@ -172,39 +136,41 @@ const styles = StyleSheet.create({
   cardContainer: {
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
-
+    borderBottomLeftRadius: 16,
+    borderBottomRightRadius: 16,
     width: "95%",
     display: "flex",
     flexDirection: "column",
     alignItems: "stretch",
     padding: 0,
-
     shadowColor: "#000",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
-    elevation: 1,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.9,
+    shadowRadius: 15,
+    elevation: 0,
+    borderWidth: 0,
   },
   cardHeader: {
+    borderWidth: 0,
     justifyContent: "center",
     display: "flex",
     flexDirection: "column",
     padding: 0,
-    //height: 60,
-    backgroundColor: Colors.tintColor,
+    backgroundColor: Colors.white,
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
   },
   noPadding: {
+    borderWidth: 0,
     paddingTop: 0,
     paddingBottom: 0,
   },
   headerState: {
-    lineHeight: wp("6.8"),
-    fontSize: wp("6.8"),
+    lineHeight: wp("5.1"),
+    fontSize: wp("5.1"),
     margin: 1,
-    // color: Colors.white,
-    color: "#f8f7f7",
+    fontFamily: 'Metropolis-Bold',
+    color: Colors.tintColor,
   },
   headerIssueDate: {
     color: "#000",
@@ -214,6 +180,7 @@ const styles = StyleSheet.create({
   },
 
   cardBody: {
+    borderWidth: 0,
     display: "flex",
     flexDirection: "row",
     padding: 0,
@@ -238,7 +205,6 @@ const styles = StyleSheet.create({
     color: Colors.mainfontColor,
   },
   avatarImage: {
-    marginTop: 10,
     resizeMode: "contain",
     paddingLeft: 10,
     width: "100%",
@@ -246,10 +212,11 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   informationView: {
-    paddingHorizontal: 10,
     flexDirection: "column",
     flex: 0.54,
-    justifyContent: "flex-end",
+    justifyContent: "flex-start",
+    padding: 10,
+    paddingBottom: 20,
   },
   inforDetailNameContainer: {
     flexDirection: "row",
@@ -259,43 +226,34 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: PlatformConstants.interfaceIdiom == 'pad' ? 60 : 40,
     alignItems: "center",
-    alignContent: "center",
   },
   inforDetailNoteContainer: {
     flexDirection: "row",
     alignItems: "center",
     alignContent: "center",
-    // height: 15,
     flex: 1,
-    marginTop: -10,
   },
   inforName: {
-    paddingHorizontal: 10,
-    fontWeight: "500",
+    fontFamily: "Metropolis-Bold",
+    fontSize: 20,
+    alignItems: "flex-start",
   },
   inforIcon: {
     width: PlatformConstants.interfaceIdiom == 'pad' ? 26 : 13,
     height: PlatformConstants.interfaceIdiom == 'pad' ? 26 : 13,
   },
   inforTitle: {
-    fontSize: wp("2.8"),
+    fontSize: wp("3.5"),
+    fontFamily: "Metropolis-Medium",
     marginLeft: PlatformConstants.interfaceIdiom == 'pad' ? 15 : 5,
-    // width:wp('14'),
-    // backgroundColor:'red',
-    // lineHeight: 13,
-    // fontWeight: 'bold',
-    // color: Colors.mainfontColor,
     color: "#000",
   },
   inforDetail: {
-    fontSize: wp("2.8"),
+    fontSize: wp("4.8"),
     marginLeft: 5,
-    // lineHeight: wp(''),
-    //width: wp("32"),
-    // backgroundColor:'red',
+    fontFamily: "Metropolis-Bold",
     fontWeight: "bold",
-    // color: Colors.tintColor,
-    color: "#00CCCC",
+    color: "#000",
   },
   logoImage: {
     position: "absolute",

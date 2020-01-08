@@ -1,12 +1,13 @@
 import React from "react";
 import { Font } from "expo";
 // @ts-ignore
-import { StatusBar, StyleSheet, TouchableOpacity, View, Platform } from "react-native";
+import {StatusBar, StyleSheet, TouchableOpacity, View, Platform, Image} from "react-native";
 import { Left, Icon, Right, Button, Title, Header, Body } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import navigationStore from "../stores/navigationStore";
-import { widthPercentageToDP as wp } from "../helpers/Responsive";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "../helpers/Responsive";
+import images from "../assets/images";
 
 export default class HeaderComponent extends React.Component {
   constructor(props) {
@@ -32,61 +33,66 @@ export default class HeaderComponent extends React.Component {
   }
   public render() {
     return (
-      <Header style={styles.headerStyle}>
-        {this.props.from == "edit"
-          ? [
-              <View style={{ width: wp("12") }}>
-                <Left style={{ justifyContent: "center" }}>
-                  <Button transparent onPress={() => navigationStore.back()}>
-                    <Icon name="arrow-back" style={styles.headerBack} />
-                  </Button>
-                </Left>
-              </View>,
-            ]
-          : []}
 
-        <Body>
-          <Title style={styles.headerTitle}>Edit your Kid's ID</Title>
-        </Body>
-        {/* <Right /> */}
-      </Header>
+      <View style={styles.headerStyle}>
+        <View style={{ width: 50 }}>
+          {this.props.back && <Button transparent onPress={() => navigationStore.back()}>
+            <Icon name="arrow-back" style={styles.headerBackIcon} />
+          </Button>}
+        </View>
+
+        <View style={{flexDirection: "row", marginBottom: 10}}>
+          <Title style={styles.headerTitle}>
+            {this.props.title}
+          </Title>
+          {this.props.checked &&
+            <Image style={[styles.headerBackIcon, {alignSelf: 'center'}]} resizeMode="cover" source={images.headerCheckIcon} />
+          }
+        </View>
+
+        <View style={styles.headerRightIcon}>
+          {this.props.message &&
+            <TouchableOpacity>
+              <Image style={styles.headerBackIcon} source={images.messageIcon} />
+            </TouchableOpacity>
+          }
+        </View>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   headerStyle: {
-    // marginTop: 20,
-    height: wp("25"),
-
+    height: hp("14"),
+    marginTop: 25,
     backgroundColor: Colors.tabBar,
-    display: "flex",
-    flexDirection: "row",
-    borderColor: Colors.mainfontColor,
-  },
-  headerBackContain: {
-    backgroundColor: "transparent",
-  },
-  headerIcon: {
-    color: Colors.tintColor,
-  },
-  headerTitleContain: {
-    width: "100%",
-    justifyContent: "center",
-    height: 55,
+    flexDirection: "column",
+    justifyContent: "space-between",
+    borderBottomWidth: 0,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 30,
   },
   headerTitle: {
-    color: "#000",
+    color: "#F75356",
     textAlign: "left",
-    width: "100%",
-    marginLeft: wp("2"),
+    fontFamily: 'Metropolis-Bold',
+    marginLeft: wp("3"),
+    alignSelf: 'center',
     fontSize: wp("7"),
-    // backgroundColor: 'red',
     justifyContent: "center",
   },
-  headerBack: {
-    color: Colors.tintColor,
+  headerBackIcon: {
+    color: '#222',
     marginLeft: 10,
     justifyContent: "center",
   },
+  headerRightIcon: {
+    position: 'absolute',
+    bottom: 13,
+    right: 15,
+  }
 });

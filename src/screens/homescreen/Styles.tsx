@@ -21,7 +21,7 @@ interface HomeScreenStyles {
 export const styles = StyleSheet.create<HomeScreenStyles>({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.backgroundDefault,
   },
   contentContainer: {
     padding: 0,
@@ -47,7 +47,8 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   },
   bottomContainer: {
     // marginTop: 20,
-    marginTop:wp('3'),
+    marginTop:wp('5'),
+    marginBottom:wp('5'),
     alignItems: "center",
     paddingHorizontal: wp('10'),
   },
@@ -87,11 +88,11 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     borderRadius: wp('8'),
     backgroundColor: '#00CCCC',
     paddingHorizontal: wp('20'),
-    
+
   },
   claimText: {
     fontSize: RF(2.2),
-    fontFamily: 'Poppins-Regular',
+    fontFamily: 'Metropolis-Bold',
     color: "#fff",
     fontWeight:'600'
   },

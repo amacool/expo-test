@@ -18,22 +18,25 @@ export default class HomeScreen extends React.Component<screenUtils.Props, scree
     this.state = {
       isFontLoaded: false,
       idcardInfo: {
-        name: 'Daniel Parker',
+        name: 'Rocky',
         state: 'CALIFORNIA',
         issueDate: new Date(),
-        birthday: new Date(),
-        contact1: {name: 'Mommy', phone: '555-555-1234'},
-        contact2: {name: 'Daddy', phone: '555-555-5678'},
-        medical: 'Allergic To Peanuts',
-        note: 'Future President',
+        contact1: {name: 'PH', phone: '555-555-1234'},
+        contact2: {name: 'PH', phone: '555-555-5678'},
+        medical: 'POODLE',
+        note: 'SUPERHERO',
       }
     };
   }
   async componentDidMount() {
     await Font.loadAsync({
-      'sf-heavy': require('../../assets/fonts/SF-Compact-Display-Heavy.ttf'),
-      'sf-regular': require('../../assets/fonts/SF-UI-Display-Regular.ttf'),
-      'grvibo-regular': require('../../assets/fonts/GreatVibes-Regular.ttf'),
+      "sf-heavy": require("../../assets/fonts/SF-Compact-Display-Heavy.ttf"),
+      "sf-regular": require("../../assets/fonts/SF-UI-Display-Regular.ttf"),
+      'Metropolis-Bold': require("../../assets/fonts/Metropolis-Bold.otf"),
+      'Metropolis-Medium': require("../../assets/fonts/Metropolis-Medium.otf"),
+      Roboto: require("../../assets/fonts/Roboto.ttf"),
+      Roboto_medium: require("../../assets/fonts/Roboto_medium.ttf"),
+      // 'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf')
     });
     this.setState({isFontLoaded: true});
     // const dataStr = await AsyncStorage.getItem('kidsid');
@@ -44,12 +47,12 @@ export default class HomeScreen extends React.Component<screenUtils.Props, scree
     // }
   }
   public render() {
-    return screenUtils.render(this);
+    return this.state.isFontLoaded && screenUtils.render(this);
   }
 
   _handleHelpPress = () => {
   // : { screen: TabNavigator('Create_id')},
   navigationStore.navigateTo('create_id');
-    
+
   };
 }

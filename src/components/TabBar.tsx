@@ -366,11 +366,11 @@ class TabBar extends React.Component<Props, States> {
       <SafeAreaView style={tabBarStyle} pointerEvents="box-none" forceInset={{ bottom: "never" }}>
         <View style={StyleSheet.flatten([tabBarInternalStyle, styles.tabBarInternal])}>
           {tabBarButtons.filter((i, index) => index < Math.floor(tabBarButtons.length / 2))}
-          {/* {floatingButtonFiller} */}
+           {/*{floatingButtonFiller}*/}
           {tabBarButtons.filter((i, index) => index >= Math.floor(tabBarButtons.length / 2))}
         </View>
         {isIphoneXorAbove() && <View style={iPhoneXBottomFillerStyles} />}
-        {/* {floatingButton} */}
+         {/*{floatingButton}*/}
       </SafeAreaView>
     );
   }
@@ -389,7 +389,7 @@ const styles = StyleSheet.create({
   tabBar: {
     overflow: "visible",
     backgroundColor: Colors.black,
-    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopWidth: 0,
     borderTopColor: "rgba(0, 0, 0, 0)",
     flexDirection: "column",
     justifyContent: "flex-end",
@@ -399,7 +399,9 @@ const styles = StyleSheet.create({
     overflow: "visible",
     flexDirection: "row",
     backgroundColor: Colors.tabBar,
-    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopWidth: 0,
     borderTopColor: Colors.tabIconDefault,
     justifyContent: "space-between",
     paddingVertical: 0,

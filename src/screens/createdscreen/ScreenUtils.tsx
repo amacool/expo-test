@@ -9,6 +9,7 @@ import HeaderTabComponent from "../../components/headerTabComponent";
 import IdProductCard from "../../components/IdProductCard";
 import navigationStore from "../../stores/navigationStore";
 import { widthPercentageToDP as wp } from "../../helpers/Responsive";
+import HeaderComponent from "../../components/headerComponent";
 
 export interface Props {}
 
@@ -34,8 +35,8 @@ export interface State {
 }
 
 export const render = (compRef: CreatedScreen) => (
-  <Container style={{ marginBottom: 50 }}>
-    <HeaderTabComponent title={"Created IDs"} />
+  <View style={styles.container}>
+    <HeaderTabComponent title={"Created IDs"} from="edit" />
     {compRef.state.data && compRef.state.data.length !== 0 ? (
       <View style={{ flex: 1 }}>
         <Modal
@@ -110,5 +111,5 @@ export const render = (compRef: CreatedScreen) => (
         <Text style={styles.noIDText}>No Created ID!</Text>
       </View>
     )}
-  </Container>
+  </View>
 );
