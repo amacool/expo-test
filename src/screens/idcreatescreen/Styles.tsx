@@ -21,7 +21,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     backgroundColor: Colors.mainBackground,
   },
   welcomeContainer: {
-    marginTop: 20,
+    marginTop: 30,
     alignItems: "center",
     paddingHorizontal: 0,
   },
@@ -33,6 +33,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     width: "100%",
     backgroundColor: Colors.transparent,
     borderBottomWidth: 1,
+    height: 20,
     borderBottomColor: Colors.tabIconDefault,
   },
   inValidForm: {

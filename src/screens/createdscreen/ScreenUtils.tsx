@@ -5,11 +5,8 @@ import * as React from "react";
 import CreatedID from "../../components/CreatedIDs";
 import CreatedScreen from ".";
 import { styles } from "./Styles";
-import HeaderTabComponent from "../../components/headerTabComponent";
-import IdProductCard from "../../components/IdProductCard";
-import navigationStore from "../../stores/navigationStore";
-import { widthPercentageToDP as wp } from "../../helpers/Responsive";
 import HeaderComponent from "../../components/headerComponent";
+import IdProductCard from "../../components/IdProductCard";
 
 export interface Props {}
 
@@ -36,7 +33,7 @@ export interface State {
 
 export const render = (compRef: CreatedScreen) => (
   <View style={styles.container}>
-    <HeaderTabComponent title={"Created IDs"} from="edit" />
+    <HeaderComponent title="Created IDs" message />
     {compRef.state.data && compRef.state.data.length !== 0 ? (
       <View style={{ flex: 1 }}>
         <Modal

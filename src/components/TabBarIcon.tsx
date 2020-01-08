@@ -29,7 +29,6 @@ export default class TabBarIcon extends React.Component<InterfaceProps> {
           style={{height:26,width:26}}
         />
       </>
-
     );
   }
 }

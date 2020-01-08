@@ -24,5 +24,5 @@ export default {
   gray: "#ddd",
   itemActive: "#fff",
   inactiveTextColor: "#888",
-  placeholder: "#000",
+  placeholder: "#777",
 };
