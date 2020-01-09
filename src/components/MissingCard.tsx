@@ -1,7 +1,7 @@
 // @ts-ignore
 import { Font } from "expo";
 import moment from "moment";
-import { Card, Text, View } from "native-base";
+import {Card, Text, Title, View} from "native-base";
 import React from "react";
 import { Dimensions, Image, NativeModules, StyleSheet } from "react-native";
 import { Col, Grid, Row } from "react-native-easy-grid";
@@ -75,212 +75,113 @@ export default class MissingCard extends React.Component<MessingCardInterface> {
             <View
               style={{ height: 65, width: "100%", justifyContent: "center", alignItems: "center" }}
             >
-              <Text style={[styles.headerState]}>MISSING CHILD</Text>
+              <Title style={[styles.headerState, {color: Colors.warningBackground}]}>MISSING DOG</Title>
             </View>
-            <View style={{ flexDirection: 'row' }}>
-              <View style={{ flex: 0.30 }} />
-              <View style={{ flex: 0.70, flexDirection: 'row', justifyContent: 'flex-start', alignContent: 'center', paddingLeft: 20 }}>
-                <Text
-                  numberOfLines={1} adjustsFontSizeToFit
+            <View style={{ flexDirection: 'row', backgroundColor: '#FFF7E2' }}>
+              <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignContent: 'center'}}>
+                <Title
                   style={[
                     styles.headerName,
-                    { paddingTop: 10, fontSize: PlatformConstants.interfaceIdiom == 'pad' ? 45 : 30 }
-                    ,
+                    {
+                      padding: 5,
+                      textAlign: 'left',
+                      fontFamily: "Metropolis-Bold",
+                      fontWeight: '900',
+                      color: Colors.missingHeader,
+                      fontSize: PlatformConstants.interfaceIdiom == 'pad' ? 45 : 30
+                    }
                   ]}
                 >
                   {name}
-                </Text>
+                </Title>
               </View>
             </View>
           </View>
           <View style={styles.cardContent}>
-            <View style={{ flex: 0.02 }}></View>
             <View style={[styles.stateContent, { justifyContent: 'center', alignContent: 'center' }]}>
-              <View style={[styles.avatarImageView, { flex: 1, justifyContent: "flex-start", alignItems: "center", marginTop: -60 }]}>
+              <View style={[styles.avatarImageView, { flex: 1, justifyContent: "flex-start", alignItems: "center", marginTop: 20 }]}>
                 <Image
                   style={styles.avatarImage}
-                  source={this.props.photo ? { uri: this.props.photo } : images.blankBaby}
+                  source={this.props.photo ? { uri: this.props.photo } : images.babyId}
                 />
               </View>
-              <View style={{ flex: 1, justifyContent: "flex-start", alignItems: "center" }}>
-                {this.props.missingDate ? (
-                  <Text style={{ color: Colors.missingHeader, fontSize: 14, textAlign: 'left' }}>
-                    Missing since: {moment(this.props.missingDate).format("MM-DD-YYYY")}
-                  </Text>
-                ) : (
-                    <Text style={{ color: Colors.missingHeader, fontSize: 11 }}>
-                      Missing since: {moment(new Date()).format("MM-DD-YYYY")}
+            </View>
+            <View style={[styles.propertyContent,  { justifyContent: 'center', alignItems: 'flex-start'}]}>
+              <View>
+                <View style={styles.inforDetailContainer}>
+                  <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
+                    <Text style={styles.inforTitle}>Breed:</Text>
+                    <Text style={styles.inforDetail} onPress={this._handlePress}>
+                      Golder Retrieve
                     </Text>
-                  )}
+                  </View>
+                </View>
               </View>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "flex-start", alignItems: "center",
-                }}
-              >
-                <Text
-                  style={[styles.inforTitle, { textAlign: "left", fontSize: 18, }]}
-                >
-                  {(this.props.city !== "" ? this.props.city + ", " : "La Mesa, ") +
-                    (this.props.state ? this.getAbbreviationState(this.props.state) : "CA")}
-                </Text>
+              <View>
+                <View style={styles.inforDetailContainer}>
+                  <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
+                    <Text style={styles.inforTitle}>Missing Since:</Text>
+                    <Text style={styles.inforDetail} onPress={this._handlePress}>
+                      10/10/2019
+                    </Text>
+                  </View>
+                </View>
               </View>
             </View>
-            <View style={[styles.propertyContent, { marginLeft: 20, }]}>
-              <View style={styles.inforDetailContainer}>
-                <Grid>
-                  <Row>
-                    <Col size={2}>
-                      <Text style={[styles.inforTitle, { marginTop: 10 }]}>AGE:</Text>
-                    </Col>
-                    <Col size={2}>
-                      <Text style={[styles.inforTitle, { marginTop: 10 }]}>SEX:</Text>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col size={2}>
-                      {/* {!!this.props.birthday && ( */}
-                      <Text style={[styles.inforTitle, { marginTop: 3 }]}>
-                        {/* {moment(this.props.birthday).format("MM-DD-YYYY") || "birthday"} */}
-                        {this.props.birthday ? this.calculateAge(this.props.birthday) : "0"}
-                      </Text>
-                      {/* )} */}
-                    </Col>
-                    <Col size={2}>
-                      {/* {!!this.props.gender && ( */}
-                      <Text style={[styles.inforTitle, { marginTop: 3 }]}>
-                        {this.props.gender || "male"}
-                      </Text>
-                      {/* )} */}
-                    </Col>
-                  </Row>
-                </Grid>
-              </View>
-              <View style={styles.inforDetailContainer}>
-                <Grid>
-                  <Row>
-                    <Col size={2}>
-                      <Text style={[styles.inforTitle, { marginTop: 10 }]}>HEIGHT:</Text>
-                    </Col>
-                    <Col size={2}>
-                      <Text style={[styles.inforTitle, { marginTop: 10 }]}>WEIGHT:</Text>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col size={2}>
-                      {/* {!!this.props.height && ( */}
-                      <Text style={[styles.inforTitle, { marginTop: 3 }]}>
-                        {this.props.height || "3'00"}
-                      </Text>
-                      {/* )} */}
-                    </Col>
-                    <Col size={2}>
-                      {/* {!!this.props.weight && ( */}
-                      <Text style={[styles.inforTitle, { marginTop: 3 }]}>
-                        {this.props.weight || "1KG"}
-                      </Text>
-                      {/* )} */}
-                    </Col>
-                  </Row>
-                </Grid>
-              </View>
-              <View style={styles.inforDetailContainer}>
-                <Grid>
-                  <Row>
-                    <Col size={2}>
-                      <Text style={[styles.inforTitle, { marginTop: 10 }]}>HAIR:</Text>
-                    </Col>
-                    <Col size={2}>
-                      <Text style={[styles.inforTitle, { marginTop: 10 }]}>EYES:</Text>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col size={2}>
-                      {/* {!!this.props.haircolor && ( */}
-                      <Text style={[styles.inforTitle, { marginTop: 3 }]}>
-                        {this.props.haircolor || "black"}
-                      </Text>
-                      {/* )} */}
-                    </Col>
-                    <Col size={2}>
-                      {/* {!!this.props.eyecolor && ( */}
-                      <Text style={[styles.inforTitle, { marginTop: 3 }]}>
-                        {this.props.eyecolor || "green"}
-                      </Text>
-                      {/* )} */}
-                    </Col>
-                  </Row>
-                </Grid>
-              </View>
+          </View>
+          <View style={{ flexDirection: 'row', backgroundColor: '#FFF7E2', marginTop: 20, }}>
+            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}>
+              <Text
+                style={[
+                  styles.headerName,
+                  {
+                    padding: 15,
+                    justifyContent: 'flex-start',
+                    fontFamily: "Metropolis-Bold",
+                    fontWeight: '900',
+                    color: Colors.missingHeader,
+                    fontSize: PlatformConstants.interfaceIdiom == 'pad' ? 20 : 15
+                  }
+                ]}
+              >
+                Note: {this.props.note || "Blue eyes, Red collar, Gray tag"}
+              </Text>
             </View>
           </View>
           <View style={styles.cardFooter}>
             <View
               style={{
-                height: 65,
+                height: 45,
                 width: "100%",
+                flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              <Text style={styles.headerState} uppercase>
+              <Image
+                source={images.phoneIcon1}
+                style={{ width: 18, height: 18, tintColor: Colors.white, marginRight: 3 }}
+              />
+              <Text style={[styles.headerState, {fontSize: 15}]} uppercase>
                 Please call
               </Text>
             </View>
 
-            <View style={{ height: 55, width: "100%", marginTop: 10 }}>
+            <View style={{ height: 45, width: "100%" }}>
               <View style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}>
                 <View
                   style={{
-                    flex: 0.45,
+                    flex: 1,
                     flexDirection: "row",
-                    justifyContent: "flex-end",
-                    alignItems: "center",
-                  }}
-                >
-                  <Image
-                    source={images.phoneIcon1}
-                    style={{ width: 18, height: 18, tintColor: Colors.white, marginRight: 3 }}
-                  />
-                  <Text style={[styles.footerName, { fontSize: 17 }]}>
-                    {this.props.contact1 || "555-555-5555"}
-                  </Text>
-                </View>
-
-                <View
-                  style={{
-                    flex: 0.1,
-                    alignItems: "center",
                     justifyContent: "center",
-                  }}
-                >
-                  <Text style={[styles.footerName, { fontSize: 17 }]}>or</Text>
-                </View>
-
-                <View
-                  style={{
-                    flex: 0.45,
-                    flexDirection: "row",
-                    justifyContent: "flex-start",
                     alignItems: "center",
                   }}
                 >
-                  <Image
-                    source={images.phoneIcon1}
-                    style={{ width: 18, height: 18, tintColor: Colors.white, marginRight: 3 }}
-                  />
-                  <Text style={[styles.footerName, { fontSize: 17 }]}>
-                    {this.props.contact2 || "555-555-5555"}
+                  <Text style={[styles.footerName, { fontSize: 25 }]}>
+                    Marry: {this.props.contact1 || "555-555-5555"}
                   </Text>
                 </View>
-              </View>
-              <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                {!!this.props.note && (
-                  <Text style={[styles.footerName, { fontSize: 17 }]} numberOfLines={1}>
-                    Note: {this.props.note}
-                  </Text>
-                )}
+
               </View>
             </View>
           </View>
@@ -305,8 +206,7 @@ const styles = StyleSheet.create({
   cardFooter: {
     borderBottomRightRadius: 15,
     borderBottomLeftRadius: 15,
-    height: 120,
-    marginTop: 20,
+    height: 90,
     backgroundColor: Colors.missingHeader,
   },
   cardContent: {
@@ -329,8 +229,8 @@ const styles = StyleSheet.create({
     lineHeight: wp("8"),
     fontSize: wp("7"),
     margin: 1,
-    fontFamily: "Roboto",
-    fontWeight: "bold",
+    fontFamily: "Metropolis-Bold",
+    fontWeight: '900',
     color: Colors.white,
   },
   headerName: {
@@ -339,8 +239,8 @@ const styles = StyleSheet.create({
     color: Colors.white,
   },
   footerName: {
-    lineHeight: 20,
-    fontSize: 20,
+    lineHeight: 45,
+    fontSize: 45,
     fontFamily: "Roboto",
     color: Colors.white,
   },
@@ -391,7 +291,8 @@ const styles = StyleSheet.create({
   },
   inforDetailContainer: {
     flexDirection: "row",
-    flex: 0.5,
+    height: PlatformConstants.interfaceIdiom == 'pad' ? 60 : 40,
+    alignItems: "center",
   },
   inforDetailNoteContainer: {
     flexDirection: "row",
@@ -408,18 +309,17 @@ const styles = StyleSheet.create({
     height: 13,
   },
   inforTitle: {
-    fontFamily: "Roboto",
-    color: Colors.black,
-    fontSize: 20
-    // backgroundColor:'red'
+    fontSize: wp("3.5"),
+    fontFamily: "Metropolis-Medium",
+    marginLeft: PlatformConstants.interfaceIdiom == 'pad' ? 15 : 5,
+    color: Colors.missingHeader,
   },
   inforDetail: {
-    fontSize: 13,
+    fontSize: wp("4.8"),
     marginLeft: 5,
-    lineHeight: 13,
-    fontFamily: "sf-regular",
+    fontFamily: "Metropolis-Bold",
     fontWeight: "bold",
-    color: Colors.tintColor,
+    color: Colors.missingHeader,
   },
   logoImage: {
     position: "absolute",

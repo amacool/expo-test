@@ -27,7 +27,7 @@ interface Props {
   deleteId?: (key) => void;
 }
 
-export default class CreatedID extends React.Component<Props> {
+export default class CartCard extends React.Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,14 +55,6 @@ export default class CreatedID extends React.Component<Props> {
           key={this.props.index}
           noShadow
         >
-          <CardItem header style={styles.cardHeader}>
-            <Image source={images.cardTopSlot}  style={{position: 'absolute', top: -20, zIndex: 10,}}/>
-            <Title style={[styles.headerState,  {fontFamily: "Metropolis-Bold",}]} uppercase>
-              PET IDENTIFICATION
-            </Title>
-          </CardItem>
-          <CardItem style={styles.noPadding}>
-
             <Body style={styles.cardBody}>
               <View style={styles.avatarImageView}>
                 {!!this.props.photo && (
@@ -85,85 +77,39 @@ export default class CreatedID extends React.Component<Props> {
                   </View>
                 </View>
                 <View style={styles.inforDetailNoteContainer}>
-                  <Grid style={{ position: "absolute", bottom: 0, width: "100%" }}>
+                  <Grid style={{ position: "absolute", bottom: 0, width: "100%", flex: 1, justifyContent: "center", alignItems: "center"  }}>
                     <Col>
+                      <TouchableOpacity>
+                        <Image
+                          source={images.minusIcon}
+                          resizeMode="contain"
+                          style={{
+                            width: '100%',
+                            marginTop: 8
+                          }}
+                        />
+                      </TouchableOpacity>
                     </Col>
                     <Col>
+                      <Text style={{ width: "100%", textAlign: 'center'}}>1</Text>
                     </Col>
+                    <Col>
+                      <TouchableOpacity>
+                        <Image
+                          source={images.pulusIcon}
+                          resizeMode="contain"
+                          style={{
+                            width: '100%',
+                            marginTop: 8
+                          }}
+                        />
+                      </TouchableOpacity>
+                    </Col>
+                    <Col></Col>
                   </Grid>
                 </View>
               </View>
             </Body>
-          </CardItem>
-          <CardItem style={styles.cardHeader}>
-            <Grid style={{ flex: 1, justifyContent: "space-between", marginLeft: 5}}>
-              <Col style={{ height: 50, flexDirection: 'column', alignItems: 'center' }} size={3}>
-                <TouchableOpacity
-                  style={{
-                    flex: 1,
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    flexDirection: "row",
-                  }}
-                  onPress={() => this.props.viewId(this.props.index)}
-                >
-                  <Image
-                    source={require("../assets/images/view.png")}
-                    resizeMode="contain"
-                    style={{ height: wp("5"), width: wp("5"), marginRight: wp("2") }}
-                  />
-                  <Text style={{ fontFamily: "Roboto", fontSize: wp("4"), color: Colors.tintColor }}>
-                    View
-                  </Text>
-                </TouchableOpacity>
-              </Col>
-              <Col style={{ flexDirection: 'column', height: 50, alignItems: 'center' }} size={3}>
-                <TouchableOpacity
-                  style={{
-                    flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flexDirection: "row",
-                  }}
-                  onPress={() => this.props.editId(this.props.index)}
-                >
-                  <Image
-                    source={require("../assets/images/Vector.png")}
-                    resizeMode="contain"
-                    style={{ height: wp("4.5"), width: wp("4.5"), marginRight: wp("2") }}
-                  />
-                  <Text style={{ fontFamily: "Roboto", fontSize: wp("4"), color: Colors.tintColor }}>
-                    Edit
-                  </Text>
-                </TouchableOpacity>
-              </Col>
-              <Col style={{ flexDirection: 'column', height: 50, alignItems: 'center' }} size={4}>
-                <TouchableOpacity
-                  style={{
-                    flex: 1,
-                    justifyContent: "flex-end",
-                    alignItems: "center",
-                    flexDirection: "row",
-                  }}
-                  onPress={() => this.props.deleteId(this.props.index)}
-                >
-                  <Image
-                    source={images.buyButton}
-                    resizeMode="contain"
-                    style={{
-                      width: '100%',
-                      marginTop: 8
-                    }}
-                  />
-                </TouchableOpacity>
-              </Col>
-              {/* <Col size={3}>
-                <Button full style={{backgroundColor: Colors.buttonRed, borderRadius: 7}}>
-                  <Text style={{fontFamily: 'sf-regular', fontSize: 13}}>ADD TO CART</Text>
-                </Button>
-              </Col> */}
-            </Grid>
-          </CardItem>
         </Card>
       );
     } else {
@@ -174,11 +120,7 @@ export default class CreatedID extends React.Component<Props> {
 
 const styles = StyleSheet.create({
   cardContainer: {
-    marginTop: 30,
-    borderTopRightRadius: 16,
-    borderTopLeftRadius: 16,
-    borderBottomLeftRadius: 16,
-    borderBottomRightRadius: 16,
+    borderRadius: 10,
     width: "95%",
     display: "flex",
     flexDirection: "column",
@@ -191,33 +133,10 @@ const styles = StyleSheet.create({
     elevation: 0,
     borderWidth: 0,
     alignSelf: "center",
-  },
-  cardHeader: {
-    borderWidth: 0,
-    justifyContent: "center",
-    display: "flex",
-    flexDirection: "column",
-    padding: 0,
-    backgroundColor: Colors.transparent,
-    borderTopRightRadius: 16,
-    borderTopLeftRadius: 16,
+    justifyContent: "flex-start",
   },
   noPadding: {
-    paddingTop: 0,
-    paddingBottom: 0,
-  },
-  headerState: {
-    lineHeight: wp("5.1"),
-    fontSize: wp("5.1"),
-    margin: 1,
-    fontFamily: 'Metropolis-Bold',
-    color: Colors.tintColor,
-  },
-  headerIssueDate: {
-    color: Colors.mainfontColor,
-    fontSize: 17,
-    lineHeight: 17,
-    margin: 0,
+    padding: 0,
   },
 
   cardBody: {
@@ -225,24 +144,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 0,
     flex: 1,
-    backgroundColor: Colors.white,
-  },
-  footerContainer: {
-    height: 40,
-    display: "flex",
-    flexDirection: "column",
-    padding: 0,
-    flex: 1,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.transparent,
   },
   avatarImageView: {
     justifyContent: "flex-start",
-    flex: 0.44,
-    height: Dimensions.get("screen").width * 0.35,
+    flex: 0.35,
+    height: Dimensions.get("screen").width * 0.35 - 18,
     color: Colors.mainfontColor,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
   },
   avatarImage: {
     resizeMode: "contain",
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
     width: "100%",
     height: "100%",
     justifyContent: "flex-start",
@@ -250,8 +165,8 @@ const styles = StyleSheet.create({
   informationView: {
     paddingHorizontal: 10,
     flexDirection: "column",
-    flex: 0.54,
-    height: Dimensions.get("screen").width * 0.4 - 10,
+    flex: 0.64,
+    height: Dimensions.get("screen").width * 0.35 - 18,
     justifyContent: "space-evenly",
   },
   inforDetailNameContainer: {

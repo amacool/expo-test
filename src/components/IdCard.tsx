@@ -67,7 +67,7 @@ export default class IDCard extends React.Component<IDCardInterface> {
                 {!this.props.photo && (
                   <Image
                     style={styles.avatarImage}
-                    source={this.props.isHome ? images.babyId : images.blankBaby}
+                    source={images.babyId}
                   />
                 )}
               </View>
@@ -93,7 +93,7 @@ export default class IDCard extends React.Component<IDCardInterface> {
 
               {!!this.props.contact1 && (
                 <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                  <Text style={styles.inforTitle}>{this.props.contact1.name || "Mom"}:</Text>
+                  <Text style={styles.inforTitle}>{this.props.contact1.name || "PH"}:</Text>
                   <Text style={styles.inforDetail} onPress={this._handlePress}>
                     {this.props.contact1.phone || "555 555 5555"}
                   </Text>
@@ -101,7 +101,7 @@ export default class IDCard extends React.Component<IDCardInterface> {
               )}
               {!!this.props.contact2 && (
                 <View style={[styles.inforDetailContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                  <Text style={styles.inforTitle}>{this.props.contact2.name || "Dad"}:</Text>
+                  <Text style={styles.inforTitle}>{this.props.contact2.name || "PH"}:</Text>
                   <Text style={styles.inforDetail}>
                     {this.props.contact2.phone || "555 555 5555"}
                   </Text>

@@ -1,7 +1,7 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import Colors from "../../constants/Colors";
 
-interface CreatedScreenStyles {
+interface CartScreenStyles {
   container: ViewStyle;
   welcomeContainer: ViewStyle;
   buttonContainer: ViewStyle;
@@ -14,11 +14,12 @@ interface CreatedScreenStyles {
   problemText: TextStyle;
 }
 
-export const styles = StyleSheet.create<CreatedScreenStyles>({
+export const styles = StyleSheet.create<CartScreenStyles>({
   container: {
     flex: 1,
     backgroundColor: Colors.backgroundDefault,
-    marginBottom: 30
+    marginBottom: 30,
+    padding: 5,
   },
   welcomeContainer: {
     alignItems: "center",

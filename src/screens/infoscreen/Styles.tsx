@@ -18,7 +18,8 @@ interface MissingScreenStyles {
 export const styles = StyleSheet.create<MissingScreenStyles>({
   container: {
     flex: 1,
-    backgroundColor: Colors.mainBackground,
+    marginBottom: 40,
+    backgroundColor: Colors.backgroundDefault,
   },
   welcomeContainer: {
     marginTop: 20,

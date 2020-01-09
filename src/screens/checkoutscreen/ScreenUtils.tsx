@@ -1,5 +1,5 @@
 // Define PropTypes
-import {Image, ScrollView, TouchableOpacity, View} from "react-native";
+import {ScrollView, TouchableOpacity, View, Keyboard, Animated, Image} from "react-native";
 import {
   Container,
   Header,
@@ -15,13 +15,14 @@ import {
   Picker,
   Item,
   Label,
-  Input,
+  Input, List, Card, CardItem, Title,
 } from "native-base";
+
 import moment from "moment";
 import { Col, Row, Grid } from "react-native-easy-grid";
 import * as React from "react";
 import IDCard from "../../components/IdCard";
-import IDEditScreen from "./IDEditScreen";
+import CheckOutScreen from "./CheckOutScreen";
 import { styles } from "./Styles";
 import HeaderComponent from "../../components/headerComponent";
 import Colors from "../../constants/Colors";
@@ -38,7 +39,6 @@ export interface State {
   idcardRender: IDCardInterface;
   idcardInfoStatus: IDCardStatusInterface;
   idcardInfoValidation: IDCardStatusInterface;
-  cardIndex: number;
   states: any;
   uploadPhoto: () => void;
   changeStates: (key: string) => void;
@@ -54,32 +54,26 @@ export interface State {
   createKidsId: () => void;
 }
 
-export const render = (compRef: IDEditScreen) => (
+export const render = (compRef: CheckOutScreen) => (
   <Container>
-    <HeaderComponent title="Edit ID" message back checked/>
+    <HeaderComponent title="Check Out" message back/>
     <Content style={styles.container} disableKBDismissScroll={true}>
-      <View style={styles.welcomeContainer}>
-        <IDCard ref={(ref) => (compRef.imageRef = ref)} {...compRef.state.idcardRender} />
-      </View>
-      <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
-        <TouchableOpacity
-          style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
-          onPress={compRef.state.uploadPhoto}
-        >
-          <Image source={images.uploadPhotoBtn} style={{width: '85%', resizeMode: 'contain'}}/>
-        </TouchableOpacity>
-      </View>
-      {/*<View style={styles.buttonContainer}>*/}
-      {/*<TouchableOpacity onPress={compRef._handleHelpPress} style={styles.problemBotton}>*/}
-      {/*<Text style={[styles.problemText]}>PROBLEM UPLOADING?</Text>*/}
-      {/*</TouchableOpacity>*/}
-      {/*</View>*/}
       <Form style={{padding: 10}}>
-        <CardInputComponent label="Name">
+        <Title
+          style={{
+            fontFamily: "Metropolis-Bold",
+            color: Colors.black,
+            textAlign: 'left',
+            padding: 5,
+            marginLeft: 10
+          }}>
+          Shipping address
+        </Title>
+        <CardInputComponent label="Full Name">
           <Input
             onChangeText={(text) => compRef.state.changeName(text)}
             maxLength={25}
-            placeholder="Enter Name"
+            placeholder="Enter Full Name"
             placeholderTextColor={Colors.placeholder}
             value={compRef.state.idcardInfo.name}
             style={[
@@ -90,120 +84,6 @@ export const render = (compRef: IDEditScreen) => (
               !compRef.state.idcardInfoStatus.name && { color: Colors.inactiveTextColor },
             ]}
             disabled={!compRef.state.idcardInfoStatus.name}
-          />
-        </CardInputComponent>
-
-        <CardPickerComponent label="Date of Birth">
-          <DatePicker
-            defaultDate={new Date(compRef.state.idcardInfo.birthday)}
-            minimumDate={new Date(2008, 1, 1)}
-            maximumDate={new Date(2028, 12, 31)}
-            locale={"en"}
-            timeZoneOffsetInMinutes={undefined}
-            modalTransparent={false}
-            animationType={"fade"}
-            androidMode={"default"}
-            onDateChange={(date) => compRef.state.changeBirth(date)}
-            disabled={!compRef.state.idcardInfoStatus.birthday}
-          />
-        </CardPickerComponent>
-
-        <CardInputComponent label="Breed">
-          <Input
-            placeholder="Enter Breed..."
-            placeholderTextColor={Colors.placeholder}
-            onChangeText={(text) => compRef.state.changeMedical(text)}
-            value={compRef.state.idcardInfo.medical}
-            style={[
-              compRef.state.idcardInfoStatus.medical && styles.formText,
-              compRef.state.idcardInfoValidation.medical &&
-              !compRef.state.idcardInfo.medical &&
-              styles.inValidForm,
-              !compRef.state.idcardInfoStatus.medical && { color: Colors.inactiveTextColor },
-            ]}
-            disabled={!compRef.state.idcardInfoStatus.medical}
-          />
-        </CardInputComponent>
-
-        <CardPickerComponent label="Gender">
-          <Picker
-            mode="dropdown"
-            placeholder="Select Gender"
-            placeholderStyle={{ color: Colors.placeholder }}
-            style={[
-              styles.formText,
-              { height: 40, borderBottomWidth: 0, backgroundColor: Colors.itemActive },
-            ]}
-            iosIcon={
-              <Icon
-                name="arrow-down"
-                style={{ fontSize: 25, position: "absolute", right: 0 }}
-              />
-            }
-            selectedValue={
-              compRef.state.idcardInfo.gender !== ""
-                ? compRef.state.idcardInfo.gender
-                : "Select Gender"
-            }
-            onValueChange={(itemValue, itemIndex) =>
-              compRef.state.changeGender(itemValue)
-            }
-          >
-            <Item
-              label="Male"
-              value="male"
-              style={{ width: 100, backgroundColor: Colors.white }}
-            />
-            <Item
-              label="Femail"
-              value="female"
-              style={{ width: 100, backgroundColor: Colors.white }}
-            />
-          </Picker>
-        </CardPickerComponent>
-
-        <CardInputComponent label="Fur Color">
-          <Input
-            placeholder="Enter Fur Color..."
-            placeholderTextColor={Colors.placeholder}
-            onChangeText={(text) => compRef.state.changeMedical(text)}
-            value={compRef.state.idcardInfo.medical}
-            style={[
-              compRef.state.idcardInfoStatus.medical && styles.formText,
-              compRef.state.idcardInfoValidation.medical &&
-              !compRef.state.idcardInfo.medical &&
-              styles.inValidForm,
-              !compRef.state.idcardInfoStatus.medical && { color: Colors.inactiveTextColor },
-            ]}
-            disabled={!compRef.state.idcardInfoStatus.medical}
-          />
-        </CardInputComponent>
-
-        <CardInputComponent label="Contact">
-          <Input
-            placeholder="555 555 5555"
-            placeholderTextColor={Colors.placeholder}
-            onChangeText={(text) => compRef.state.changeContact1Phone(text)}
-            keyboardType="phone-pad"
-            returnKeyType="done"
-            maxLength={12}
-            value={
-              compRef.state.idcardInfo.contact1
-                ? compRef.state.idcardInfo.contact1.phone
-                : ""
-            }
-            style={[
-              compRef.state.idcardInfoStatus.contact1 &&
-              styles.formText &&
-              styles.formText,
-              compRef.state.idcardInfoValidation.contact1 &&
-              !compRef.state.idcardInfo.contact1.phone &&
-              styles.inValidForm,
-              !compRef.state.idcardInfoStatus.contact1 && {
-                color: Colors.inactiveTextColor,
-              },
-            ]}
-            disabled={!compRef.state.idcardInfoStatus.contact1}
           />
         </CardInputComponent>
 
@@ -290,7 +170,7 @@ export const render = (compRef: IDEditScreen) => (
 
         <CardInputComponent label="Zip Code(Postal Code)">
           <Input
-            placeholder="Enter State..."
+            placeholder="Enter Zip Code(Postal Code)..."
             placeholderTextColor={Colors.placeholder}
             onChangeText={(text) => compRef.state.changeMedical(text)}
             value={compRef.state.idcardInfo.medical}
@@ -322,28 +202,12 @@ export const render = (compRef: IDEditScreen) => (
           />
         </CardInputComponent>
 
-        <CardInputComponent label="Note">
-          <Input
-            onChangeText={(text) => compRef.state.changeNote(text)}
-            value={compRef.state.idcardInfo.note}
-            placeholder="Enter Note..."
-            placeholderTextColor={Colors.placeholder}
-            style={[
-              compRef.state.idcardInfoStatus.note && styles.formText,
-              compRef.state.idcardInfoValidation.note &&
-              !compRef.state.idcardInfo.note &&
-              styles.inValidForm,
-              !compRef.state.idcardInfoStatus.note && { color: Colors.inactiveTextColor },
-            ]}
-            disabled={!compRef.state.idcardInfoStatus.note}
-          />
-        </CardInputComponent>
         <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
           <TouchableOpacity
             style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
             onPress={compRef.state.createKidsId}
           >
-            <Image source={images.saveIdBtn} style={{width: '85%', resizeMode: 'contain'}}/>
+            <Image source={images.submitOrder} style={{width: '85%', resizeMode: 'contain'}}/>
           </TouchableOpacity>
         </View>
       </Form>

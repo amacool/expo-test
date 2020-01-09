@@ -1,11 +1,12 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import Colors from "../../constants/Colors";
 
-interface CreatedScreenStyles {
+interface CheckOutScreenStyles {
   container: ViewStyle;
   welcomeContainer: ViewStyle;
   buttonContainer: ViewStyle;
   formText: ViewStyle;
+  inValidForm: ViewStyle;
   formSwitch: ViewStyle;
   uploadBotton: ViewStyle;
   problemBotton: ViewStyle;
@@ -14,13 +15,13 @@ interface CreatedScreenStyles {
   problemText: TextStyle;
 }
 
-export const styles = StyleSheet.create<CreatedScreenStyles>({
+export const styles = StyleSheet.create<CheckOutScreenStyles>({
   container: {
     flex: 1,
-    backgroundColor: Colors.backgroundDefault,
-    marginBottom: 30
+    backgroundColor: Colors.mainBackground,
   },
   welcomeContainer: {
+    marginTop: 30,
     alignItems: "center",
     paddingHorizontal: 0,
   },
@@ -30,9 +31,13 @@ export const styles = StyleSheet.create<CreatedScreenStyles>({
   },
   formText: {
     width: "100%",
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.transparent,
     borderBottomWidth: 1,
+    height: 20,
     borderBottomColor: Colors.tabIconDefault,
+  },
+  inValidForm: {
+    borderBottomColor: Colors.buttonRed,
   },
   formSwitch: {
     marginTop: 20,
@@ -74,11 +79,5 @@ export const styles = StyleSheet.create<CreatedScreenStyles>({
     fontSize: 15,
     fontFamily: "sf-regular",
     color: Colors.mainfontColor,
-  },
-  noIDText: {
-    fontSize: 24,
-    fontFamily: "Roboto",
-    fontWeight: "bold",
-    // color: Colors.white,
   },
 });

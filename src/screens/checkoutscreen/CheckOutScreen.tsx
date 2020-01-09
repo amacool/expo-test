@@ -2,32 +2,11 @@ import * as React from "react";
 import { Font, takeSnapshotAsync } from "expo";
 import * as screenUtils from "./ScreenUtils";
 import { ImagePicker, Permissions } from "expo";
-import { AsyncStorage, CameraRoll, PixelRatio, Keyboard, Dimensions } from "react-native";
+import { AsyncStorage } from "react-native";
 import states from "../../constants/States";
-import moment from "moment";
 import navigationStore from "../../stores/navigationStore";
-import images from "../../assets/images";
-import TabBarBigIcon from "../../components/TabBarBigIcon";
-import ViewScreenSnapStore from "../../stores/viewScreenSnapStore";
 
-const DEVICE_HEIGHT = Dimensions.get("window").height;
-
-export default class IDCreateScreen extends React.Component<screenUtils.Props, screenUtils.State> {
-  public static navigationOptions = {
-    title: "Add",
-    // title: "Create your Kid's ID",
-    tabBarLabel: "Add",
-    tabBarIcon: ({ focused }) => (
-      <TabBarBigIcon
-        focused={focused}
-        active={images.tabCreateNew}
-        inactive={images.tabCreateNewUnselected}
-      />
-    ),
-  };
-
-  public scrollView;
-
+export default class CheckOutScreen extends React.Component<screenUtils.Props, screenUtils.State> {
   public imageRef;
   constructor(props) {
     super(props);
@@ -137,74 +116,7 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
   }
 
   createKidsId = async () => {
-    const data = this.state.idcardRender;
-    const validObject = this.state.idcardInfoValidation;
-    let isValid = true;
-    const array = Object.keys(validObject);
-    for (let i in array) {
-      const key = array[i];
-      if (key === "photo") {
-        if (validObject["photo"] && !data["photo"]) {
-          alert("Photo fields is required. Please fill out that.");
-          isValid = false;
-          return false;
-        }
-      } else if (key === "state") {
-        if (validObject["state"] && !data["state"]) {
-          alert("State fields is required. Please fill out that.");
-          isValid = false;
-          return false;
-        }
-      } else if (key === "name") {
-        if (validObject["name"] && !data["name"]) {
-          alert("Name fields is required. Please fill out that.");
-          isValid = false;
-          return false;
-        }
-      } else if (key === "gender") {
-        if (validObject["gender"] && !data["gender"]) {
-          alert("Gender fields is required. Please fill out that.");
-          isValid = false;
-          return false;
-        }
-      } else if (key === "contact1") {
-        if (validObject[key] && !data[key].phone) {
-          alert("Phone Number fields is required. Please fill out that.");
-          isValid = false;
-          return false;
-        }
-      } else if (key === "medical") {
-        if (validObject["medical"] && !data["medical"]) {
-          alert("Medical fields is required. Please fill out that.");
-          isValid = false;
-          return false;
-        }
-      } else if (key === "note") {
-        if (validObject["note"] && !data["note"]) {
-          alert("Note fields is required. Please fill out that.");
-          isValid = false;
-          return false;
-        }
-      } else {
-        if (validObject[key] && !data[key]) {
-          alert("Some fields is required. You must upload a photo.");
-          isValid = false;
-          return false;
-        }
-      }
-    }
-    if (isValid) {
-      console.log(JSON.stringify(data));
-      const kidIds = await AsyncStorage.getItem("kidsids");
-      let kidIdsArr = kidIds ? JSON.parse(kidIds) : [];
-      kidIdsArr.push(data);
-      await AsyncStorage.setItem("kidsids", JSON.stringify(kidIdsArr));
-      // await ViewScreenSnapStore.screenShot(this.imageRef);
-      navigationStore.navigateTo("created");
-    }
-    // else {
-    //   alert("Some field is required. Please fill out that.");
-    // }
+    navigationStore.navigateTo("success");
   };
 
   uploadPhoto = async () => {

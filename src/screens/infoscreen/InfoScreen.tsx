@@ -16,7 +16,7 @@ import images from "../../assets/images";
 import TabBarIcon from "../../components/TabBarIcon";
 export default class MissingScreen extends React.Component<screenUtils.Props, screenUtils.State> {
   public static navigationOptions = {
-    tabBarLabel: "Missing",
+    tabBarLabel: "Report",
     tabBarIcon: ({ focused }) => (
       <TabBarIcon focused={focused} active={images.tabInfoSelect} inactive={images.tabInfo} />
     ),

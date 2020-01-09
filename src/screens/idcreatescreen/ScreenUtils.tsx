@@ -1,5 +1,5 @@
 // Define PropTypes
-import { ScrollView, TouchableOpacity, View, Keyboard, Animated } from "react-native";
+import {ScrollView, TouchableOpacity, View, Keyboard, Animated, Image} from "react-native";
 import {
   Container,
   Header,
@@ -28,6 +28,7 @@ import HeaderComponent from "../../components/headerComponent";
 import Colors from "../../constants/Colors";
 import CardInputComponent from "../../components/CardInputComponent";
 import CardPickerComponent from "../../components/CardPickerComponent";
+import images from "../../assets/images";
 
 export interface Props {}
 
@@ -78,9 +79,12 @@ export const render = (compRef: IDCreateScreen) => (
       <View style={styles.welcomeContainer}>
         <IDCard ref={(ref) => (compRef.imageRef = ref)} {...compRef.state.idcardRender} />
       </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={compRef.state.uploadPhoto} style={styles.uploadBotton}>
-          <Text style={styles.claimText}>UPLOAD PHOTO</Text>
+      <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
+        <TouchableOpacity
+          style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+          onPress={compRef.state.uploadPhoto}
+        >
+          <Image source={images.uploadPhotoBtn} style={{width: '85%', resizeMode: 'contain'}}/>
         </TouchableOpacity>
       </View>
       {/*<View style={styles.buttonContainer}>*/}
@@ -255,22 +259,52 @@ export const render = (compRef: IDCreateScreen) => (
           />
         </CardInputComponent>
 
-        <CardInputComponent label="State/Province/Region">
-          <Input
-            placeholder="Enter State..."
-            placeholderTextColor={Colors.placeholder}
-            onChangeText={(text) => compRef.state.changeMedical(text)}
-            value={compRef.state.idcardInfo.medical}
-            style={[
-              compRef.state.idcardInfoStatus.medical && styles.formText,
-              compRef.state.idcardInfoValidation.medical &&
-              !compRef.state.idcardInfo.medical &&
-              styles.inValidForm,
-              !compRef.state.idcardInfoStatus.medical && { color: Colors.inactiveTextColor },
-            ]}
-            disabled={!compRef.state.idcardInfoStatus.medical}
-          />
-        </CardInputComponent>
+        <CardPickerComponent label="State/Province/Region">
+          <Picker
+            mode="dropdown"
+            placeholder="Select State"
+            placeholderStyle={{ color: Colors.placeholder }}
+            style={{
+              width: "100%",
+              height: 40,
+              borderBottomWidth: 0,
+              backgroundColor: Colors.itemActive,
+            }}
+            iosIcon={
+              <Icon
+                name="arrow-down"
+                style={{ fontSize: 25, position: "absolute", right: 0 }}
+              />
+            }
+            selectedValue={
+              compRef.state.idcardInfo.state !== ""
+                ? compRef.state.idcardInfo.state
+                : "Select State"
+            }
+            onValueChange={(itemValue, itemIndex) =>
+              compRef.state.changeStates(itemValue)
+            }
+            // disabled={compRef.state.idcardInfoStatus.state}
+          >
+            <Item
+              label="Select State"
+              value=""
+              style={{ width: 100, backgroundColor: Colors.white }}
+            />
+            {compRef.state.states &&
+            compRef.state.states.length &&
+            compRef.state.states.map((item, key) => {
+              return (
+                <Item
+                  label={item.name}
+                  value={item.name}
+                  key={key}
+                  style={{ width: 100, backgroundColor: Colors.white }}
+                />
+              );
+            })}
+          </Picker>
+        </CardPickerComponent>
 
         <CardInputComponent label="Zip Code(Postal Code)">
           <Input
@@ -322,10 +356,12 @@ export const render = (compRef: IDCreateScreen) => (
             disabled={!compRef.state.idcardInfoStatus.note}
           />
         </CardInputComponent>
-
         <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
-          <TouchableOpacity onPress={compRef.state.createKidsId} style={styles.createBotton}>
-            <Text style={styles.claimText}>CREATE MY FREE KIDS ID NOW</Text>
+          <TouchableOpacity
+            style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+            onPress={compRef.state.createKidsId}
+          >
+            <Image source={images.saveIdBtn} style={{width: '85%', resizeMode: 'contain'}}/>
           </TouchableOpacity>
         </View>
       </Form>

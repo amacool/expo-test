@@ -8,7 +8,7 @@ export default {
   tabBar: "#fff",
   errorBackground: "red",
   errorText: "#fff",
-  warningBackground: "#EAEB5E",
+  warningBackground: "#FFD362",
   warningText: "#666804",
   noticeBackground: tintColor,
   noticeText: "#fff",
@@ -17,7 +17,7 @@ export default {
   signColor: "#4F7E7E",
   transparent: "transparent",
   buttonRed: "#FF3300",
-  missingHeader: "#BE0000",
+  missingHeader: "#EE6752",
 
   white: "#fff",
   black: "#000",

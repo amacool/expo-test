@@ -1,13 +1,14 @@
 // Define PropTypes
 import { LinearGradient } from "expo";
 import * as React from "react";
-import { Dimensions, Platform, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Dimensions, Platform, ScrollView, Text, TouchableOpacity, View, Image } from "react-native";
 import IDCard from "../../components/IdCard";
 import { widthPercentageToDP as wp } from "../../helpers/Responsive";
 import HomeScreen from "./HomeScreen";
 import { styles } from "./Styles";
 import HeaderComponent from "../../components/headerComponent";
 import GradientButton from "../../components/GradientButton";
+import images from "../../assets/images";
 
 export interface Props { }
 
@@ -68,8 +69,13 @@ export const render = (compRef: HomeScreen) => (
           </Text>
         </View>
 
-        <View style={styles.buttonContainer}>
-          <GradientButton title="CREATE YOUR DOG'S ID" onPress={compRef._handleHelpPress}/>
+        <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
+          <TouchableOpacity
+            style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+            onPress={compRef._handleHelpPress}
+          >
+            <Image source={images.createDogIdBtn} style={{width: '85%', resizeMode: 'contain'}}/>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     )}
