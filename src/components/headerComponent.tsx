@@ -1,5 +1,5 @@
 import React from "react";
-import { Font } from "expo";
+import * as Font from "expo-font";
 // @ts-ignore
 import {StatusBar, StyleSheet, TouchableOpacity, View, Platform, Image} from "react-native";
 import { Left, Icon, Right, Button, Title, Header, Body } from "native-base";
@@ -37,7 +37,7 @@ export default class HeaderComponent extends React.Component {
       <View style={styles.headerStyle}>
         <View style={{ width: 50 }}>
           {this.props.back && <Button transparent onPress={() => navigationStore.back()}>
-            <Icon name="arrow-back" style={styles.headerBackIcon} />
+            <Icon name="arrow-back" style={styles.headerBackIcon} color={Colors.black}/>
           </Button>}
         </View>
 
@@ -46,7 +46,7 @@ export default class HeaderComponent extends React.Component {
             {this.props.title}
           </Title>
           {this.props.checked &&
-            <Image style={[styles.headerBackIcon, {alignSelf: 'center'}]} resizeMode="cover" source={images.headerCheckIcon} />
+            <Image style={[styles.headerBackIcon, {alignSelf: 'center'}]} resizeMode="cover" source={require("../../src/assets/images/header-check.png")} />
           }
         </View>
 
@@ -70,11 +70,15 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     borderBottomWidth: 0,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
     shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 30,
+    shadowRadius: 3,
+    elevation: 3,
+    marginBottom: 10,
   },
   headerTitle: {
     color: "#F75356",
@@ -86,9 +90,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   headerBackIcon: {
-    color: '#222',
     marginLeft: 10,
     justifyContent: "center",
+    color: Colors.black,
   },
   headerRightIcon: {
     position: 'absolute',

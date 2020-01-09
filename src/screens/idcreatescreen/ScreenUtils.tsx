@@ -2,24 +2,15 @@
 import {ScrollView, TouchableOpacity, View, Keyboard, Animated, Image} from "react-native";
 import {
   Container,
-  Header,
   Content,
   Form,
-  ListItem,
-  Text,
   Icon,
   DatePicker,
-  Body,
-  Right,
-  Switch,
   Picker,
   Item,
-  Label,
-  Input, List, Card, CardItem,
+  Input
 } from "native-base";
 
-import moment from "moment";
-import { Col, Row, Grid } from "react-native-easy-grid";
 import * as React from "react";
 import IDCard from "../../components/IdCard";
 import IDCreateScreen from "./IDCreateScreen";
@@ -73,7 +64,7 @@ export const render = (compRef: IDCreateScreen) => (
   //   // }}
   //   scrollEnabled={false}
   // >
-  <Container>
+  <Container style={styles.container}>
     <HeaderComponent title="Create ID" message back/>
     <Content style={styles.container} disableKBDismissScroll={true}>
       <View style={styles.welcomeContainer}>

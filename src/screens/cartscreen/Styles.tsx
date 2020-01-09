@@ -19,7 +19,6 @@ export const styles = StyleSheet.create<CartScreenStyles>({
     flex: 1,
     backgroundColor: Colors.backgroundDefault,
     marginBottom: 30,
-    padding: 5,
   },
   welcomeContainer: {
     alignItems: "center",

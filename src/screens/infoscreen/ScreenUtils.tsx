@@ -66,8 +66,8 @@ export interface State {
 }
 
 export const render = (compRef: MissingScreen) => (
-  <Container>
-    <HeaderComponent title={"Report Missing"} message/>
+  <Container style={styles.container}>
+    <HeaderComponent title={"Report Missing"} message back/>
     <Content style={styles.container} disableKBDismissScroll={true}>
       <View style={styles.welcomeContainer}>
         <MissingCard ref={(ref) => (compRef.imageRef = ref)} {...compRef.state.idcardRender} />

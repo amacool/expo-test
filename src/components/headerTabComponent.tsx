@@ -1,11 +1,10 @@
 import React from "react";
-import { Font } from "expo";
+import * as Font from "expo-font";
 // @ts-ignore
-import { StatusBar, StyleSheet, TouchableOpacity, Platform } from "react-native";
-import { Left, Icon, Right, Button, Title, Header, Body } from "native-base";
+import { StatusBar, StyleSheet, Platform } from "react-native";
+import { Title, Header, Body } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
-import navigationStore from "../stores/navigationStore";
 import { widthPercentageToDP as wp } from "../helpers/Responsive";
 
 export default class HeaderTabComponent extends React.Component {

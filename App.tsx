@@ -1,8 +1,11 @@
 import * as React from "react";
-import { Platform, StatusBar, StyleSheet, View, ViewStyle } from "react-native";
+import { Platform, StatusBar, StyleSheet, View, ViewStyle, Image } from "react-native";
 import { Root } from "native-base";
 // @ts-ignore
-import { AppLoading, Asset, Font, Icon } from "expo";
+import { AppLoading} from "expo";
+import * as Icon from "@expo/vector-icons";
+import { Asset } from "expo-asset";
+import * as Font from "expo-font";
 import { Provider as MobxProvider } from "mobx-react";
 import { AppNavigator } from "./src/navigation/AppNavigator";
 import NavigationStore from "./src/stores/navigationStore";
@@ -19,7 +22,19 @@ interface InterfaceState {
 interface InterfaceStyle {
   container: ViewStyle;
 }
+function cacheImages(images) {
+  return images.map(image => {
+    if (typeof image === 'string') {
+      return Image.prefetch(image);
+    } else {
+      return Asset.fromModule(image).downloadAsync();
+    }
+  });
+}
 
+function cacheFonts(fonts) {
+  return fonts.map(font => Font.loadAsync(font));
+}
 @observer
 export default class App extends React.Component<InterfaceProps, InterfaceState> {
   constructor(props) {
@@ -55,6 +70,43 @@ export default class App extends React.Component<InterfaceProps, InterfaceState>
       Asset.loadAsync([
         require("./src/assets/images/robot-dev.png"),
         require("./src/assets/images/robot-prod.png"),
+        require("./src/assets/images/tab_icons/home_icon.png"),
+        require("./src/assets/images/tab_icons/home_select.png"),
+        require("./src/assets/images/tab_icons/cart_icon.png"),
+        require("./src/assets/images/tab_icons/cart_select.png"),
+        require("./src/assets/images/tab_icons/missing.png"),
+        require("./src/assets/images/tab_icons/missing_selected.png"),
+        require("./src/assets/images/tab_icons/created_icon.png"),
+        require("./src/assets/images/tab_icons/created_select.png"),
+        require("./src/assets/images/tab_icons/create_id.png"),
+        require("./src/assets/images/tab_icons/create_id_unselected.png"),
+        require("./src/assets/images/kidsid.png"),
+        require("./src/assets/images/baby5-fix.png"),
+        require("./src/assets/images/freekidslogo.png"),
+        require("./src/assets/images/blank.png"),
+        require("./src/assets/images/header-message.png"),
+        require("./src/assets/images/header-check.png"),
+        require("./src/assets/images/cardtop-slot.png"),
+        require("./src/assets/images/button-gradient.png"),
+        require("./src/assets/images/buy-button.png"),
+        require("./src/assets/images/arrow-forward.png"),
+        require("./src/assets/images/pulusIcon.png"),
+        require("./src/assets/images/minusIcon.png"),
+        require("./src/assets/images/check-out.png"),
+        require("./src/assets/images/submit-order.png"),
+        require("./src/assets/images/illustration.png"),
+        require("./src/assets/images/create-dog-id.png"),
+        require("./src/assets/images/use-existing.png"),
+        require("./src/assets/images/upload-photo.png"),
+        require("./src/assets/images/create-poster.png"),
+        require("./src/assets/images/save-id.png"),
+        require("./src/assets/images/phone.png"),
+        require("./src/assets/images/phone1.png"),
+        require("./src/assets/images/birthday.png"),
+        require("./src/assets/images/medical.png"),
+        require("./src/assets/images/notes.png"),
+        require("./src/assets/images/blankbaby.jpg"),
+        require("./src/assets/images/babyid.png"),
       ]),
       Font.loadAsync({
         // This is the font that we are using for our tab bar

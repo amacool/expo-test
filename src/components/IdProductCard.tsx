@@ -1,5 +1,5 @@
 // @ts-ignore
-import { Font } from "expo";
+import * as Font from "expo-font";
 import moment from "moment";
 import { Body, Card, CardItem, Text, View } from "native-base";
 import React from "react";

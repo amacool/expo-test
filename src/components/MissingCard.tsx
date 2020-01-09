@@ -1,10 +1,8 @@
 // @ts-ignore
-import { Font } from "expo";
-import moment from "moment";
+import * as Font from "expo-font";
 import {Card, Text, Title, View} from "native-base";
 import React from "react";
 import { Dimensions, Image, NativeModules, StyleSheet } from "react-native";
-import { Col, Grid, Row } from "react-native-easy-grid";
 import images from "../assets/images";
 import Colors from "../constants/Colors";
 import states from "../constants/States";
@@ -195,6 +193,10 @@ const styles = StyleSheet.create({
   cardContainer: {
     borderRadius: 15,
     width: "95%",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
   },
   cardHeader: {
     borderTopRightRadius: 15,

@@ -4,7 +4,7 @@ import { ExpoLinksView } from "@expo/samples";
 import TabBarIcon from "../../components/TabBarIcon";
 import images from "../../assets/images";
 import * as screenUtils from "./ScreenUtils";
-import { Font } from "expo";
+import * as Font from "expo-font";
 import navigationStore from "../../stores/navigationStore";
 import ViewScreenSnapStore from "../../stores/viewScreenSnapStore";
 

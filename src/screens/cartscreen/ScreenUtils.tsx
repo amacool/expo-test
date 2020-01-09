@@ -43,7 +43,7 @@ export interface State {
 
 export const render = (compRef: CartScreen) => (
   <View style={styles.container}>
-    <HeaderComponent title="Cart" message />
+    <HeaderComponent title="Cart" message back/>
     {compRef.state && !compRef.state.isVerifedGit &&
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Card style={{width: '95%'}}>

@@ -1,5 +1,5 @@
 // @ts-ignore
-import { Font } from "expo";
+import * as Font from "expo-font";
 import moment from "moment";
 import { Card, CardItem, Text, View, Title } from "native-base";
 import React from "react";
@@ -144,10 +144,10 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     padding: 0,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.9,
-    shadowRadius: 15,
-    elevation: 0,
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 5,
     borderWidth: 0,
   },
   cardHeader: {

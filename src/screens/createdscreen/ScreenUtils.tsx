@@ -33,7 +33,7 @@ export interface State {
 
 export const render = (compRef: CreatedScreen) => (
   <View style={styles.container}>
-    <HeaderComponent title="Created IDs" message />
+    <HeaderComponent title="Created IDs" message back/>
     {compRef.state.data && compRef.state.data.length !== 0 ? (
       <View style={{ flex: 1 }}>
         <Modal

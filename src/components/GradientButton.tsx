@@ -1,6 +1,7 @@
 import React from "react";
 // @ts-ignore
-import { Icon, LinearGradient } from "expo";
+import { LinearGradient } from "expo";
+import * as Icon from "@expo/vector-icons";
 import { widthPercentageToDP as wp} from "../helpers/Responsive"
 import {
   Text, TouchableOpacity, StyleSheet

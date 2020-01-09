@@ -1,6 +1,6 @@
 import React from "react";
 // @ts-ignore
-import { Icon } from "expo";
+import * as Icon from "@expo/vector-icons";
 
 import {
   TouchableOpacity,

@@ -37,12 +37,12 @@ let tabsOptions: TabNavigatorConfig = {
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
-        height: -12,
+        height: -3,
       },
-      shadowOpacity: 0.58,
-      shadowRadius: 16.00,
+      shadowOpacity: 0.1,
+      shadowRadius: 3.00,
 
-      elevation: 24,
+      elevation: 3,
       overflow: "visible",
       borderWidth: 1,
       position: "absolute",

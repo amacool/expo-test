@@ -1,4 +1,6 @@
-import { Font, ImagePicker, Permissions } from "expo";
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from "expo-permissions";
+import * as Font from "expo-font";
 import * as React from "react";
 import { AsyncStorage } from "react-native";
 import states from "../../constants/States";

@@ -19,6 +19,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   container: {
     flex: 1,
     backgroundColor: Colors.mainBackground,
+    marginBottom: 30,
   },
   welcomeContainer: {
     marginTop: 30,

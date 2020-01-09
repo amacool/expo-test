@@ -55,7 +55,7 @@ export interface State {
 }
 
 export const render = (compRef: CheckOutScreen) => (
-  <Container>
+  <Container style={styles.container}>
     <HeaderComponent title="Check Out" message back/>
     <Content style={styles.container} disableKBDismissScroll={true}>
       <Form style={{padding: 10}}>

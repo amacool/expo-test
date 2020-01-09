@@ -1,7 +1,9 @@
 import * as React from "react";
-import { Font, takeSnapshotAsync } from "expo";
+import { takeSnapshotAsync } from "expo";
+import * as Font from "expo-font";
 import * as screenUtils from "./ScreenUtils";
-import { ImagePicker, Permissions } from "expo";
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from "expo-permissions";
 import { AsyncStorage, CameraRoll, PixelRatio, Keyboard, Dimensions } from "react-native";
 import states from "../../constants/States";
 import moment from "moment";
@@ -212,6 +214,8 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       aspect: [1, 1],
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 1
     });
 
     console.log(result);
@@ -314,8 +318,12 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
   };
 
   askPermissionsAsync = async () => {
-    await Permissions.askAsync(Permissions.CAMERA);
-    await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    try {
+      await Permissions.askAsync(Permissions.CAMERA);
+      await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    } catch (e) {
+      console.log('permission Error', e);
+    }
     // you would probably do something to verify that permissions
     // are actually granted, but I'm skipping that for brevity
   };

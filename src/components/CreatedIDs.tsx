@@ -1,6 +1,7 @@
 import React from "react";
 // @ts-ignore
-import { Font, Icon } from "expo";
+import * as Icon from "@expo/vector-icons";
+import * as Font from "expo-font";
 import {StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity, NativeModules} from "react-native";
 import {Left, Button, Right, View, Card, CardItem, Text, Body, Spinner, Title} from "native-base";
 import Colors from "../constants/Colors";
@@ -185,10 +186,10 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     padding: 0,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.9,
-    shadowRadius: 15,
-    elevation: 0,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 2,
     borderWidth: 0,
     alignSelf: "center",
   },

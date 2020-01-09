@@ -1,7 +1,9 @@
 import * as React from "react";
-import { Font, takeSnapshotAsync } from "expo";
+import { takeSnapshotAsync } from "expo";
+import * as Font from "expo-font";
 import * as screenUtils from "./ScreenUtils";
-import { ImagePicker, Permissions } from "expo";
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from "expo-permissions";
 import { AsyncStorage } from "react-native";
 import states from "../../constants/States";
 import navigationStore from "../../stores/navigationStore";
