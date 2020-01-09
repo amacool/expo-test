@@ -85,11 +85,12 @@ run ```sudo expo publish```
 
 This may take some time to build the application and deploy in the expo client.
 
-Process behind the expo client deploy 
-
+Process behind the expo client deploy
+ 
+```log
 sudo expo publish
-Password:
-```shell
+Password: *
+
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 │                                                                                                                                          │
 │   There is a new version of expo-cli available (3.3.0).                                                                                  │
@@ -115,7 +116,7 @@ Uploading JavaScript bundles
 Published
 Your URL is
 
-### https://exp.host/@rajeshmp/freekidsid
+### https://exp.host/@bugsniper/petsidapp
 
 › Closing Expo server
 › Stopping Metro bundler
