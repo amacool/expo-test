@@ -89,6 +89,7 @@ Process behind the expo client deploy
 
 sudo expo publish
 Password:
+```shell
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 │                                                                                                                                          │
 │   There is a new version of expo-cli available (3.3.0).                                                                                  │
@@ -96,6 +97,7 @@ Password:
 │   Install expo-cli globally using the package manager of your choice; for example: `npm install -g expo-cli` to get the latest version   │
 │                                                                                                                                          │
 └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
 Unable to find an existing Expo CLI instance for this directory, starting a new one...
 Starting Metro Bundler on port 19001.
 Tunnel ready.
@@ -116,11 +118,11 @@ Your URL is
 ### https://exp.host/@rajeshmp/freekidsid
 
 › Closing Expo server
-› Stopping Metro bundler```
+› Stopping Metro bundler
+```
 
-### Please select the URl and navigate  https://exp.host/@rajeshmp/freekidsid
+### Please select the URl and navigate  https://exp.host/@bugsniper/petsidapp
 
 When we open that url in browser, will display our application name with ```QR Code ```. Please scan the QR code in real device we are able to run in Expo Client.
 
-### Reference Links
 
