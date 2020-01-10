@@ -35,9 +35,9 @@ export default class CreatedScreen extends React.Component {
 
   async componentDidMount() {
     this.setState({isFontLoaded: true});
-    const kidIds = await AsyncStorage.getItem('kidsids');
+    const kidIds = await AsyncStorage.getItem('petsIds');
     const kidIdsArr = (kidIds)? JSON.parse(kidIds) : [];
-    console.log('kidIds', kidIds);
+    console.log('petsIds', kidIds);
     this.setState({data: kidIdsArr});
   }
 

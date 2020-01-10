@@ -60,6 +60,7 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
         issueDate: new Date(),
       },
       idcardInfoValidation: {
+        photo: true,
         name: true,
         birthday: true,
         breed: true,
@@ -110,7 +111,7 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
     }
     if (isValid) {
       console.log(JSON.stringify(data));
-      const kidIds = await AsyncStorage.getItem("kidsids");
+      const kidIds = await AsyncStorage.getItem("petsIds");
       let kidIdsArr = kidIds ? JSON.parse(kidIds) : [];
       kidIdsArr.push(data);
       await AsyncStorage.setItem("petsIds", JSON.stringify(kidIdsArr));

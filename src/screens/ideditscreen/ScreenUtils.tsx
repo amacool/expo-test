@@ -33,7 +33,6 @@ export interface Props {}
 
 // Define States
 export interface State {
-  isFontLoaded: boolean;
   idcardInfo: IDCardInterface;
   idcardRender: IDCardInterface;
   idcardInfoStatus: IDCardStatusInterface;
@@ -41,16 +40,8 @@ export interface State {
   cardIndex: number;
   states: any;
   uploadPhoto: () => void;
-  changeStates: (key: string) => void;
-  changeName: (key: string) => void;
-  changeBirth: (key: string) => void;
-  changeGender: (key: string) => void;
-  changeContact1Name: (key: string) => void;
-  changeContact1Phone: (key: string) => void;
-  changeContact2Name: (key: string) => void;
-  changeContact2Phone: (key: string) => void;
-  changeMedical: (key: string) => void;
-  changeNote: (key: string) => void;
+  changeInfo: (key: string, value: string) => void;
+  changeContactInfo: (key: string, value: string) => void;
   createKidsId: () => void;
 }
 
@@ -77,19 +68,16 @@ export const render = (compRef: IDEditScreen) => (
       <Form style={{padding: 10}}>
         <CardInputComponent label="Name">
           <Input
-            onChangeText={(text) => compRef.state.changeName(text)}
+            onChangeText={(text) => compRef.state.changeInfo('name', text)}
             maxLength={25}
             placeholder="Enter Name"
             placeholderTextColor={Colors.placeholder}
             value={compRef.state.idcardInfo.name}
             style={[
-              compRef.state.idcardInfoStatus.name && styles.formText,
+              styles.formText,
               compRef.state.idcardInfoValidation.name &&
-              !compRef.state.idcardInfo.name &&
-              styles.inValidForm,
-              !compRef.state.idcardInfoStatus.name && { color: Colors.inactiveTextColor },
+              !compRef.state.idcardInfo.name && styles.inValidForm,
             ]}
-            disabled={!compRef.state.idcardInfoStatus.name}
           />
         </CardInputComponent>
 
@@ -103,8 +91,8 @@ export const render = (compRef: IDEditScreen) => (
             modalTransparent={false}
             animationType={"fade"}
             androidMode={"default"}
-            onDateChange={(date) => compRef.state.changeBirth(date)}
-            disabled={!compRef.state.idcardInfoStatus.birthday}
+            textStyle={{fontFamily: 'Metropolis-Thin'}}
+            onDateChange={(date) => compRef.state.changeInfo('birthday', date)}
           />
         </CardPickerComponent>
 
@@ -112,16 +100,13 @@ export const render = (compRef: IDEditScreen) => (
           <Input
             placeholder="Enter Breed..."
             placeholderTextColor={Colors.placeholder}
-            onChangeText={(text) => compRef.state.changeMedical(text)}
-            value={compRef.state.idcardInfo.medical}
+            onChangeText={(text) => compRef.state.changeInfo('breed', text)}
+            value={compRef.state.idcardInfo.breed}
             style={[
-              compRef.state.idcardInfoStatus.medical && styles.formText,
-              compRef.state.idcardInfoValidation.medical &&
-              !compRef.state.idcardInfo.medical &&
-              styles.inValidForm,
-              !compRef.state.idcardInfoStatus.medical && { color: Colors.inactiveTextColor },
+              styles.formText,
+              compRef.state.idcardInfoValidation.breed &&
+              !compRef.state.idcardInfo.breed && styles.inValidForm,
             ]}
-            disabled={!compRef.state.idcardInfoStatus.medical}
           />
         </CardInputComponent>
 
@@ -129,7 +114,7 @@ export const render = (compRef: IDEditScreen) => (
           <Picker
             mode="dropdown"
             placeholder="Select Gender"
-            placeholderStyle={{ color: Colors.placeholder }}
+            placeholderStyle={{ color: Colors.placeholder, fontFamily: 'Metropolis-Thin' }}
             style={[
               styles.formText,
               { height: 40, borderBottomWidth: 0, backgroundColor: Colors.itemActive },
@@ -140,13 +125,14 @@ export const render = (compRef: IDEditScreen) => (
                 style={{ fontSize: 25, position: "absolute", right: 0 }}
               />
             }
+            textStyle={{fontFamily: 'Metropolis-Thin'}}
             selectedValue={
               compRef.state.idcardInfo.gender !== ""
                 ? compRef.state.idcardInfo.gender
                 : "Select Gender"
             }
-            onValueChange={(itemValue, itemIndex) =>
-              compRef.state.changeGender(itemValue)
+            onValueChange={(itemValue) =>
+              compRef.state.changeInfo('gender', itemValue)
             }
           >
             <Item
@@ -166,16 +152,14 @@ export const render = (compRef: IDEditScreen) => (
           <Input
             placeholder="Enter Fur Color..."
             placeholderTextColor={Colors.placeholder}
-            onChangeText={(text) => compRef.state.changeMedical(text)}
-            value={compRef.state.idcardInfo.medical}
+            onChangeText={(text) => compRef.state.changeInfo('color', text)}
+            value={compRef.state.idcardInfo.color}
             style={[
-              compRef.state.idcardInfoStatus.medical && styles.formText,
-              compRef.state.idcardInfoValidation.medical &&
-              !compRef.state.idcardInfo.medical &&
+              styles.formText,
+              compRef.state.idcardInfoValidation.color &&
+              !compRef.state.idcardInfo.color &&
               styles.inValidForm,
-              !compRef.state.idcardInfoStatus.medical && { color: Colors.inactiveTextColor },
             ]}
-            disabled={!compRef.state.idcardInfoStatus.medical}
           />
         </CardInputComponent>
 
@@ -183,27 +167,19 @@ export const render = (compRef: IDEditScreen) => (
           <Input
             placeholder="555 555 5555"
             placeholderTextColor={Colors.placeholder}
-            onChangeText={(text) => compRef.state.changeContact1Phone(text)}
+            onChangeText={(text) => compRef.state.changeContactInfo('contact', text)}
             keyboardType="phone-pad"
             returnKeyType="done"
             maxLength={12}
             value={
-              compRef.state.idcardInfo.contact1
-                ? compRef.state.idcardInfo.contact1.phone
-                : ""
+              compRef.state.idcardInfo.contact
             }
             style={[
-              compRef.state.idcardInfoStatus.contact1 &&
-              styles.formText &&
               styles.formText,
-              compRef.state.idcardInfoValidation.contact1 &&
-              !compRef.state.idcardInfo.contact1.phone &&
+              compRef.state.idcardInfoValidation.contact &&
+              !compRef.state.idcardInfo.contact &&
               styles.inValidForm,
-              !compRef.state.idcardInfoStatus.contact1 && {
-                color: Colors.inactiveTextColor,
-              },
             ]}
-            disabled={!compRef.state.idcardInfoStatus.contact1}
           />
         </CardInputComponent>
 
@@ -211,16 +187,14 @@ export const render = (compRef: IDEditScreen) => (
           <Input
             placeholder="Enter Address..."
             placeholderTextColor={Colors.placeholder}
-            onChangeText={(text) => compRef.state.changeMedical(text)}
-            value={compRef.state.idcardInfo.medical}
+            onChangeText={(text) => compRef.state.changeInfo('address', text)}
+            value={compRef.state.idcardInfo.address}
             style={[
-              compRef.state.idcardInfoStatus.medical && styles.formText,
-              compRef.state.idcardInfoValidation.medical &&
-              !compRef.state.idcardInfo.medical &&
+              styles.formText,
+              compRef.state.idcardInfoValidation.address &&
+              !compRef.state.idcardInfo.address &&
               styles.inValidForm,
-              !compRef.state.idcardInfoStatus.medical && { color: Colors.inactiveTextColor },
             ]}
-            disabled={!compRef.state.idcardInfoStatus.medical}
           />
         </CardInputComponent>
 
@@ -228,16 +202,14 @@ export const render = (compRef: IDEditScreen) => (
           <Input
             placeholder="Enter City..."
             placeholderTextColor={Colors.placeholder}
-            onChangeText={(text) => compRef.state.changeMedical(text)}
-            value={compRef.state.idcardInfo.medical}
+            onChangeText={(text) => compRef.state.changeInfo('city', text)}
+            value={compRef.state.idcardInfo.city}
             style={[
-              compRef.state.idcardInfoStatus.medical && styles.formText,
-              compRef.state.idcardInfoValidation.medical &&
-              !compRef.state.idcardInfo.medical &&
+              styles.formText,
+              compRef.state.idcardInfoValidation.city &&
+              !compRef.state.idcardInfo.city &&
               styles.inValidForm,
-              !compRef.state.idcardInfoStatus.medical && { color: Colors.inactiveTextColor },
             ]}
-            disabled={!compRef.state.idcardInfoStatus.medical}
           />
         </CardInputComponent>
 
@@ -264,9 +236,8 @@ export const render = (compRef: IDEditScreen) => (
                 : "Select State"
             }
             onValueChange={(itemValue, itemIndex) =>
-              compRef.state.changeStates(itemValue)
+              compRef.state.changeInfo('state', itemValue)
             }
-            // disabled={compRef.state.idcardInfoStatus.state}
           >
             <Item
               label="Select State"
@@ -290,18 +261,16 @@ export const render = (compRef: IDEditScreen) => (
 
         <CardInputComponent label="Zip Code(Postal Code)">
           <Input
-            placeholder="Enter State..."
+            placeholder="Enter ZipCode..."
             placeholderTextColor={Colors.placeholder}
-            onChangeText={(text) => compRef.state.changeMedical(text)}
-            value={compRef.state.idcardInfo.medical}
+            onChangeText={(text) => compRef.state.changeInfo('zipcode', text)}
+            value={compRef.state.idcardInfo.zipcode}
             style={[
-              compRef.state.idcardInfoStatus.medical && styles.formText,
-              compRef.state.idcardInfoValidation.medical &&
-              !compRef.state.idcardInfo.medical &&
+              styles.formText,
+              compRef.state.idcardInfoValidation.zipcode &&
+              !compRef.state.idcardInfo.zipcode &&
               styles.inValidForm,
-              !compRef.state.idcardInfoStatus.medical && { color: Colors.inactiveTextColor },
             ]}
-            disabled={!compRef.state.idcardInfoStatus.medical}
           />
         </CardInputComponent>
 
@@ -309,33 +278,29 @@ export const render = (compRef: IDEditScreen) => (
           <Input
             placeholder="Enter Country..."
             placeholderTextColor={Colors.placeholder}
-            onChangeText={(text) => compRef.state.changeMedical(text)}
-            value={compRef.state.idcardInfo.medical}
+            onChangeText={(text) => compRef.state.changeInfo('country', text)}
+            value={compRef.state.idcardInfo.country}
             style={[
-              compRef.state.idcardInfoStatus.medical && styles.formText,
-              compRef.state.idcardInfoValidation.medical &&
-              !compRef.state.idcardInfo.medical &&
+              styles.formText,
+              compRef.state.idcardInfoValidation.country &&
+              !compRef.state.idcardInfo.country &&
               styles.inValidForm,
-              !compRef.state.idcardInfoStatus.medical && { color: Colors.inactiveTextColor },
             ]}
-            disabled={!compRef.state.idcardInfoStatus.medical}
           />
         </CardInputComponent>
 
         <CardInputComponent label="Note">
           <Input
-            onChangeText={(text) => compRef.state.changeNote(text)}
+            onChangeText={(text) => compRef.state.changeInfo('note', text)}
             value={compRef.state.idcardInfo.note}
             placeholder="Enter Note..."
             placeholderTextColor={Colors.placeholder}
             style={[
-              compRef.state.idcardInfoStatus.note && styles.formText,
+              styles.formText,
               compRef.state.idcardInfoValidation.note &&
               !compRef.state.idcardInfo.note &&
               styles.inValidForm,
-              !compRef.state.idcardInfoStatus.note && { color: Colors.inactiveTextColor },
             ]}
-            disabled={!compRef.state.idcardInfoStatus.note}
           />
         </CardInputComponent>
         <View style={[styles.buttonContainer, { marginBottom: 30 }]}>

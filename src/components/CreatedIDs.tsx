@@ -74,7 +74,7 @@ export default class CreatedID extends React.Component<Props> {
                   <View style={styles.inforDetaiItem}>
                     <Text style={styles.inforTitle}>Date:</Text>
                     <Text style={styles.inforDetail}>
-                      {moment(this.props.issueDate).format("MM-DD-YYYY")}
+                      {moment(this.props.issueDate).format("DD/MM/YYYY")}
                     </Text>
                   </View>
                 </View>
