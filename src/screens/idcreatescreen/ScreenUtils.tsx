@@ -164,7 +164,7 @@ export const render = (compRef: IDCreateScreen) => (
               style={{ width: 100, backgroundColor: Colors.white }}
             />
             <Item
-              label="Femail"
+              label="Female"
               value="female"
               style={{ width: 100, backgroundColor: Colors.white }}
             />
