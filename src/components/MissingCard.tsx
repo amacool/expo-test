@@ -1,5 +1,3 @@
-// @ts-ignore
-import * as Font from "expo-font";
 import {Card, Text, Title, View} from "native-base";
 import React from "react";
 import { Dimensions, Image, NativeModules, StyleSheet } from "react-native";
@@ -8,9 +6,6 @@ import Colors from "../constants/Colors";
 import states from "../constants/States";
 import { widthPercentageToDP as wp } from "../helpers/Responsive";
 const { PlatformConstants } = NativeModules;
-
-
-const DEVICE_WIDTH = Dimensions.get("window").width;
 
 export default class MissingCard extends React.Component<MessingCardInterface> {
   state = {
@@ -21,11 +16,6 @@ export default class MissingCard extends React.Component<MessingCardInterface> {
     super(props);
   }
   async componentDidMount() {
-    await Font.loadAsync({
-      "sf-heavy": require("../assets/fonts/SF-Compact-Display-Heavy.ttf"),
-      "sf-regular": require("../assets/fonts/SF-UI-Display-Regular.ttf"),
-      "grvibo-regular": require("../assets/fonts/GreatVibes-Regular.ttf"),
-    });
     this.setState({
       isFontLoaded: true,
     });

@@ -1,9 +1,6 @@
 import React from "react";
-import * as Font from "expo-font";
-// @ts-ignore
 import { StatusBar, StyleSheet, Platform } from "react-native";
 import { Title, Header, Body } from "native-base";
-import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import { widthPercentageToDP as wp } from "../helpers/Responsive";
 
@@ -23,11 +20,6 @@ export default class HeaderTabComponent extends React.Component {
   // you can put this inside your render method
 
   async componentDidMount() {
-    await Font.loadAsync({
-      Roboto: require("../assets/fonts/Roboto.ttf"),
-      Roboto_medium: require("../assets/fonts/Roboto_medium.ttf"),
-      // 'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-    });
     this.setState({ isFontLoaded: true });
   }
   public render() {

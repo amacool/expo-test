@@ -1,6 +1,5 @@
 import * as React from "react";
 import { takeSnapshotAsync } from "expo";
-import * as Font from "expo-font";
 import * as screenUtils from "./ScreenUtils";
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from "expo-permissions";
@@ -99,13 +98,6 @@ export default class CheckOutScreen extends React.Component<screenUtils.Props, s
   // }
 
   async componentDidMount() {
-    await Font.loadAsync({
-      "sf-heavy": require("../../assets/fonts/SF-Compact-Display-Heavy.ttf"),
-      "sf-regular": require("../../assets/fonts/SF-UI-Display-Regular.ttf"),
-      Roboto: require("../../assets/fonts/Roboto.ttf"),
-      Roboto_medium: require("../../assets/fonts/Roboto_medium.ttf"),
-      // 'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf')
-    });
     this.setState({ isFontLoaded: true });
     const dataStr = await AsyncStorage.getItem("kidsid");
     if (dataStr) {

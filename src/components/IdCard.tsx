@@ -1,5 +1,3 @@
-// @ts-ignore
-import * as Font from "expo-font";
 import moment from "moment";
 import { Card, CardItem, Text, View, Title } from "native-base";
 import React from "react";
@@ -17,13 +15,6 @@ export default class IDCard extends React.Component<IDCardInterface> {
     super(props);
   }
   async componentDidMount() {
-    await Font.loadAsync({
-      "sf-heavy": require("../assets/fonts/SF-Compact-Display-Heavy.ttf"),
-      "sf-regular": require("../assets/fonts/SF-UI-Display-Regular.ttf"),
-      "grvibo-regular": require("../assets/fonts/GreatVibes-Regular.ttf"),
-      'Metropolis-Bold': require("../assets/fonts/Metropolis-Bold.otf"),
-      'Metropolis-Medium': require("../assets/fonts/Metropolis-Medium.otf"),
-    });
     this.setState({
       isFontLoaded: true,
     });

@@ -111,11 +111,15 @@ export default class App extends React.Component<InterfaceProps, InterfaceState>
       Font.loadAsync({
         // This is the font that we are using for our tab bar
         ...Icon.Ionicons.font,
-        // We include SpaceMono because we use it in HomeScreen.js. Feel free
-        // to remove this if you are not using it in your app
         "space-mono": require("./src/assets/fonts/SpaceMono-Regular.ttf"),
         "Poppins-Regular": require("./src/assets/fonts/Poppins-Regular.ttf"),
-        Roboto: require("./src/assets/fonts/Roboto.ttf"),
+        "sf-heavy": require("./src/assets/fonts/SF-Compact-Display-Heavy.ttf"),
+        "sf-regular": require("./src/assets/fonts/SF-UI-Display-Regular.ttf"),
+        'Roboto': require("./src/assets/fonts/Roboto.ttf"),
+        'Roboto_medium': require("./src/assets/fonts/Roboto_medium.ttf"),
+        'Metropolis-Bold': require("./src/assets/fonts/Metropolis-Bold.otf"),
+        'Metropolis-Medium': require("./src/assets/fonts/Metropolis-Medium.otf"),
+        "grvibo-regular": require("./src/assets/fonts/GreatVibes-Regular.ttf"),
       }),
     ]);
   };

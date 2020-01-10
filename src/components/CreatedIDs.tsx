@@ -1,7 +1,5 @@
 import React from "react";
 // @ts-ignore
-import * as Icon from "@expo/vector-icons";
-import * as Font from "expo-font";
 import {StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity, NativeModules} from "react-native";
 import {Left, Button, Right, View, Card, CardItem, Text, Body, Spinner, Title} from "native-base";
 import Colors from "../constants/Colors";
@@ -36,11 +34,6 @@ export default class CreatedID extends React.Component<Props> {
     };
   }
   async componentDidMount() {
-    await Font.loadAsync({
-      "sf-heavy": require("../assets/fonts/SF-Compact-Display-Heavy.ttf"),
-      "sf-regular": require("../assets/fonts/SF-UI-Display-Regular.ttf"),
-      "grvibo-regular": require("../assets/fonts/GreatVibes-Regular.ttf"),
-    });
     this.setState({ isFontLoaded: true });
   }
 

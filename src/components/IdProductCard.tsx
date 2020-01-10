@@ -1,5 +1,4 @@
 // @ts-ignore
-import * as Font from "expo-font";
 import moment from "moment";
 import { Body, Card, CardItem, Text, View } from "native-base";
 import React from "react";
@@ -16,11 +15,6 @@ export default class IdProductCard extends React.Component<IDCardInterface> {
     super(props);
   }
   async componentDidMount() {
-    await Font.loadAsync({
-      "sf-heavy": require("../assets/fonts/SF-Compact-Display-Heavy.ttf"),
-      "sf-regular": require("../assets/fonts/SF-UI-Display-Regular.ttf"),
-      "grvibo-regular": require("../assets/fonts/GreatVibes-Regular.ttf"),
-    });
     this.setState({
       isFontLoaded: true,
     });

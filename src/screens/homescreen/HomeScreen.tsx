@@ -1,10 +1,8 @@
 import * as React from "react";
-import * as Font from "expo-font";
 import * as screenUtils from './ScreenUtils';
 import TabBarIcon from "../../components/TabBarIcon";
 import images from "../../assets/images";
 import navigationStore from "../../stores/navigationStore";
-import { AsyncStorage } from "react-native";
 
 export default class HomeScreen extends React.Component<screenUtils.Props, screenUtils.State> {
   static navigationOptions = {
@@ -29,15 +27,6 @@ export default class HomeScreen extends React.Component<screenUtils.Props, scree
     };
   }
   async componentDidMount() {
-    await Font.loadAsync({
-      "sf-heavy": require("../../assets/fonts/SF-Compact-Display-Heavy.ttf"),
-      "sf-regular": require("../../assets/fonts/SF-UI-Display-Regular.ttf"),
-      'Metropolis-Bold': require("../../assets/fonts/Metropolis-Bold.otf"),
-      'Metropolis-Medium': require("../../assets/fonts/Metropolis-Medium.otf"),
-      Roboto: require("../../assets/fonts/Roboto.ttf"),
-      Roboto_medium: require("../../assets/fonts/Roboto_medium.ttf"),
-      // 'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf')
-    });
     this.setState({isFontLoaded: true});
     // const dataStr = await AsyncStorage.getItem('kidsid');
     // console.log(dataStr);

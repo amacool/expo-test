@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as Font from "expo-font";
 import * as screenUtils from "./ScreenUtils";
 import states from "../../constants/States";
 import navigationStore from "../../stores/navigationStore";
@@ -17,13 +16,6 @@ export default class SuccessScreen extends React.Component<screenUtils.Props, sc
     };
   }
   async componentDidMount() {
-    await Font.loadAsync({
-      "sf-heavy": require("../../assets/fonts/SF-Compact-Display-Heavy.ttf"),
-      "sf-regular": require("../../assets/fonts/SF-UI-Display-Regular.ttf"),
-      Roboto: require("../../assets/fonts/Roboto.ttf"),
-      Roboto_medium: require("../../assets/fonts/Roboto_medium.ttf"),
-      // 'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf')
-    });
     this.setState({ isFontLoaded: true });
   }
 

@@ -4,7 +4,6 @@ import * as screenUtils from "./ScreenUtils";
 import { takeSnapshotAsync, FileSystem } from "expo";
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from "expo-permissions";
-import * as Font from "expo-font";
 import { AsyncStorage } from "react-native";
 import states from "../../constants/States";
 import heights from "../../constants/Height";
@@ -116,13 +115,6 @@ export default class MissingScreen extends React.Component<screenUtils.Props, sc
   }
 
   async componentDidMount() {
-    await Font.loadAsync({
-      "sf-heavy": require("../../assets/fonts/SF-Compact-Display-Heavy.ttf"),
-      "sf-regular": require("../../assets/fonts/SF-UI-Display-Regular.ttf"),
-      Roboto: require("../../assets/fonts/Roboto.ttf"),
-      Roboto_medium: require("../../assets/fonts/Roboto_medium.ttf"),
-      // 'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf')
-    });
     this.setState({ isFontLoaded: true });
     const kidIds = await AsyncStorage.getItem("kidsMissingIds");
     const kidIdsArr = kidIds ? JSON.parse(kidIds) : [];

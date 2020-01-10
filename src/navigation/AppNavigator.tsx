@@ -11,6 +11,7 @@ import InfoScreen from "../screens/infoscreen/InfoScreen";
 import CartScreen from "../screens/cartscreen/CartScreen";
 import CheckOutScreen from "../screens/checkoutscreen/CheckOutScreen";
 import SuccessScreen from "../screens/successscreen/SuccessScreen";
+import ContactScreen from "../screens/contackscreen/ContactScreen";
 
 
 
@@ -80,6 +81,7 @@ const MainRoutes: NavigationRouteConfigMap = {
   createid: { screen: IDCreateScreen },
   editid: { screen: IDEditScreen },
   checkout: { screen: CheckOutScreen },
+  contact: { screen: ContactScreen },
   viewid: { screen: IDViewScreen },
   success: { screen: SuccessScreen },
   created: { screen: TabNavigator("Created") },

@@ -4,7 +4,6 @@ import { ExpoLinksView } from "@expo/samples";
 import TabBarIcon from "../../components/TabBarIcon";
 import images from "../../assets/images";
 import * as screenUtils from "./ScreenUtils";
-import * as Font from "expo-font";
 import navigationStore from "../../stores/navigationStore";
 import ViewScreenSnapStore from "../../stores/viewScreenSnapStore";
 
@@ -35,14 +34,6 @@ export default class CreatedScreen extends React.Component {
   }
 
   async componentDidMount() {
-    await Font.loadAsync({
-      'sf-heavy': require('../../assets/fonts/SF-Compact-Display-Heavy.ttf'),
-      'sf-regular': require('../../assets/fonts/SF-UI-Display-Regular.ttf'),
-      'Roboto': require('../../assets/fonts/Roboto.ttf'),
-      'Roboto_medium': require('../../assets/fonts/Roboto_medium.ttf'),
-      // 'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf')
-
-    });
     this.setState({isFontLoaded: true});
     const kidIds = await AsyncStorage.getItem('kidsids');
     const kidIdsArr = (kidIds)? JSON.parse(kidIds) : [];
