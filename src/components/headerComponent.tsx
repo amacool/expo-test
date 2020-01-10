@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactNode} from "react";
 // @ts-ignore
 import {StatusBar, StyleSheet, TouchableOpacity, View, Platform, Image} from "react-native";
 import { Left, Icon, Right, Button, Title, Header, Body } from "native-base";
@@ -6,8 +6,13 @@ import Colors from "../constants/Colors";
 import navigationStore from "../stores/navigationStore";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "../helpers/Responsive";
 import images from "../assets/images";
-
-export default class HeaderComponent extends React.Component {
+interface InterfaceProps {
+  back?: boolean;
+  checked?: boolean;
+  message?: boolean;
+  title: string;
+}
+export default class HeaderComponent extends React.Component<InterfaceProps> {
   constructor(props) {
     super(props);
     this.state = {

@@ -3,7 +3,7 @@ import { takeSnapshotAsync } from "expo";
 import * as screenUtils from "./ScreenUtils";
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from "expo-permissions";
-import { AsyncStorage, CameraRoll, PixelRatio, Keyboard, Dimensions } from "react-native";
+import { AsyncStorage } from "react-native";
 import states from "../../constants/States";
 import navigationStore from "../../stores/navigationStore";
 import images from "../../assets/images";
@@ -12,7 +12,6 @@ import TabBarBigIcon from "../../components/TabBarBigIcon";
 export default class IDCreateScreen extends React.Component<screenUtils.Props, screenUtils.State> {
   public static navigationOptions = {
     title: "Add",
-    // title: "Create your Kid's ID",
     tabBarLabel: "Add",
     tabBarIcon: ({ focused }) => (
       <TabBarBigIcon
@@ -23,108 +22,77 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
     ),
   };
 
-  public scrollView;
-
   public imageRef;
   constructor(props) {
     super(props);
     this.state = {
-      isFontLoaded: false,
       scrollPos: 0,
       idcardInfo: {
         name: "",
-        state: "",
-        issueDate: new Date(),
         birthday: new Date(),
-        contact1: { name: "", phone: "" },
-        medical: "",
+        breed: "",
+        gender: "male",
+        color: "",
+        contact: "",
+        contactoth: "",
+        address: "",
+        city: "",
+        state: "",
+        zipcode: "",
+        country: "",
         note: "",
-        gender: "",
+        issueDate: new Date(),
       },
       idcardRender: {
         name: "",
-        state: "",
-        issueDate: new Date(),
         birthday: new Date(),
-        contact1: { name: "", phone: "" },
-        medical: "",
+        breed: "",
+        gender: "male",
+        color: "",
+        contact: "",
+        contactoth: "",
+        address: "",
+        city: "",
+        state: "",
+        zipcode: "",
+        country: "",
         note: "",
-        gender: "",
-      },
-      idcardInfoStatus: {
-        photo: true,
-        name: true,
-        state: true,
-        issueDate: true,
-        birthday: true,
-        contact1: true,
-        medical: true,
-        note: true,
-        gender: true,
+        issueDate: new Date(),
       },
       idcardInfoValidation: {
-        photo: true,
         name: true,
-        state: true,
-        issueDate: true,
         birthday: true,
-        contact1: true,
-        medical: true,
-        note: true,
+        breed: true,
         gender: true,
+        color: true,
+        contact: true,
+        contactoth: false,
+        address: false,
+        city: false,
+        state: false,
+        zipcode: false,
+        country: false,
+        note: true,
+        issueDate: true,
       },
       states: states,
       uploadPhoto: () => this.uploadPhoto(),
-      changeStates: (key) => this.changeStates(key),
-      changeName: (key) => this.changeName(key),
-      changeBirth: (key) => this.changeBirth(key),
-      changeGender: (key) => this.changeGender(key),
-      changeContact1Name: (key) => this.changeContact1Name(key),
-      changeContact1Phone: (key) => this.changeContact1Phone(key),
-      changeContact2Name: (key) => this.changeContact2Name(key),
-      changeContact2Phone: (key) => this.changeContact2Phone(key),
-      changeMedical: (key) => this.changeMedical(key),
-      changeNote: (key) => this.changeNote(key),
+      changeInfo: (key, value) => this.onChangeInfo(key, value),
+      changeContactInfo: (key, value) => this.onChangeContactInfo(key, value),
       createKidsId: () => this.createKidsId(),
     };
   }
 
-  // componentWillMount() {
-  //   this.keyboardDidShowListener = Keyboard.addListener(
-  //     "keyboardDidShow",
-  //     this._keyboardDidShow.bind(this),
-  //   );
-  // }
-
-  // componentWillUnmount() {
-  //   this.keyboardDidShowListener.remove();
-  // }
-
-  // _keyboardDidShow() {
-  //   console.log("Keyboard Shown: ", this.state.scrollPos);
-  //   let realOffset = this.state.scrollPos;
-  //   if (realOffset < DEVICE_HEIGHT / 2) {
-  //     realOffset += 0;
-  //   } else if (realOffset > DEVICE_HEIGHT / 2) {
-  //     realOffset -= 400;
-  //   }
-  //   console.log("Keyboard Shown: ", realOffset, DEVICE_HEIGHT);
-  //   if (this.scrollView !== undefined) {
-  //     this.scrollView.scrollTo({ x: 0, y: realOffset, animaged: true });
+  // async componentDidMount() {
+  //   const dataStr = await AsyncStorage.getItem("kidsid");
+  //   if (dataStr) {
+  //     const data = JSON.parse(dataStr);
+  //     const parsing = { ...data };
+  //     setTimeout(() => {
+  //       // this.setState({idcardInfo: parsing, idcardRender: parsing});
+  //     }, 500);
   //   }
   // }
-
-  async componentDidMount() {
-    this.setState({ isFontLoaded: true });
-    const dataStr = await AsyncStorage.getItem("kidsid");
-    if (dataStr) {
-      const data = JSON.parse(dataStr);
-      const parsing = { ...data };
-      setTimeout(() => {
-        // this.setState({idcardInfo: parsing, idcardRender: parsing});
-      }, 500);
-    }
-  }
 
   createKidsId = async () => {
     const data = this.state.idcardRender;
@@ -133,54 +101,11 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
     const array = Object.keys(validObject);
     for (let i in array) {
       const key = array[i];
-      if (key === "photo") {
-        if (validObject["photo"] && !data["photo"]) {
-          alert("Photo fields is required. Please fill out that.");
-          isValid = false;
-          return false;
-        }
-      } else if (key === "state") {
-        if (validObject["state"] && !data["state"]) {
-          alert("State fields is required. Please fill out that.");
-          isValid = false;
-          return false;
-        }
-      } else if (key === "name") {
-        if (validObject["name"] && !data["name"]) {
-          alert("Name fields is required. Please fill out that.");
-          isValid = false;
-          return false;
-        }
-      } else if (key === "gender") {
-        if (validObject["gender"] && !data["gender"]) {
-          alert("Gender fields is required. Please fill out that.");
-          isValid = false;
-          return false;
-        }
-      } else if (key === "contact1") {
-        if (validObject[key] && !data[key].phone) {
-          alert("Phone Number fields is required. Please fill out that.");
-          isValid = false;
-          return false;
-        }
-      } else if (key === "medical") {
-        if (validObject["medical"] && !data["medical"]) {
-          alert("Medical fields is required. Please fill out that.");
-          isValid = false;
-          return false;
-        }
-      } else if (key === "note") {
-        if (validObject["note"] && !data["note"]) {
-          alert("Note fields is required. Please fill out that.");
-          isValid = false;
-          return false;
-        }
-      } else {
-        if (validObject[key] && !data[key]) {
-          alert("Some fields is required. You must upload a photo.");
-          isValid = false;
-          return false;
-        }
+      if (validObject[key] && !data[key]) {
+        console.log(key);
+        alert("Some fields is required and you must upload a photo.");
+        isValid = false;
+        return false;
       }
     }
     if (isValid) {
@@ -188,13 +113,9 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
       const kidIds = await AsyncStorage.getItem("kidsids");
       let kidIdsArr = kidIds ? JSON.parse(kidIds) : [];
       kidIdsArr.push(data);
-      await AsyncStorage.setItem("kidsids", JSON.stringify(kidIdsArr));
-      // await ViewScreenSnapStore.screenShot(this.imageRef);
+      await AsyncStorage.setItem("petsIds", JSON.stringify(kidIdsArr));
       navigationStore.navigateTo("created");
     }
-    // else {
-    //   alert("Some field is required. Please fill out that.");
-    // }
   };
 
   uploadPhoto = async () => {
@@ -206,8 +127,6 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
       quality: 1
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
       let someProperty = { ...this.state.idcardInfo };
       someProperty.photo = result.uri;
@@ -216,91 +135,23 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
     }
   };
 
-  changeStates = (key) => {
+  onChangeInfo = (key, value) => {
     let someProperty = { ...this.state.idcardInfo };
-    if (!key) delete someProperty.state;
-    else someProperty.state = key;
+    if (!value) delete someProperty[key];
+    else someProperty[key] = value;
     this.setState({ idcardInfo: someProperty });
     this.setState({ idcardRender: someProperty });
   };
 
-  changeName = (key) => {
+  onChangeContactInfo = (key, value) => {
+    let phoneNumber = value;
     let someProperty = { ...this.state.idcardInfo };
-    if (!key) delete someProperty.name;
-    else someProperty.name = key;
-    this.setState({ idcardRender: someProperty });
-    this.setState({ idcardInfo: someProperty });
-  };
-
-  changeGender = (key) => {
-    let someProperty = { ...this.state.idcardInfo };
-    someProperty.gender = key;
-    this.setState({ idcardInfo: someProperty });
-    this.setState({ idcardRender: someProperty });
-  };
-
-  changeBirth = (key) => {
-    let someProperty = { ...this.state.idcardInfo };
-    someProperty.birthday = key;
-    this.setState({ idcardInfo: someProperty });
-    this.setState({ idcardRender: someProperty });
-  };
-
-  changeContact1Name = (key) => {
-    let someProperty = { ...this.state.idcardInfo };
-    let contactPro = { ...someProperty.contact1 };
-    contactPro.name = key;
-    someProperty.contact1 = contactPro;
-    this.setState({ idcardInfo: someProperty });
-    this.setState({ idcardRender: someProperty });
-  };
-
-  changeContact1Phone = (key) => {
-    let someProperty = { ...this.state.idcardInfo };
-    let contactPro = { ...someProperty.contact1 };
-    contactPro.phone = key;
-    const _str = contactPro.phone.split("-").join("");
+    const _str = value.toString().split("-").join("");
     if (_str.length > 3 && _str.length < 6)
-      contactPro.phone = _str.slice(0, 3) + "-" + _str.slice(3);
+      phoneNumber = _str.slice(0, 3) + "-" + _str.slice(3);
     if (_str.length > 6)
-      contactPro.phone = _str.slice(0, 3) + "-" + _str.slice(3, 6) + "-" + _str.slice(6);
-    someProperty.contact1 = contactPro;
-    this.setState({ idcardInfo: someProperty });
-    this.setState({ idcardRender: someProperty });
-  };
-  changeContact2Name = (key) => {
-    let someProperty = { ...this.state.idcardInfo };
-    let contactPro = { ...someProperty.contact2 };
-    contactPro.name = key;
-    someProperty.contact2 = contactPro;
-    this.setState({ idcardInfo: someProperty });
-    this.setState({ idcardRender: someProperty });
-  };
-
-  changeContact2Phone = (key) => {
-    let someProperty = { ...this.state.idcardInfo };
-    let contactPro = { ...someProperty.contact2 };
-    contactPro.phone = key;
-    const _str = contactPro.phone.split("-").join("");
-    if (_str.length > 3 && _str.length < 6)
-      contactPro.phone = _str.slice(0, 3) + "-" + _str.slice(3);
-    if (_str.length > 6)
-      contactPro.phone = _str.slice(0, 3) + "-" + _str.slice(3, 6) + "-" + _str.slice(6);
-    someProperty.contact2 = contactPro;
-    this.setState({ idcardInfo: someProperty });
-    this.setState({ idcardRender: someProperty });
-  };
-
-  changeMedical = (key) => {
-    let someProperty = { ...this.state.idcardInfo };
-    someProperty.medical = key;
-    this.setState({ idcardInfo: someProperty });
-    this.setState({ idcardRender: someProperty });
-  };
-
-  changeNote = (key) => {
-    let someProperty = { ...this.state.idcardInfo };
-    someProperty.note = key;
+      phoneNumber = _str.slice(0, 3) + "-" + _str.slice(3, 6) + "-" + _str.slice(6);
+    someProperty[key] = phoneNumber;
     this.setState({ idcardInfo: someProperty });
     this.setState({ idcardRender: someProperty });
   };
@@ -312,13 +163,9 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
     } catch (e) {
       console.log('permission Error', e);
     }
-    // you would probably do something to verify that permissions
-    // are actually granted, but I'm skipping that for brevity
   };
 
   public render() {
-    return this.state.isFontLoaded && screenUtils.render(this);
+    return screenUtils.render(this);
   }
-
-  _handleHelpPress = () => {};
 }

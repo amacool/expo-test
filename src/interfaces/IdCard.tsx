@@ -1,25 +1,36 @@
 interface IDCardInterface {
   name?: string;
-  state?: string;
-  photo?: string;
-  issueDate?: Date;
   birthday?: Date;
-  contact1?: {name: string, phone: string},
-  contact2?: {name: string, phone: string},
-  medical?: string;
-  note?: string;
+  breed: string,
+  color: string,
   gender?: string;
+  contact?: string;
+  contactoth?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zipcode?: string;
+  country?: string;
+  note?: string;
+  issueDate?: Date;
+  photo?: string;
   istemp?: boolean;
 }
 interface IDCardStatusInterface {
   name?: boolean;
-  state?: boolean;
-  photo?: boolean;
-  issueDate?: boolean;
   birthday?: boolean;
-  contact1?: boolean,
-  contact2?: boolean,
-  medical?: boolean;
-  note?: boolean;
+  breed?: boolean;
   gender?: boolean;
+  color?: boolean,
+  contact?: boolean;
+  contactoth?: boolean;
+  address?: boolean,
+  city?: boolean;
+  state?: boolean;
+  zipcode?: boolean;
+  country?: boolean;
+  note?: boolean;
+  issueDate?: boolean;
+  photo?: boolean;
+  istemp?: boolean;
 }

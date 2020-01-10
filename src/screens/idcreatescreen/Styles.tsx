@@ -6,6 +6,7 @@ interface HomeScreenStyles {
   welcomeContainer: ViewStyle;
   buttonContainer: ViewStyle;
   formText: ViewStyle;
+  inputForm: ViewStyle;
   inValidForm: ViewStyle;
   formSwitch: ViewStyle;
   uploadBotton: ViewStyle;
@@ -36,9 +37,15 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     borderBottomWidth: 1,
     height: 20,
     borderBottomColor: Colors.tabIconDefault,
+    fontSize: 14,
+    fontFamily: 'Metropolis-Thin'
   },
   inValidForm: {
     borderBottomColor: Colors.buttonRed,
+  },
+  inputForm: {
+    fontSize: 14,
+    fontFamily: 'Metropolis-Thin'
   },
   formSwitch: {
     marginTop: 20,

@@ -119,6 +119,7 @@ export default class App extends React.Component<InterfaceProps, InterfaceState>
         'Roboto_medium': require("./src/assets/fonts/Roboto_medium.ttf"),
         'Metropolis-Bold': require("./src/assets/fonts/Metropolis-Bold.otf"),
         'Metropolis-Medium': require("./src/assets/fonts/Metropolis-Medium.otf"),
+        'Metropolis-Thin': require("./src/assets/fonts/Metropolis-Thin.otf"),
         "grvibo-regular": require("./src/assets/fonts/GreatVibes-Regular.ttf"),
       }),
     ]);
