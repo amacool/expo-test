@@ -45,7 +45,7 @@ export default class HeaderComponent extends React.Component {
 
         <View style={styles.headerRightIcon}>
           {this.props.message &&
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigationStore.navigateTo('contact')}>
               <Image style={styles.headerBackIcon} source={images.messageIcon} />
             </TouchableOpacity>
           }

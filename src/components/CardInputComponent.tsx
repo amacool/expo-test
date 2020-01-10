@@ -10,7 +10,7 @@ export default class CardInputComponent extends React.Component {
         <CardItem>
           <Body>
           <Item stackedLabel style={{width: "100%"}}>
-            <Label style={{width: "100%", fontSize: 12, paddingLeft: 5 }}>{this.props.label}</Label>
+            <Label style={{width: "100%", fontSize: 12, paddingLeft: 5, fontFamily: 'Metropolis-Bold', }}>{this.props.label}</Label>
             {this.props.children}
           </Item>
           </Body>

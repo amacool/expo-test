@@ -28,20 +28,13 @@ export default class HomeScreen extends React.Component<screenUtils.Props, scree
   }
   async componentDidMount() {
     this.setState({isFontLoaded: true});
-    // const dataStr = await AsyncStorage.getItem('kidsid');
-    // console.log(dataStr);
-    // if (dataStr) {
-    //   const data = JSON.parse(dataStr);
-    //   this.setState({idcardInfo: data});
-    // }
   }
   public render() {
     return this.state.isFontLoaded && screenUtils.render(this);
   }
 
   _handleHelpPress = () => {
-  // : { screen: TabNavigator('Create_id')},
-  navigationStore.navigateTo('create_id');
+    navigationStore.navigateTo('create_id');
 
   };
 }

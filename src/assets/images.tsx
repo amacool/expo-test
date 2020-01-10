@@ -30,6 +30,7 @@ const images = {
   uploadPhotoBtn: require("../../src/assets/images/upload-photo.png"),
   createPosterBtn: require("../../src/assets/images/create-poster.png"),
   saveIdBtn: require("../../src/assets/images/save-id.png"),
+  sendMessageBtn: require("../../src/assets/images/send-email.png"),
 
   phoneIcon: require("../../src/assets/images/phone.png"),
   phoneIcon1: require("../../src/assets/images/phone1.png"),

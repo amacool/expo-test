@@ -7,6 +7,7 @@ interface CheckOutScreenStyles {
   buttonContainer: ViewStyle;
   formText: ViewStyle;
   inValidForm: ViewStyle;
+  multilineInput: ViewStyle;
   formSwitch: ViewStyle;
   uploadBotton: ViewStyle;
   problemBotton: ViewStyle;
@@ -30,6 +31,7 @@ export const styles = StyleSheet.create<CheckOutScreenStyles>({
     alignItems: "center",
   },
   formText: {
+    fontFamily: 'Metropolis-Bold',
     width: "100%",
     backgroundColor: Colors.transparent,
     borderBottomWidth: 1,
@@ -37,7 +39,14 @@ export const styles = StyleSheet.create<CheckOutScreenStyles>({
     borderBottomColor: Colors.tabIconDefault,
   },
   inValidForm: {
+    fontFamily: 'Metropolis-Bold',
     borderBottomColor: Colors.buttonRed,
+  },
+  multilineInput: {
+    fontFamily: 'Metropolis-Bold',
+    minHeight: 100,
+    paddingTop: 10,
+    textAlignVertical: 'top'
   },
   formSwitch: {
     marginTop: 20,
