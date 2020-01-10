@@ -12,6 +12,7 @@ interface CreatedScreenStyles {
   createBotton: ViewStyle;
   claimText: TextStyle;
   problemText: TextStyle;
+  noIDText: TextStyle;
 }
 
 export const styles = StyleSheet.create<CreatedScreenStyles>({
@@ -77,8 +78,7 @@ export const styles = StyleSheet.create<CreatedScreenStyles>({
   },
   noIDText: {
     fontSize: 24,
-    fontFamily: "Roboto",
-    fontWeight: "bold",
+    fontFamily: "Metropolis-Medium",
     // color: Colors.white,
   },
 });

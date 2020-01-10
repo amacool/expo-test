@@ -12,6 +12,7 @@ interface CartScreenStyles {
   createBotton: ViewStyle;
   claimText: TextStyle;
   problemText: TextStyle;
+  noIDText: TextStyle;
 }
 
 export const styles = StyleSheet.create<CartScreenStyles>({
@@ -77,8 +78,7 @@ export const styles = StyleSheet.create<CartScreenStyles>({
   },
   noIDText: {
     fontSize: 24,
-    fontFamily: "Roboto",
-    fontWeight: "bold",
+    fontFamily: "Metropolis-Medium",
     // color: Colors.white,
   },
 });

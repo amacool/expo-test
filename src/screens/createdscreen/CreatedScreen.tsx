@@ -13,7 +13,7 @@ interface InterfaceStyle {
 
 export default class CreatedScreen extends React.Component {
   public static navigationOptions = {
-    tabBarLabel: "Created",
+    tabBarLabel: "IDs",
     tabBarIcon: ({ focused }) => (
       <TabBarIcon focused={focused} active={images.tabCreatedSelect}  inactive={images.tabCreated}/>
     ),

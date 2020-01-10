@@ -13,7 +13,7 @@ interface InterfaceStyle {
 
 export default class CartScreen extends React.Component {
   public static navigationOptions = {
-    tabBarLabel: "Cart",
+    tabBarLabel: "Shop",
     tabBarIcon: ({ focused }) => (
       <TabBarIcon focused={focused} active={images.tabCartSelect} inactive={images.tabCart} />
     ),
