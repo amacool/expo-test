@@ -1,6 +1,6 @@
 // Define PropTypes
 import {TouchableOpacity, View, Image} from "react-native";
-import {Container, Content, Form, Icon, Picker, Item, Input, Title} from "native-base";
+import {Container, Content, Form, Input} from "native-base";
 
 import * as React from "react";
 import ViewIdScreen from "./ViewIdScreen";
