@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AsyncStorage, Alert, StyleSheet, Text, View, ViewStyle } from "react-native";
+import { AsyncStorage, StyleSheet, ViewStyle } from "react-native";
 import { ExpoLinksView } from "@expo/samples";
 import TabBarIcon from "../../components/TabBarIcon";
 import images from "../../assets/images";

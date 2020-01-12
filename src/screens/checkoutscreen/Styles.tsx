@@ -1,11 +1,12 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import Colors from "../../constants/Colors";
 
-interface CheckOutScreenStyles {
+interface HomeScreenStyles {
   container: ViewStyle;
   welcomeContainer: ViewStyle;
   buttonContainer: ViewStyle;
   formText: ViewStyle;
+  inputForm: ViewStyle;
   inValidForm: ViewStyle;
   formSwitch: ViewStyle;
   uploadBotton: ViewStyle;
@@ -15,10 +16,11 @@ interface CheckOutScreenStyles {
   problemText: TextStyle;
 }
 
-export const styles = StyleSheet.create<CheckOutScreenStyles>({
+export const styles = StyleSheet.create<HomeScreenStyles>({
   container: {
     flex: 1,
-    backgroundColor: Colors.mainBackground,
+    backgroundColor: Colors.backgroundDefault,
+    marginBottom: 30,
   },
   welcomeContainer: {
     marginTop: 30,
@@ -32,12 +34,19 @@ export const styles = StyleSheet.create<CheckOutScreenStyles>({
   formText: {
     width: "100%",
     backgroundColor: Colors.transparent,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.1,
     height: 20,
     borderBottomColor: Colors.tabIconDefault,
+    fontSize: 14,
+    fontFamily: 'Metropolis-Thin'
   },
   inValidForm: {
     borderBottomColor: Colors.buttonRed,
+    borderBottomWidth: 1,
+  },
+  inputForm: {
+    fontSize: 14,
+    fontFamily: 'Metropolis-Thin'
   },
   formSwitch: {
     marginTop: 20,

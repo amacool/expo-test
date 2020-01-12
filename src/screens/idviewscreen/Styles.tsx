@@ -17,7 +17,7 @@ interface HomeScreenStyles {
 export const styles = StyleSheet.create<HomeScreenStyles>({
   container: {
     flex: 1,
-    backgroundColor: Colors.mainBackground,
+    backgroundColor: Colors.backgroundDefault,
   },
   welcomeContainer: {
     marginTop: 20,

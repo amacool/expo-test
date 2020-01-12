@@ -39,6 +39,7 @@ export interface State {
   idcardInfoValidation: IDCardStatusInterface;
   cardIndex: number;
   states: any;
+  isValid: boolean,
   uploadPhoto: () => void;
   changeInfo: (key: string, value: string) => void;
   changeContactInfo: (key: string, value: string) => void;
@@ -46,9 +47,9 @@ export interface State {
 }
 
 export const render = (compRef: IDEditScreen) => (
-  <Container>
-    <HeaderComponent title="Edit ID" message back checked/>
-    <Content style={styles.container} disableKBDismissScroll={true}>
+  <Container style={styles.container}>
+    <HeaderComponent title="Edit ID" message back checked={compRef.state.isValid}/>
+    <Content disableKBDismissScroll={true}>
       <View style={styles.welcomeContainer}>
         <IDCard ref={(ref) => (compRef.imageRef = ref)} {...compRef.state.idcardRender} />
       </View>
@@ -115,10 +116,12 @@ export const render = (compRef: IDEditScreen) => (
             mode="dropdown"
             placeholder="Select Gender"
             placeholderStyle={{ color: Colors.placeholder, fontFamily: 'Metropolis-Thin' }}
-            style={[
-              styles.formText,
-              { height: 40, borderBottomWidth: 0, backgroundColor: Colors.itemActive },
-            ]}
+            style={{
+              width: "100%",
+              height: 40,
+              borderBottomWidth: 0,
+              backgroundColor: Colors.itemActive,
+            }}
             iosIcon={
               <Icon
                 name="arrow-down"

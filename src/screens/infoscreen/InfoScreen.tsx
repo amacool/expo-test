@@ -116,9 +116,8 @@ export default class MissingScreen extends React.Component<screenUtils.Props, sc
 
   async componentDidMount() {
     this.setState({ isFontLoaded: true });
-    const kidIds = await AsyncStorage.getItem("kidsMissingIds");
+    const kidIds = await AsyncStorage.getItem("petsMissingIds");
     const kidIdsArr = kidIds ? JSON.parse(kidIds) : [];
-    console.log("kidIdsArr", kidIdsArr);
     if (kidIdsArr.length) {
       this.setState({
         idcardInfo: kidIdsArr[kidIdsArr.length - 1],
@@ -128,10 +127,9 @@ export default class MissingScreen extends React.Component<screenUtils.Props, sc
   }
 
   async chooseExistingID() {
-    const kidIds = await AsyncStorage.getItem("kidsids");
+    const kidIds = await AsyncStorage.getItem("petsIds");
     const kidIdsArr = kidIds ? JSON.parse(kidIds) : [];
     let actionArr = [];
-    console.log("kidIdsArr", kidIdsArr);
     if (kidIdsArr.length) {
       kidIdsArr.forEach((item, index) => {
         actionArr.push(item.name);
@@ -257,12 +255,10 @@ export default class MissingScreen extends React.Component<screenUtils.Props, sc
     }
     if (isValid) {
       await ViewScreenSnapStore.screenShot(this.imageRef);
-      const kidIds = await AsyncStorage.getItem("kidsMissingIds");
+      const kidIds = await AsyncStorage.getItem("petsMissingIds");
       let kidIdsArr = kidIds ? JSON.parse(kidIds) : [];
       kidIdsArr.push(data);
       await AsyncStorage.setItem("kidsMissingIds", JSON.stringify(kidIdsArr));
-      // navigationStore.navigateTo("created");
-      // this.setState({ isIDSelected: false });
     }
   };
 

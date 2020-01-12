@@ -25,4 +25,5 @@ export default {
   itemActive: "#fff",
   inactiveTextColor: "#888",
   placeholder: "#aaa",
+  activeTextColor: "#666",
 };

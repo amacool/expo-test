@@ -151,11 +151,6 @@ export default class CreatedID extends React.Component<Props> {
                   />
                 </TouchableOpacity>
               </Col>
-              {/* <Col size={3}>
-                <Button full style={{backgroundColor: Colors.buttonRed, borderRadius: 7}}>
-                  <Text style={{fontFamily: 'sf-regular', fontSize: 13}}>ADD TO CART</Text>
-                </Button>
-              </Col> */}
             </Grid>
           </CardItem>
         </Card>

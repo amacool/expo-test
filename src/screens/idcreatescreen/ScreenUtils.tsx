@@ -1,5 +1,5 @@
 // Define PropTypes
-import {ScrollView, TouchableOpacity, View, Keyboard, Animated, Image} from "react-native";
+import { TouchableOpacity, View, Image} from "react-native";
 import {
   Container,
   Content,
@@ -31,6 +31,7 @@ export interface State {
   scrollPos: number;
   states: any;
   countries: any,
+  isValid: boolean,
   allCountryData: any,
   uploadPhoto: () => void;
   changeInfo: (key: string, value: string) => void;
@@ -41,8 +42,8 @@ export interface State {
 
 export const render = (compRef: IDCreateScreen) => (
   <Container style={styles.container}>
-    <HeaderComponent title="Create ID" message back/>
-    <Content style={styles.container} disableKBDismissScroll={true}>
+    <HeaderComponent title="Create ID" message back checked={compRef.state.isValid}/>
+    <Content disableKBDismissScroll={true}>
       <View style={styles.welcomeContainer}>
         <IDCard ref={(ref) => (compRef.imageRef = ref)} {...compRef.state.idcardRender} />
       </View>
@@ -109,10 +110,13 @@ export const render = (compRef: IDCreateScreen) => (
             mode="dropdown"
             placeholder="Select Gender"
             placeholderStyle={{ color: Colors.placeholder, fontFamily: 'Metropolis-Thin' }}
-            style={[
-              styles.formText,
-              { height: 40, borderBottomWidth: 0, backgroundColor: Colors.itemActive },
-            ]}
+            style={{
+              width: "100%",
+              height: 40,
+              borderBottomWidth: 0,
+              backgroundColor: Colors.itemActive,
+            }}
+            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
             iosIcon={
               <Icon
                 name="arrow-down"
@@ -132,11 +136,13 @@ export const render = (compRef: IDCreateScreen) => (
             <Item
               label="Male"
               value="male"
+              color={Colors.activeTextColor}
               style={{ width: 100, backgroundColor: Colors.white }}
             />
             <Item
               label="Female"
               value="female"
+              color={Colors.activeTextColor}
               style={{ width: 100, backgroundColor: Colors.white }}
             />
           </Picker>
@@ -218,6 +224,7 @@ export const render = (compRef: IDCreateScreen) => (
               borderBottomWidth: 0,
               backgroundColor: Colors.itemActive,
             }}
+            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
             iosIcon={
               <Icon
                 name="arrow-down"
@@ -236,12 +243,14 @@ export const render = (compRef: IDCreateScreen) => (
             <Item
               label="Select State"
               value=""
+              color={Colors.placeholder}
               style={{ width: 100, backgroundColor: Colors.white }}
             />
             {compRef.state.states &&
             compRef.state.states.map((item, key) => {
               return (
                 <Item
+                  color={Colors.activeTextColor}
                   label={item.name}
                   value={item.name}
                   key={key}
@@ -276,8 +285,10 @@ export const render = (compRef: IDCreateScreen) => (
               width: "100%",
               height: 40,
               borderBottomWidth: 0,
+              color: Colors.activeTextColor,
               backgroundColor: Colors.itemActive,
             }}
+            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
             iosIcon={
               <Icon
                 name="arrow-down"
@@ -298,6 +309,7 @@ export const render = (compRef: IDCreateScreen) => (
             compRef.state.countries.map((item, key) => {
               return (
                 <Item
+                  color={Colors.activeTextColor}
                   label={item.name}
                   value={item.name}
                   key={key}

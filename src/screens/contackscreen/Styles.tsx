@@ -19,7 +19,7 @@ interface CheckOutScreenStyles {
 export const styles = StyleSheet.create<CheckOutScreenStyles>({
   container: {
     flex: 1,
-    backgroundColor: Colors.mainBackground,
+    backgroundColor: Colors.backgroundDefault,
   },
   welcomeContainer: {
     marginTop: 30,
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create<CheckOutScreenStyles>({
     alignItems: "center",
   },
   formText: {
-    fontFamily: 'Metropolis-Bold',
+    fontFamily: 'Metropolis-Thin',
     width: "100%",
     backgroundColor: Colors.transparent,
     borderBottomWidth: 1,
@@ -39,11 +39,11 @@ export const styles = StyleSheet.create<CheckOutScreenStyles>({
     borderBottomColor: Colors.tabIconDefault,
   },
   inValidForm: {
-    fontFamily: 'Metropolis-Bold',
+    fontFamily: 'Metropolis-Thin',
     borderBottomColor: Colors.buttonRed,
   },
   multilineInput: {
-    fontFamily: 'Metropolis-Bold',
+    fontFamily: 'Metropolis-Thin',
     minHeight: 100,
     paddingTop: 10,
     textAlignVertical: 'top'

@@ -18,8 +18,8 @@ export interface State {
 }
 
 export const render = (compRef: SuccessScreen) => (
-  <Container>
-    <Content style={styles.container}>
+  <Container style={styles.container}>
+    <Content>
       <View style={styles.welcomeContainer}>
         <Image source={images.successImg}/>
         <Title style={{

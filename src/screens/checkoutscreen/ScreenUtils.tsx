@@ -1,27 +1,16 @@
-// Define PropTypes
-import {ScrollView, TouchableOpacity, View, Keyboard, Animated, Image} from "react-native";
+import {TouchableOpacity, View, Image} from "react-native";
 import {
   Container,
-  Header,
   Content,
   Form,
-  ListItem,
-  Text,
   Icon,
-  DatePicker,
-  Body,
-  Right,
-  Switch,
   Picker,
   Item,
-  Label,
-  Input, List, Card, CardItem, Title,
+  Input,
+  Title,
 } from "native-base";
 
-import moment from "moment";
-import { Col, Row, Grid } from "react-native-easy-grid";
 import * as React from "react";
-import IDCard from "../../components/IdCard";
 import CheckOutScreen from "./CheckOutScreen";
 import { styles } from "./Styles";
 import HeaderComponent from "../../components/headerComponent";
@@ -34,29 +23,20 @@ export interface Props {}
 
 // Define States
 export interface State {
-  isFontLoaded: boolean;
-  idcardInfo: IDCardInterface;
-  idcardRender: IDCardInterface;
-  idcardInfoStatus: IDCardStatusInterface;
-  idcardInfoValidation: IDCardStatusInterface;
+  checkOutInfo: CheckOutModel;
+  checkOutInfoValidation: CheckOutStatusModel;
   states: any;
-  uploadPhoto: () => void;
-  changeStates: (key: string) => void;
-  changeName: (key: string) => void;
-  changeBirth: (key: string) => void;
-  changeGender: (key: string) => void;
-  changeContact1Name: (key: string) => void;
-  changeContact1Phone: (key: string) => void;
-  changeContact2Name: (key: string) => void;
-  changeContact2Phone: (key: string) => void;
-  changeMedical: (key: string) => void;
-  changeNote: (key: string) => void;
-  createKidsId: () => void;
+  countries: any,
+  isValid: boolean,
+  allCountryData: any,
+  checkOut: () => void;
+  changeCountry: (value: any, index: number) => void;
+  changeInfo: (key: string, value: string) => void;
 }
 
 export const render = (compRef: CheckOutScreen) => (
   <Container style={styles.container}>
-    <HeaderComponent title="Check Out" message back/>
+    <HeaderComponent title="Check Out" message back checked={compRef.state.isValid}/>
     <Content style={styles.container} disableKBDismissScroll={true}>
       <Form style={{padding: 10}}>
         <Title
@@ -71,57 +51,50 @@ export const render = (compRef: CheckOutScreen) => (
         </Title>
         <CardInputComponent label="Full Name">
           <Input
-            onChangeText={(text) => compRef.state.changeName(text)}
+            onChangeText={(text) => compRef.state.changeInfo('name', text)}
             maxLength={25}
             placeholder="Enter Full Name"
             placeholderTextColor={Colors.placeholder}
-            value={compRef.state.idcardInfo.name}
+            value={compRef.state.checkOutInfo.name}
             style={[
-              compRef.state.idcardInfoStatus.name && styles.formText,
-              compRef.state.idcardInfoValidation.name &&
-              !compRef.state.idcardInfo.name &&
-              styles.inValidForm,
-              !compRef.state.idcardInfoStatus.name && { color: Colors.inactiveTextColor },
+              styles.formText,
+              compRef.state.checkOutInfoValidation.name &&
+              !compRef.state.checkOutInfo.name && styles.inValidForm,
             ]}
-            disabled={!compRef.state.idcardInfoStatus.name}
           />
         </CardInputComponent>
 
         <CardInputComponent label="Address">
           <Input
-            placeholder="Enter Address..."
+            onChangeText={(text) => compRef.state.changeInfo('address', text)}
+            maxLength={25}
+            placeholder="Enter Address"
             placeholderTextColor={Colors.placeholder}
-            onChangeText={(text) => compRef.state.changeMedical(text)}
-            value={compRef.state.idcardInfo.medical}
+            value={compRef.state.checkOutInfo.address}
             style={[
-              compRef.state.idcardInfoStatus.medical && styles.formText,
-              compRef.state.idcardInfoValidation.medical &&
-              !compRef.state.idcardInfo.medical &&
-              styles.inValidForm,
-              !compRef.state.idcardInfoStatus.medical && { color: Colors.inactiveTextColor },
+              styles.formText,
+              compRef.state.checkOutInfoValidation.address &&
+              !compRef.state.checkOutInfo.address && styles.inValidForm,
             ]}
-            disabled={!compRef.state.idcardInfoStatus.medical}
           />
         </CardInputComponent>
 
         <CardInputComponent label="City">
           <Input
-            placeholder="Enter City..."
+            onChangeText={(text) => compRef.state.changeInfo('city', text)}
+            maxLength={25}
+            placeholder="Enter City"
             placeholderTextColor={Colors.placeholder}
-            onChangeText={(text) => compRef.state.changeMedical(text)}
-            value={compRef.state.idcardInfo.medical}
+            value={compRef.state.checkOutInfo.city}
             style={[
-              compRef.state.idcardInfoStatus.medical && styles.formText,
-              compRef.state.idcardInfoValidation.medical &&
-              !compRef.state.idcardInfo.medical &&
-              styles.inValidForm,
-              !compRef.state.idcardInfoStatus.medical && { color: Colors.inactiveTextColor },
+              styles.formText,
+              compRef.state.checkOutInfoValidation.city &&
+              !compRef.state.checkOutInfo.city && styles.inValidForm,
             ]}
-            disabled={!compRef.state.idcardInfoStatus.medical}
           />
         </CardInputComponent>
 
-        <CardPickerComponent label="State/Province/Region">
+        <CardInputComponent label="State/Province/Region">
           <Picker
             mode="dropdown"
             placeholder="Select State"
@@ -132,6 +105,7 @@ export const render = (compRef: CheckOutScreen) => (
               borderBottomWidth: 0,
               backgroundColor: Colors.itemActive,
             }}
+            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
             iosIcon={
               <Icon
                 name="arrow-down"
@@ -139,25 +113,84 @@ export const render = (compRef: CheckOutScreen) => (
               />
             }
             selectedValue={
-              compRef.state.idcardInfo.state !== ""
-                ? compRef.state.idcardInfo.state
+              compRef.state.checkOutInfo.state !== ""
+                ? compRef.state.checkOutInfo.state
                 : "Select State"
             }
             onValueChange={(itemValue, itemIndex) =>
-              compRef.state.changeStates(itemValue)
+              compRef.state.changeInfo('state', itemValue)
             }
-            // disabled={compRef.state.idcardInfoStatus.state}
           >
             <Item
               label="Select State"
               value=""
+              color={Colors.placeholder}
               style={{ width: 100, backgroundColor: Colors.white }}
             />
             {compRef.state.states &&
-            compRef.state.states.length &&
             compRef.state.states.map((item, key) => {
               return (
                 <Item
+                  color={Colors.activeTextColor}
+                  label={item.name}
+                  value={item.name}
+                  key={key}
+                  style={{ width: 100, backgroundColor: Colors.white }}
+                />
+              );
+            })}
+          </Picker>
+        </CardInputComponent>
+
+        <CardInputComponent label="Zip Code(Postal Code)">
+          <Input
+            onChangeText={(text) => compRef.state.changeInfo('zipcode', text)}
+            maxLength={25}
+            placeholder="Enter Zip Code"
+            placeholderTextColor={Colors.placeholder}
+            value={compRef.state.checkOutInfo.zipcode}
+            style={[
+              styles.formText,
+              compRef.state.checkOutInfoValidation.zipcode &&
+              !compRef.state.checkOutInfo.zipcode && styles.inValidForm,
+            ]}
+          />
+        </CardInputComponent>
+
+        <CardPickerComponent label="Country">
+          <Picker
+            mode="dropdown"
+            placeholder="Select Country"
+            placeholderStyle={{ color: Colors.placeholder }}
+            style={{
+              width: "100%",
+              height: 40,
+              borderBottomWidth: 0,
+              color: Colors.activeTextColor,
+              backgroundColor: Colors.itemActive,
+            }}
+            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
+            iosIcon={
+              <Icon
+                name="arrow-down"
+                style={{ fontSize: 25, position: "absolute", right: 0 }}
+              />
+            }
+            selectedValue={
+              compRef.state.checkOutInfo.country !== ""
+                ? compRef.state.checkOutInfo.country
+                : "Select State"
+            }
+            onValueChange={(itemValue, itemIndex) =>
+              compRef.state.changeCountry(itemValue, itemIndex)
+            }
+          >
+            {compRef.state.countries &&
+            compRef.state.countries.length &&
+            compRef.state.countries.map((item, key) => {
+              return (
+                <Item
+                  color={Colors.activeTextColor}
                   label={item.name}
                   value={item.name}
                   key={key}
@@ -168,44 +201,10 @@ export const render = (compRef: CheckOutScreen) => (
           </Picker>
         </CardPickerComponent>
 
-        <CardInputComponent label="Zip Code(Postal Code)">
-          <Input
-            placeholder="Enter Zip Code(Postal Code)..."
-            placeholderTextColor={Colors.placeholder}
-            onChangeText={(text) => compRef.state.changeMedical(text)}
-            value={compRef.state.idcardInfo.medical}
-            style={[
-              compRef.state.idcardInfoStatus.medical && styles.formText,
-              compRef.state.idcardInfoValidation.medical &&
-              !compRef.state.idcardInfo.medical &&
-              styles.inValidForm,
-              !compRef.state.idcardInfoStatus.medical && { color: Colors.inactiveTextColor },
-            ]}
-            disabled={!compRef.state.idcardInfoStatus.medical}
-          />
-        </CardInputComponent>
-
-        <CardInputComponent label="Country">
-          <Input
-            placeholder="Enter Country..."
-            placeholderTextColor={Colors.placeholder}
-            onChangeText={(text) => compRef.state.changeMedical(text)}
-            value={compRef.state.idcardInfo.medical}
-            style={[
-              compRef.state.idcardInfoStatus.medical && styles.formText,
-              compRef.state.idcardInfoValidation.medical &&
-              !compRef.state.idcardInfo.medical &&
-              styles.inValidForm,
-              !compRef.state.idcardInfoStatus.medical && { color: Colors.inactiveTextColor },
-            ]}
-            disabled={!compRef.state.idcardInfoStatus.medical}
-          />
-        </CardInputComponent>
-
         <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
           <TouchableOpacity
             style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
-            onPress={compRef.state.createKidsId}
+            onPress={compRef.state.checkOut}
           >
             <Image source={images.submitOrder} style={{width: '85%', resizeMode: 'contain'}}/>
           </TouchableOpacity>

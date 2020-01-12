@@ -1,6 +1,6 @@
 import React from "react";
-import {StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity, NativeModules} from "react-native";
-import {Left, Button, Right, View, Card, CardItem, Text, Body, Spinner, Title} from "native-base";
+import {StyleSheet, Image, Dimensions, TouchableOpacity, NativeModules} from "react-native";
+import {View, Card, Text, Body} from "native-base";
 import Colors from "../constants/Colors";
 import images from "../assets/images";
 import moment from "moment";
@@ -9,105 +9,79 @@ const { PlatformConstants } = NativeModules;
 import { widthPercentageToDP as wp } from "../helpers/Responsive";
 
 interface Props {
-  name?: string;
-  state?: string;
-  photo?: string;
-  issueDate?: Date;
+  item: any,
   index?: number;
-  birthday?: Date;
-  contact1?: { name: string; phone: string };
-  contact2?: { name: string; phone: string };
-  medical?: string;
-  note?: string;
-  gender?: string;
-  viewId?: (key) => void;
-  editId?: (key) => void;
-  deleteId?: (key) => void;
+  addCart?: (key) => void;
+  deleteCart?: (key) => void;
 }
 
 export default class CartCard extends React.Component<Props> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isFontLoaded: false,
-    };
-  }
-  async componentDidMount() {
-    this.setState({ isFontLoaded: true });
-  }
-
-  public render() {
-    if (this.state.isFontLoaded) {
-      return (
-        <Card
-          style={
-            this.props.length === this.props.index + 1
-              ? [styles.cardContainer, styles.noPadding, { marginBottom: 40 }]
-              : [styles.cardContainer, styles.noPadding]
-          }
-          key={this.props.index}
-          noShadow
-        >
-            <Body style={styles.cardBody}>
-              <View style={styles.avatarImageView}>
-                {!!this.props.photo && (
-                  <Image style={styles.avatarImage} source={{ uri: this.props.photo }} />
-                )}
-                {!this.props.photo && (
-                  <Image style={styles.avatarImage} source={images.blankBaby} />
-                )}
-              </View>
-              <View style={styles.informationView}>
-                <View style={styles.inforDetailContainer}>
-                  <View style={styles.inforDetaiItem}>
-                    <Text style={styles.inforDetail} uppercase>{this.props.name}</Text>
-                  </View>
-                  <View style={styles.inforDetaiItem}>
-                    <Text style={styles.inforTitle}>Date:</Text>
-                    <Text style={styles.inforDetail}>
-                      {moment(this.props.issueDate).format("MM-DD-YYYY")}
-                    </Text>
-                  </View>
-                </View>
-                <View style={styles.inforDetailNoteContainer}>
-                  <Grid style={{ position: "absolute", bottom: 0, width: "100%", flex: 1, justifyContent: "center", alignItems: "center"  }}>
-                    <Col>
-                      <TouchableOpacity>
-                        <Image
-                          source={images.minusIcon}
-                          resizeMode="contain"
-                          style={{
-                            width: '100%',
-                            marginTop: 8
-                          }}
-                        />
-                      </TouchableOpacity>
-                    </Col>
-                    <Col>
-                      <Text style={{ width: "100%", textAlign: 'center'}}>1</Text>
-                    </Col>
-                    <Col>
-                      <TouchableOpacity>
-                        <Image
-                          source={images.pulusIcon}
-                          resizeMode="contain"
-                          style={{
-                            width: '100%',
-                            marginTop: 8
-                          }}
-                        />
-                      </TouchableOpacity>
-                    </Col>
-                    <Col></Col>
-                  </Grid>
-                </View>
-              </View>
-            </Body>
-        </Card>
-      );
-    } else {
-      return <Spinner />;
-    }
+  render() {
+    return (
+      <Card
+        style={[styles.cardContainer, styles.noPadding]}
+        key={this.props.index}
+        noShadow
+      >
+        <Body style={styles.cardBody}>
+        <View style={styles.avatarImageView}>
+          {!!this.props.item.photo && (
+            <Image style={styles.avatarImage} source={{ uri: this.props.item.photo }} />
+          )}
+          {!this.props.item.photo && (
+            <Image style={styles.avatarImage} source={images.blankBaby} />
+          )}
+        </View>
+        <View style={styles.informationView}>
+          <View style={styles.inforDetailContainer}>
+            <View style={styles.inforDetaiItem}>
+              <Text style={styles.inforDetail} uppercase>{this.props.item.name}</Text>
+            </View>
+            <View style={styles.inforDetaiItem}>
+              <Text style={styles.inforTitle}>Date:</Text>
+              <Text style={styles.inforDetail}>
+                {moment(this.props.item.issueDate).format("MM-DD-YYYY")}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.inforDetailNoteContainer}>
+            <Grid style={{ position: "absolute", bottom: 0, width: "100%", flex: 1, justifyContent: "center", alignItems: "center"  }}>
+              <Col>
+                <TouchableOpacity onPress={() => this.props.deleteCart(this.props.index)}>
+                  <Image
+                    source={images.minusIcon}
+                    resizeMode="contain"
+                    style={{
+                      width: '100%',
+                      marginTop: 8
+                    }}
+                  />
+                </TouchableOpacity>
+              </Col>
+              <Col>
+                <Text style={{ width: "100%", textAlign: 'center'}}>
+                  {this.props.item.count}
+                </Text>
+              </Col>
+              <Col>
+                <TouchableOpacity onPress={() => this.props.addCart(this.props.index)}>
+                  <Image
+                    source={images.pulusIcon}
+                    resizeMode="contain"
+                    style={{
+                      width: '100%',
+                      marginTop: 8
+                    }}
+                  />
+                </TouchableOpacity>
+              </Col>
+              <Col></Col>
+            </Grid>
+          </View>
+        </View>
+        </Body>
+      </Card>
+    );
   }
 }
 
@@ -148,9 +122,11 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 10,
   },
   avatarImage: {
-    resizeMode: "contain",
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
+    resizeMode: "cover",
+    borderRadius: 10,
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+    marginLeft: -5,
     width: "100%",
     height: "100%",
     justifyContent: "flex-start",

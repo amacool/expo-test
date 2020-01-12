@@ -19,7 +19,7 @@ interface CheckOutScreenStyles {
 export const styles = StyleSheet.create<CheckOutScreenStyles>({
   container: {
     flex: 1,
-    backgroundColor: Colors.mainBackground,
+    backgroundColor: Colors.backgroundDefault,
   },
   welcomeContainer: {
     marginTop: 30,

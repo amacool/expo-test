@@ -1,7 +1,7 @@
 // @ts-ignore
 import moment from "moment";
 import {Image, NativeModules, StyleSheet, TouchableOpacity} from "react-native";
-import { Body, Card, CardItem, Content, View, Text, Title } from "native-base";
+import { Card, CardItem, View, Text, Title } from "native-base";
 import React from "react";
 const { PlatformConstants } = NativeModules;
 import { widthPercentageToDP as wp } from "../helpers/Responsive";

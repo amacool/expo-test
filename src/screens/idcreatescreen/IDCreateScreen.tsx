@@ -76,6 +76,7 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
         note: true,
         issueDate: true,
       },
+      isValid: false,
       allCountryData: states,
       countries: states.map((item)=> item),
       states: states[0].states,
@@ -111,6 +112,20 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
     }
   };
 
+  checkValid() {
+    const data = this.state.idcardRender;
+    const validObject = this.state.idcardInfoValidation;
+    let isValid = true;
+    const array = Object.keys(validObject);
+    for (let i in array) {
+      const key = array[i];
+      if (validObject[key] && !data[key]) {
+        isValid = false;
+      }
+    }
+    this.setState({ isValid: isValid });
+  }
+
   uploadPhoto = async () => {
     await this.askPermissionsAsync();
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -126,6 +141,7 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
       this.setState({ idcardInfo: someProperty });
       this.setState({ idcardRender: someProperty });
     }
+    this.checkValid();
   };
 
   onChangeInfo = (key, value) => {
@@ -134,6 +150,7 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
     else someProperty[key] = value;
     this.setState({ idcardInfo: someProperty });
     this.setState({ idcardRender: someProperty });
+    this.checkValid();
   };
 
   onChangeContactInfo = (key, value) => {
@@ -147,6 +164,7 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
     someProperty[key] = phoneNumber;
     this.setState({ idcardInfo: someProperty });
     this.setState({ idcardRender: someProperty });
+    this.checkValid();
   };
 
   onChangeCountry = (value, index) => {
@@ -156,6 +174,7 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
     this.setState({ states: this.state.allCountryData[index].states });
     this.setState({ idcardInfo: someProperty });
     this.setState({ idcardRender: someProperty });
+    this.checkValid();
   };
 
   askPermissionsAsync = async () => {

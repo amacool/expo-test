@@ -51,15 +51,13 @@ export default class IDEditScreen extends React.Component<screenUtils.Props, scr
         note: true,
         issueDate: true,
       },
+      isValid: false,
       states: states,
       uploadPhoto: () => this.uploadPhoto(),
       changeInfo: (key, value) => this.onChangeInfo(key, value),
       changeContactInfo: (key, value) => this.onChangeContactInfo(key, value),
       createKidsId: () => this.createKidsId(),
     };
-  }
-  async componentDidMount() {
-    this.setState({ isFontLoaded: true });
   }
 
   createKidsId = async () => {
@@ -86,6 +84,20 @@ export default class IDEditScreen extends React.Component<screenUtils.Props, scr
     }
   };
 
+  checkValid() {
+    const data = this.state.idcardRender;
+    const validObject = this.state.idcardInfoValidation;
+    let isValid = true;
+    const array = Object.keys(validObject);
+    for (let i in array) {
+      const key = array[i];
+      if (validObject[key] && !data[key]) {
+        isValid = false;
+      }
+    }
+    this.setState({ isValid: isValid });
+  }
+
   uploadPhoto = async () => {
     await this.askPermissionsAsync();
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -99,6 +111,7 @@ export default class IDEditScreen extends React.Component<screenUtils.Props, scr
       this.setState({ idcardInfo: someProperty });
       this.setState({ idcardRender: someProperty });
     }
+    this.checkValid();
   };
 
   onChangeInfo = (key, value) => {
@@ -107,6 +120,7 @@ export default class IDEditScreen extends React.Component<screenUtils.Props, scr
     else someProperty[key] = value;
     this.setState({ idcardInfo: someProperty });
     this.setState({ idcardRender: someProperty });
+    this.checkValid();
   };
 
   onChangeContactInfo = (key, value) => {
@@ -120,6 +134,7 @@ export default class IDEditScreen extends React.Component<screenUtils.Props, scr
     someProperty[key] = phoneNumber;
     this.setState({ idcardInfo: someProperty });
     this.setState({ idcardRender: someProperty });
+    this.checkValid();
   };
 
   askPermissionsAsync = async () => {

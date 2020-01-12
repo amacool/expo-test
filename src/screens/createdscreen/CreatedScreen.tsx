@@ -33,14 +33,10 @@ export default class CreatedScreen extends React.Component {
     this.setState({isFontLoaded: true});
     const kidIds = await AsyncStorage.getItem('petsIds');
     const kidIdsArr = (kidIds)? JSON.parse(kidIds) : [];
-    console.log('petsIds', kidIds);
     this.setState({data: kidIdsArr});
   }
 
   async _viewId (index) {
-    // const _data = this.state.data;
-    // const isModal = this.state.modalVisible;
-    // this.setState({modalVisible: !isModal, idcardInfo: _data[index]});
     const _data = this.state.data;
     navigationStore.navigateTo('viewid', {card: _data[index], index: index});
   }
@@ -63,7 +59,7 @@ export default class CreatedScreen extends React.Component {
             const _data = this.state.data;
             _data.splice(index, 1);
             this.setState({data: _data});
-            AsyncStorage.setItem('kidsids', JSON.stringify(_data));
+            AsyncStorage.setItem('petsIds', JSON.stringify(_data));
           }},
         {
           text: 'Cancel',

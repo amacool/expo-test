@@ -1,7 +1,6 @@
-import React, {ReactNode} from "react";
-// @ts-ignore
+import React from "react";
 import {StatusBar, StyleSheet, TouchableOpacity, View, Platform, Image} from "react-native";
-import { Left, Icon, Right, Button, Title, Header, Body } from "native-base";
+import { Icon, Button, Title } from "native-base";
 import Colors from "../constants/Colors";
 import navigationStore from "../stores/navigationStore";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "../helpers/Responsive";
@@ -15,20 +14,12 @@ interface InterfaceProps {
 export default class HeaderComponent extends React.Component<InterfaceProps> {
   constructor(props) {
     super(props);
-    this.state = {
-      isFontLoaded: false,
-    };
   }
 
   componentWillMount() {
     if (Platform.OS === "android") StatusBar.setTranslucent(true);
   }
 
-  // you can put this inside your render method
-
-  async componentDidMount() {
-    this.setState({ isFontLoaded: true });
-  }
   public render() {
     return (
 
@@ -50,7 +41,7 @@ export default class HeaderComponent extends React.Component<InterfaceProps> {
 
         <View style={styles.headerRightIcon}>
           {this.props.message &&
-            <TouchableOpacity onPress={() => navigationStore.navigateTo('contact')}>
+            <TouchableOpacity style={{width: 50, height: 35}} onPress={() => navigationStore.navigateTo('contact')}>
               <Image style={styles.headerBackIcon} source={images.messageIcon} />
             </TouchableOpacity>
           }
@@ -94,7 +85,7 @@ const styles = StyleSheet.create({
   },
   headerRightIcon: {
     position: 'absolute',
-    bottom: 13,
-    right: 15,
+    bottom: 0,
+    right: 0,
   }
 });
