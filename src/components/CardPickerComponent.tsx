@@ -3,6 +3,7 @@ import { Font } from "expo";
 // @ts-ignore
 import {Body, CardItem, Item, Card, Label} from "native-base";
 import {View} from "react-native";
+import Colors from "../constants/Colors";
 interface InterfaceProps {
   label: string;
   children?: ReactNode;
@@ -17,7 +18,8 @@ export default class CardPickerComponent extends React.Component<InterfaceProps>
             <Label style={{width: "100%", fontSize: 12, paddingLeft: 5, fontFamily: 'Metropolis-Thin' }}>{this.props.label}</Label>
             <View
               style={{
-                borderBottomWidth: 1,
+                borderBottomWidth: 0.1,
+                borderBottomColor: Colors.tabIconDefault,
                 marginTop: 0,
                 flex: 1,
                 width: "100%",

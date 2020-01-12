@@ -34,7 +34,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   formText: {
     width: "100%",
     backgroundColor: Colors.transparent,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.1,
     height: 20,
     borderBottomColor: Colors.tabIconDefault,
     fontSize: 14,
@@ -42,6 +42,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   },
   inValidForm: {
     borderBottomColor: Colors.buttonRed,
+    borderBottomWidth: 1,
   },
   inputForm: {
     fontSize: 14,

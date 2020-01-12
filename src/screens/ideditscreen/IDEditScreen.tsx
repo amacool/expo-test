@@ -93,8 +93,6 @@ export default class IDEditScreen extends React.Component<screenUtils.Props, scr
       aspect: [1, 1],
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
       let someProperty = { ...this.state.idcardInfo };
       someProperty.photo = result.uri;

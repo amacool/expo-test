@@ -1,11 +1,13 @@
 // Define PropTypes
-import { ScrollView, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, TouchableOpacity, View } from "react-native";
 import { Container, Content, Text } from "native-base";
 import * as React from "react";
 import IdProductCard from "../../components/IdProductCard";
 import IDViewScreen from "./IDViewScreen";
 import { styles } from "./Styles";
 import HeaderComponent from "../../components/headerComponent";
+import images from "../../assets/images";
+import { Col, Grid } from "react-native-easy-grid";
 
 export interface Props {}
 
@@ -15,26 +17,33 @@ export interface State {
   idcardInfo: IDCardInterface;
   cardIndex: number;
   states: any;
-  editId: () => void;
+  share: () => void;
+  download: () => void;
 }
 
 export const render = (compRef: IDViewScreen) => (
-  <Container>
-    <HeaderComponent />
-    <Content style={styles.container}>
+  <Container style={styles.container}>
+    <HeaderComponent title="View ID" message back/>
+    <Content>
       <View style={styles.welcomeContainer}>
         <IdProductCard ref={(ref) => (compRef.imageRef = ref)} {...compRef.state.idcardInfo} />
       </View>
-      {/*<View style={styles.buttonContainer}>*/}
-      {/*<TouchableOpacity style={styles.createBotton}>*/}
-      {/*<Text style={styles.claimText}>ORDER FOR $1.00</Text>*/}
-      {/*</TouchableOpacity>*/}
-      {/*</View>*/}
-      {/*<View style={styles.buttonContainer}>*/}
-      {/*<TouchableOpacity style={styles.problemBotton} onPress={compRef.state.editId}>*/}
-      {/*<Text style={[styles.problemText]}>EDIT</Text>*/}
-      {/*</TouchableOpacity>*/}
-      {/*</View>*/}
+      <Grid>
+        <Col>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={{width: '100%', justifyContent: 'center', alignItems: 'center'}} onPress={compRef.state.share}>
+              <Image source={images.shareBtn} style={{width: '85%', resizeMode: 'contain'}}/>
+            </TouchableOpacity>
+          </View>
+        </Col>
+        <Col>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={{width: '100%', justifyContent: 'center', alignItems: 'center'}} onPress={compRef.state.download}>
+              <Image source={images.downloadBtn} style={{width: '85%', resizeMode: 'contain'}}/>
+            </TouchableOpacity>
+          </View>
+        </Col>
+      </Grid>
     </Content>
   </Container>
 );

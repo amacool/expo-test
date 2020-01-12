@@ -7,10 +7,6 @@ import * as screenUtils from "./ScreenUtils";
 import navigationStore from "../../stores/navigationStore";
 import ViewScreenSnapStore from "../../stores/viewScreenSnapStore";
 
-interface InterfaceStyle {
-  [key: string]: ViewStyle;
-}
-
 export default class CreatedScreen extends React.Component {
   public static navigationOptions = {
     tabBarLabel: "IDs",
@@ -42,15 +38,15 @@ export default class CreatedScreen extends React.Component {
   }
 
   async _viewId (index) {
-    const _data = this.state.data;
-    const isModal = this.state.modalVisible;
-    this.setState({modalVisible: !isModal, idcardInfo: _data[index]});
     // const _data = this.state.data;
-    // navigationStore.navigateTo('viewid', {card: _data[index], index: index});
+    // const isModal = this.state.modalVisible;
+    // this.setState({modalVisible: !isModal, idcardInfo: _data[index]});
+    const _data = this.state.data;
+    navigationStore.navigateTo('viewid', {card: _data[index], index: index});
   }
 
   async _downloadId (index) {
-    await ViewScreenSnapStore.screenShot(this.imageRef, 1013/644);
+    await ViewScreenSnapStore.download(this.imageRef);
   }
 
   async _editId (index) {
@@ -80,14 +76,6 @@ export default class CreatedScreen extends React.Component {
   }
 
   public render() {
-    return this.state.isFontLoaded && screenUtils.render(this);
+    return screenUtils.render(this);
   }
 }
-
-const styles = StyleSheet.create<InterfaceStyle>({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: "#fff",
-  },
-});

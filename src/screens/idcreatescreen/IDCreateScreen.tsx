@@ -76,24 +76,16 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
         note: true,
         issueDate: true,
       },
-      states: states,
+      allCountryData: states,
+      countries: states.map((item)=> item),
+      states: states[0].states,
       uploadPhoto: () => this.uploadPhoto(),
       changeInfo: (key, value) => this.onChangeInfo(key, value),
       changeContactInfo: (key, value) => this.onChangeContactInfo(key, value),
+      changeCountry: (value, index) => this.onChangeCountry(value, index),
       createKidsId: () => this.createKidsId(),
     };
   }
-
-  // async componentDidMount() {
-  //   const dataStr = await AsyncStorage.getItem("kidsid");
-  //   if (dataStr) {
-  //     const data = JSON.parse(dataStr);
-  //     const parsing = { ...data };
-  //     setTimeout(() => {
-  //       // this.setState({idcardInfo: parsing, idcardRender: parsing});
-  //     }, 500);
-  //   }
-  // }
 
   createKidsId = async () => {
     const data = this.state.idcardRender;
@@ -153,6 +145,15 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
     if (_str.length > 6)
       phoneNumber = _str.slice(0, 3) + "-" + _str.slice(3, 6) + "-" + _str.slice(6);
     someProperty[key] = phoneNumber;
+    this.setState({ idcardInfo: someProperty });
+    this.setState({ idcardRender: someProperty });
+  };
+
+  onChangeCountry = (value, index) => {
+    let someProperty = { ...this.state.idcardInfo };
+    delete someProperty['state'];
+    someProperty['country'] = value;
+    this.setState({ states: this.state.allCountryData[index].states });
     this.setState({ idcardInfo: someProperty });
     this.setState({ idcardRender: someProperty });
   };

@@ -55,7 +55,7 @@ export const render = (compRef: CreatedScreen) => (
               backgroundColor: "rgba(0, 0, 0, 0.9)",
             }}
           >
-            <Content style={styles.container}>
+            <Content style={styles.modalContainer}>
               <View style={styles.welcomeContainer}>
                 <IdProductCard
                   ref={(ref) => (compRef.imageRef = ref)}

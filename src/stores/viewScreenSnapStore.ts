@@ -1,10 +1,11 @@
-import { action, observable } from "mobx";
 import { NavigationActions, StackActions } from "react-navigation";
-import { Alert, AsyncStorage, CameraRoll, PixelRatio } from "react-native";
-import { takeSnapshotAsync } from "expo";
+import { Alert, CameraRoll } from "react-native";
+import { captureRef as takeSnapshotAsync } from 'react-native-view-shot'
+// import * as CameraRoll from "@react-native-community/cameraroll";
+import * as Sharing from 'expo-sharing';
 
 class ViewScreenSnapStore {
-  screenShot = async (imageRef, pixelRatio = PixelRatio.get()) => {
+  download = async (imageRef) => {
     // console.log("++++++++: ", imageRef.props.photo);
     Alert.alert(
       "Save as an Image",
@@ -20,35 +21,57 @@ class ViewScreenSnapStore {
         },
         {
           text: "OK",
+          onPress: async () => {
+            try {
+              let result  = await takeSnapshotAsync(imageRef, {
+                result: "tmpfile",
+                width: 1013,
+                height: 644,
+                quality: 1,
+                format: "png",
+              });
+              await CameraRoll.saveToCameraRoll(result, "photo");
+              alert("Done");
+            } catch (e) {
+              alert(e);
+              console.log('error:', e);
+            }
+          },
+        },
+      ],
+      { cancelable: false },
+    );
+  };
+  share = async (imageRef) => {
+    // console.log("++++++++: ", imageRef.props.photo);
+    Alert.alert(
+      "Save as an Image",
+      "Are you sure to share an image?",
+      [
+        {
+          text: "Cancel",
           onPress: () => {
-            const targetPixelCount = 1013; // If you want full HD pictures
-            const width = 1013;
-            const pixels = targetPixelCount / pixelRatio;
-            takeSnapshotAsync(imageRef, {
-              result: "file",
-              width: width,
-              height: pixels * 2,
-              quality: 1,
-              format: "png",
-            }).then(
-              (result) => {
-                console.log("----------: ", result);
-                CameraRoll.saveToCameraRoll(result, "photo").then(
-                  (saveResult) => {
-                    console.log(saveResult);
-                    return true;
-                  },
-                  (err) => {
-                    console.log(err);
-                    return false;
-                  },
-                );
-              },
-              (err) => {
-                console.log("Error: **********", err);
-                return false;
-              },
-            );
+            console.log("Cancel Pressed");
+            return false;
+          },
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: async () => {
+            try {
+              let result  = await takeSnapshotAsync(imageRef, {
+                result: "tmpfile",
+                width: 1013,
+                height: 644,
+                quality: 1,
+                format: "png",
+              });
+              Sharing.shareAsync(result);
+            } catch (e) {
+              alert(e);
+              console.log('error:', e);
+            }
           },
         },
       ],

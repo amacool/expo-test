@@ -2,6 +2,7 @@ import * as React from "react";
 import * as screenUtils from "./ScreenUtils";
 import states from "../../constants/States";
 import navigationStore from "../../stores/navigationStore";
+import ViewScreenSnapStore from "../../stores/viewScreenSnapStore";
 export default class IDViewScreen extends React.Component<screenUtils.Props, screenUtils.State> {
   public static navigationOptions = {
     title: "View your Kid's ID",
@@ -15,18 +16,20 @@ export default class IDViewScreen extends React.Component<screenUtils.Props, scr
       idcardInfo: params.card,
       cardIndex: params.index,
       states: states,
-      editId: () => this._editId(),
+      share: () => this.onShare(),
+      download: () => this.onDownload(),
     };
   }
   async componentDidMount() {
     this.setState({ isFontLoaded: true });
   }
 
-  _editId() {
-    navigationStore.navigateTo("editid", {
-      card: this.state.idcardInfo,
-      index: this.state.cardIndex,
-    });
+  async onShare() {
+    await ViewScreenSnapStore.share(this.imageRef);
+  }
+
+  async onDownload() {
+    await ViewScreenSnapStore.download(this.imageRef);
   }
 
   public render() {
