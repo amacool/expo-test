@@ -1,4 +1,3 @@
-// @ts-ignore
 import moment from "moment";
 import {Image, NativeModules, StyleSheet, TouchableOpacity} from "react-native";
 import { Card, CardItem, View, Text, Title } from "native-base";

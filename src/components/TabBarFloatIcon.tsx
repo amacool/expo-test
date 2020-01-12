@@ -1,10 +1,7 @@
 import React from "react";
-// @ts-ignore
-import * as Icon from "@expo/vector-icons";
-
 import {
   TouchableOpacity,
-  Text, Image, StyleSheet, Platform, ViewStyle, TextStyle, ImageStyle,
+  Image, StyleSheet, ViewStyle, TextStyle, ImageStyle,
 } from "react-native";
 import images from "../assets/images";
 

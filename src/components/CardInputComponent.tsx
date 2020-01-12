@@ -1,6 +1,5 @@
 import React, {ReactNode} from "react";
 import { Font } from "expo";
-// @ts-ignore
 import {Body, CardItem, Item, Card, Label} from "native-base";
 interface InterfaceProps {
   label: string;

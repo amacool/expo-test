@@ -1,6 +1,6 @@
 import {Card, Text, Title, View} from "native-base";
 import React from "react";
-import { Dimensions, Image, NativeModules, StyleSheet } from "react-native";
+import { Image, NativeModules, StyleSheet } from "react-native";
 import images from "../assets/images";
 import Colors from "../constants/Colors";
 import states from "../constants/States";

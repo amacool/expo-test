@@ -1,7 +1,6 @@
 import React from "react";
-// @ts-ignore
-import {StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity, NativeModules} from "react-native";
-import {Left, Button, Right, View, Card, CardItem, Text, Body, Spinner, Title} from "native-base";
+import {StyleSheet, Image, Dimensions, TouchableOpacity, NativeModules} from "react-native";
+import {View, Card, CardItem, Text, Body, Spinner, Title} from "native-base";
 import Colors from "../constants/Colors";
 import images from "../assets/images";
 import moment from "moment";

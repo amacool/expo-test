@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Animated, AppState, Dimensions, Platform, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import SafeAreaView from "react-native-safe-area-view";
-// Session Start Imports
 import images from "../assets/images";
 import Colors from "../constants/Colors";
 import navigationStore from "../stores/navigationStore";

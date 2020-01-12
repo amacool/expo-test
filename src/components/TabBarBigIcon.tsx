@@ -1,6 +1,4 @@
 import React from "react";
-// @ts-ignore
-import * as Icon from "@expo/vector-icons";
 import {
   Image, View,
 } from "react-native";
