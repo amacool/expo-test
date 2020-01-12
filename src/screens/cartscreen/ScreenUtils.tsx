@@ -1,20 +1,15 @@
-// Define PropTypes
 import {
   FlatList,
   View,
-  Modal,
-  Alert,
   Text,
   Image,
   TouchableOpacity
 } from "react-native";
-import {Button, Card, CardItem, Body, Content, Icon, ListItem, Right, Input} from "native-base";
+import {Card, CardItem, Body, Content, ListItem, Right, Input} from "native-base";
 import * as React from "react";
-import CreatedID from "../../components/CreatedIDs";
-import CartScreen from ".";
+import CartScreen from "./CartScreen";
 import { styles } from "./Styles";
 import HeaderComponent from "../../components/headerComponent";
-import IdProductCard from "../../components/IdProductCard";
 import images from "../../assets/images";
 import CartCard from "../../components/CartCard";
 
@@ -22,28 +17,20 @@ export interface Props {}
 
 // Define States
 export interface State {
-  isFontLoaded: boolean;
-  idcardInfo: IDCardInterface;
-  idcardRender: IDCardInterface;
-  idcardInfoStatus: IDCardStatusInterface;
-  states: any;
-  uploadPhoto: () => void;
-  changeStates: (key: string) => void;
-  changeName: (key: string) => void;
-  changeBirth: (key: string) => void;
-  changeGender: (key: string) => void;
-  changeContact1Name: (key: string) => void;
-  changeContact1Phone: (key: string) => void;
-  changeContact2Name: (key: string) => void;
-  changeContact2Phone: (key: string) => void;
-  changeMedical: (key: string) => void;
-  changeNote: (key: string) => void;
-  createKidsId: () => void;
+  isVerifedGit: boolean;
+  isValid: boolean;
+  data: any;
+  gitCode: string;
+  addCart: (key: string) => void;
+  deleteCart: (key: string) => void;
+  checkOut: () => void;
+  changeGitCode: (code: string) => void;
+  enterGitCode: () => void;
 }
 
 export const render = (compRef: CartScreen) => (
   <View style={styles.container}>
-    <HeaderComponent title="Cart" message back/>
+    <HeaderComponent title="Cart" message back checked={compRef.state.isValid}/>
     {compRef.state && !compRef.state.isVerifedGit &&
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Card style={{width: '95%'}}>
@@ -51,7 +38,11 @@ export const render = (compRef: CartScreen) => (
             <Body>
             <ListItem icon style={{width: '100%', borderWidth: 0}} noBorder>
               <Body>
-              <Input placeholder="Enter your Git code"/>
+              <Input
+                placeholder="Enter your Git code"
+                onChangeText={(text) => compRef.state.changeGitCode(text)}
+                style={styles.formText}
+                value={compRef.state.gitCode} />
               </Body>
               <Right>
                 <TouchableOpacity onPress={compRef.state.enterGitCode}>
@@ -82,12 +73,10 @@ export const render = (compRef: CartScreen) => (
                   renderItem={({ item, index }) => {
                     return (
                       <CartCard
-                        {...item}
+                        item={item}
                         index={index}
-                        length={compRef.state.data.length}
-                        viewId={compRef.state.viewId}
-                        editId={compRef.state.editId}
-                        deleteId={compRef.state.deleteId}
+                        addCart={compRef.state.addCart}
+                        deleteCart={compRef.state.deleteCart}
                       />
                     );
                   }}
@@ -97,7 +86,7 @@ export const render = (compRef: CartScreen) => (
               )}
               <TouchableOpacity
                 style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
-                onPress={compRef.state.editId}
+                onPress={compRef.state.checkOut}
               >
                 <Image source={images.checkOutBtn} style={{width: '85%', resizeMode: 'contain'}}/>
               </TouchableOpacity>
@@ -108,12 +97,7 @@ export const render = (compRef: CartScreen) => (
             <Text style={styles.noIDText}>No Created ID!</Text>
           </View>
         }
-
       </>
-
-
-
     }
-
   </View>
 );

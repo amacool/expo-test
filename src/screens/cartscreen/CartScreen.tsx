@@ -5,13 +5,12 @@ import TabBarIcon from "../../components/TabBarIcon";
 import images from "../../assets/images";
 import * as screenUtils from "./ScreenUtils";
 import navigationStore from "../../stores/navigationStore";
-import ViewScreenSnapStore from "../../stores/viewScreenSnapStore";
 
 interface InterfaceStyle {
   [key: string]: ViewStyle;
 }
 
-export default class CartScreen extends React.Component {
+export default class CartScreen extends React.Component<screenUtils.Props, screenUtils.State> {
   public static navigationOptions = {
     tabBarLabel: "Shop",
     tabBarIcon: ({ focused }) => (
@@ -23,71 +22,72 @@ export default class CartScreen extends React.Component {
     super(props);
     this.state = {
       isVerifedGit: false,
-      isFontLoaded: false,
       data: [],
-      modalVisible: false,
-      idcardInfo: {},
-      viewId: (index)=> this._viewId(index),
-      editId: (index)=> this._editId(index),
-      enterGitCode: (index)=> this._enterGitCode(index),
-      deleteId: (index)=> this._deleteId(index),
-      downloadId: (index)=> this._downloadId(index),
+      gitCode: "",
+      isValid: false,
+      addCart: (index)=> this._addCart(index),
+      deleteCart: (index)=> this._deleteCart(index),
+      checkOut: ()=> this._checkOut(),
+      changeGitCode: (code)=> this._changeGitCode(code),
+      enterGitCode: ()=> this._enterGitCode(),
     }
   }
 
   async componentDidMount() {
-    this.setState({isFontLoaded: true});
-    const kidIds = await AsyncStorage.getItem('kidsids');
-    const kidIdsArr = (kidIds)? JSON.parse(kidIds) : [];
-    console.log('kidIds', kidIds);
-    this.setState({data: kidIdsArr});
+    const _petsIds = await AsyncStorage.getItem('petsIds');
+    const petsIds = (_petsIds)? JSON.parse(_petsIds) : [];
+    let cartIds = petsIds.map(item => {
+      let tempItem = item;
+      tempItem.count = 0;
+      return tempItem;
+    });
+    this.setState({data: cartIds});
   }
 
-  async _viewId (index) {
-    const _data = this.state.data;
-    const isModal = this.state.modalVisible;
-    this.setState({modalVisible: !isModal, idcardInfo: _data[index]});
-    // const _data = this.state.data;
-    // navigationStore.navigateTo('viewid', {card: _data[index], index: index});
+  checkValid() {
+    let isValid = false;
+    this.state.data.map(item => {
+      if (item.count > 0) isValid = true;
+    });
+    this.setState({isValid});
   }
 
-  async _downloadId (index) {
-    await ViewScreenSnapStore.screenShot(this.imageRef, 1013/644);
+  _checkOut () {
+    if (this.state.isValid)
+      navigationStore.navigateTo('checkout');
+    else
+      alert("Add one at least");
   }
 
-  async _editId (index) {
-    const _data = this.state.data;
-    navigationStore.navigateTo('checkout');
+  _addCart (index) {
+    console.log('added', index);
+    let tempData = this.state.data;
+    tempData[index].count++;
+    this.setState({data: tempData});
+    this.checkValid();
   }
 
-  async _enterGitCode (code) {
-    console.log('enter git');
-    this.setState({isVerifedGit: true});
+  _deleteCart (index) {
+    console.log('deleted', index);
+    let tempData = this.state.data;
+    if (tempData[index].count > 0) tempData[index].count--;
+    this.setState({data: tempData});
+    this.checkValid();
   }
 
-  async _deleteId (index) {
-    Alert.alert(
-      'FreeKidsID',
-      'Are you sure to delete this id card?',
-      [
-        {text: 'Delete', onPress: () => {
-            const _data = this.state.data;
-            _data.splice(index, 1);
-            this.setState({data: _data});
-            AsyncStorage.setItem('kidsids', JSON.stringify(_data));
-          }},
-        {
-          text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel',
-        },
-      ],
-      {cancelable: false},
-    );
+  _changeGitCode (code) {
+    this.setState({gitCode: code});
+  }
+
+  _enterGitCode () {
+    if (this.state.gitCode)
+      this.setState({isVerifedGit: true});
+    else
+      alert("Enter code please");
   }
 
   public render() {
-    return this.state.isFontLoaded && screenUtils.render(this);
+    return screenUtils.render(this);
   }
 }
 
