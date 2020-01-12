@@ -99,7 +99,7 @@ export const render = (compRef: CheckOutScreen) => (
           />
         </CardInputComponent>
 
-        <CardInputComponent label="State/Province/Region">
+        <CardPickerComponent label="State/Province/Region">
           <Picker
             mode="dropdown"
             placeholder="Select State"
@@ -146,7 +146,7 @@ export const render = (compRef: CheckOutScreen) => (
               );
             })}
           </Picker>
-        </CardInputComponent>
+        </CardPickerComponent>
 
         <CardInputComponent label="Zip Code(Postal Code)">
           <Input
