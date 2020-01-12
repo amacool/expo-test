@@ -38,7 +38,8 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     height: 20,
     borderBottomColor: Colors.tabIconDefault,
     fontSize: 14,
-    fontFamily: 'Metropolis-Thin'
+    fontFamily: 'Metropolis-Medium',
+    color: Colors.black,
   },
   inValidForm: {
     borderBottomColor: Colors.buttonRed,

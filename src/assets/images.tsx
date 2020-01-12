@@ -33,6 +33,11 @@ const images = {
   sendMessageBtn: require("../../src/assets/images/send-email.png"),
   shareBtn: require("../../src/assets/images/share-button.png"),
   downloadBtn: require("../../src/assets/images/download-button.png"),
+  fedexIcon: require("../../src/assets/images/fedex.png"),
+  dhlIcon: require("../../src/assets/images/dhl.png"),
+  uspsIcon: require("../../src/assets/images/usps.png"),
+  fbIcon: require("../../src/assets/images/fbIcon.png"),
+  instaIcon: require("../../src/assets/images/instaIcon.png"),
 
   phoneIcon: require("../../src/assets/images/phone.png"),
   phoneIcon1: require("../../src/assets/images/phone1.png"),

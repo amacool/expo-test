@@ -92,7 +92,7 @@ export const render = (compRef: IDEditScreen) => (
             modalTransparent={false}
             animationType={"fade"}
             androidMode={"default"}
-            textStyle={{fontFamily: 'Metropolis-Thin'}}
+            textStyle={{fontFamily: 'Metropolis-Medium', color: Colors.black,}}
             onDateChange={(date) => compRef.state.changeInfo('birthday', date)}
           />
         </CardPickerComponent>

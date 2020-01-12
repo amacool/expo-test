@@ -1,11 +1,12 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import Colors from "../../constants/Colors";
 
-interface MissingScreenStyles {
+interface HomeScreenStyles {
   container: ViewStyle;
   welcomeContainer: ViewStyle;
   buttonContainer: ViewStyle;
   formText: ViewStyle;
+  inputForm: ViewStyle;
   inValidForm: ViewStyle;
   formSwitch: ViewStyle;
   uploadBotton: ViewStyle;
@@ -15,29 +16,38 @@ interface MissingScreenStyles {
   problemText: TextStyle;
 }
 
-export const styles = StyleSheet.create<MissingScreenStyles>({
+export const styles = StyleSheet.create<HomeScreenStyles>({
   container: {
     flex: 1,
-    marginBottom: 40,
     backgroundColor: Colors.backgroundDefault,
+    marginBottom: 30,
   },
   welcomeContainer: {
-    marginTop: 20,
+    marginTop: 30,
     alignItems: "center",
     paddingHorizontal: 0,
   },
   buttonContainer: {
-    marginTop: 20,
+    marginTop: 10,
     alignItems: "center",
   },
   formText: {
     width: "100%",
     backgroundColor: Colors.transparent,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.1,
+    height: 20,
     borderBottomColor: Colors.tabIconDefault,
+    fontSize: 14,
+    fontFamily: 'Metropolis-Medium',
+    color: Colors.black,
   },
   inValidForm: {
     borderBottomColor: Colors.buttonRed,
+    borderBottomWidth: 1,
+  },
+  inputForm: {
+    fontSize: 14,
+    fontFamily: 'Metropolis-Medium'
   },
   formSwitch: {
     marginTop: 20,
@@ -68,6 +78,7 @@ export const styles = StyleSheet.create<MissingScreenStyles>({
     borderRadius: 12,
     backgroundColor: Colors.buttonRed,
     paddingHorizontal: 25,
+    marginBottom: 70,
   },
   claimText: {
     fontSize: 15,

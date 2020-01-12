@@ -86,7 +86,7 @@ export const render = (compRef: IDCreateScreen) => (
             modalTransparent={false}
             animationType={"fade"}
             androidMode={"default"}
-            textStyle={{fontFamily: 'Metropolis-Thin'}}
+            textStyle={{fontFamily: 'Metropolis-Medium', color: Colors.black,}}
             onDateChange={(date) => compRef.state.changeInfo('birthday', date)}
           />
         </CardPickerComponent>
@@ -109,21 +109,21 @@ export const render = (compRef: IDCreateScreen) => (
           <Picker
             mode="dropdown"
             placeholder="Select Gender"
-            placeholderStyle={{ color: Colors.placeholder, fontFamily: 'Metropolis-Thin' }}
+            placeholderStyle={{ color: Colors.placeholder, fontFamily: 'Metropolis-Medium' }}
             style={{
               width: "100%",
               height: 40,
               borderBottomWidth: 0,
               backgroundColor: Colors.itemActive,
             }}
-            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
+            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Medium" }}
             iosIcon={
               <Icon
                 name="arrow-down"
                 style={{ fontSize: 25, position: "absolute", right: 0 }}
               />
             }
-            textStyle={{fontFamily: 'Metropolis-Thin'}}
+            textStyle={{fontFamily: 'Metropolis-Medium'}}
             selectedValue={
               compRef.state.idcardInfo.gender !== ""
                 ? compRef.state.idcardInfo.gender
@@ -224,7 +224,7 @@ export const render = (compRef: IDCreateScreen) => (
               borderBottomWidth: 0,
               backgroundColor: Colors.itemActive,
             }}
-            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
+            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Medium" }}
             iosIcon={
               <Icon
                 name="arrow-down"
@@ -288,7 +288,7 @@ export const render = (compRef: IDCreateScreen) => (
               color: Colors.activeTextColor,
               backgroundColor: Colors.itemActive,
             }}
-            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
+            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Medium" }}
             iosIcon={
               <Icon
                 name="arrow-down"

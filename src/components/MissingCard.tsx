@@ -1,10 +1,11 @@
 import {Card, Text, Title, View} from "native-base";
 import React from "react";
-import { Image, NativeModules, StyleSheet } from "react-native";
+import { Dimensions, Image, NativeModules, StyleSheet } from "react-native";
 import images from "../assets/images";
 import Colors from "../constants/Colors";
 import states from "../constants/States";
 import { widthPercentageToDP as wp } from "../helpers/Responsive";
+import moment from "moment";
 const { PlatformConstants } = NativeModules;
 
 export default class MissingCard extends React.Component<MessingCardInterface> {
@@ -35,146 +36,127 @@ export default class MissingCard extends React.Component<MessingCardInterface> {
     }
   }
 
-  getAbbreviationState(key) {
-    let abbr = key;
-    states.forEach((item) => {
-      if (item.name === key) {
-        abbr = item.abbreviation;
-      }
-    });
-    return abbr;
-  }
-
-  calculateAge(birthday) {
-    // console.log("++++++++: ", birthday);
-    const birth = new Date(birthday);
-    let ageDifMs = Date.now() - birth.getTime();
-    let ageDate = new Date(ageDifMs);
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
-  }
-
   public render() {
     const name = this.state.renderFullName(this.props.name);
-    console.log("++++++++: ", this.props.city);
     return (
-      !!this.state.isFontLoaded && (
-        <Card style={styles.cardContainer}>
-          <View style={styles.cardHeader}>
-            <View
-              style={{ height: 65, width: "100%", justifyContent: "center", alignItems: "center" }}
-            >
-              <Title style={[styles.headerState, {color: Colors.warningBackground}]}>MISSING DOG</Title>
-            </View>
-            <View style={{ flexDirection: 'row', backgroundColor: '#FFF7E2' }}>
-              <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignContent: 'center'}}>
-                <Title
-                  style={[
-                    styles.headerName,
-                    {
-                      padding: 5,
-                      textAlign: 'left',
-                      fontFamily: "Metropolis-Bold",
-                      fontWeight: '900',
-                      color: Colors.missingHeader,
-                      fontSize: PlatformConstants.interfaceIdiom == 'pad' ? 45 : 30
-                    }
-                  ]}
-                >
-                  {name}
-                </Title>
-              </View>
-            </View>
+      <Card style={styles.cardContainer}>
+        <View style={styles.cardHeader}>
+          <View
+            style={{ height: 65, width: "100%", justifyContent: "center", alignItems: "center" }}
+          >
+            <Title style={[styles.headerState, {color: Colors.warningBackground}]}>MISSING DOG</Title>
           </View>
-          <View style={styles.cardContent}>
-            <View style={[styles.stateContent, { justifyContent: 'center', alignContent: 'center' }]}>
-              <View style={[styles.avatarImageView, { flex: 1, justifyContent: "flex-start", alignItems: "center", marginTop: 20 }]}>
-                <Image
-                  style={styles.avatarImage}
-                  source={this.props.photo ? { uri: this.props.photo } : images.babyId}
-                />
-              </View>
-            </View>
-            <View style={[styles.propertyContent,  { justifyContent: 'center', alignItems: 'flex-start'}]}>
-              <View>
-                <View style={styles.inforDetailContainer}>
-                  <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                    <Text style={styles.inforTitle}>Breed:</Text>
-                    <Text style={styles.inforDetail} onPress={this._handlePress}>
-                      Golder Retrieve
-                    </Text>
-                  </View>
-                </View>
-              </View>
-              <View>
-                <View style={styles.inforDetailContainer}>
-                  <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                    <Text style={styles.inforTitle}>Missing Since:</Text>
-                    <Text style={styles.inforDetail} onPress={this._handlePress}>
-                      10/10/2019
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-          </View>
-          <View style={{ flexDirection: 'row', backgroundColor: '#FFF7E2', marginTop: 20, }}>
-            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}>
-              <Text
+          <View style={{ flexDirection: 'row', backgroundColor: '#FFF7E2' }}>
+            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignContent: 'center'}}>
+              <Title
                 style={[
                   styles.headerName,
                   {
-                    padding: 15,
-                    justifyContent: 'flex-start',
+                    padding: 5,
+                    textAlign: 'left',
                     fontFamily: "Metropolis-Bold",
                     fontWeight: '900',
                     color: Colors.missingHeader,
-                    fontSize: PlatformConstants.interfaceIdiom == 'pad' ? 20 : 15
+                    fontSize: PlatformConstants.interfaceIdiom == 'pad' ? 45 : 30
                   }
                 ]}
               >
-                Note: {this.props.note || "Blue eyes, Red collar, Gray tag"}
-              </Text>
+                {name}
+              </Title>
             </View>
           </View>
-          <View style={styles.cardFooter}>
-            <View
-              style={{
-                height: 45,
-                width: "100%",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image
-                source={images.phoneIcon1}
-                style={{ width: 18, height: 18, tintColor: Colors.white, marginRight: 3 }}
-              />
-              <Text style={[styles.headerState, {fontSize: 15}]} uppercase>
-                Please call
-              </Text>
-            </View>
+        </View>
 
-            <View style={{ height: 45, width: "100%" }}>
-              <View style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}>
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text style={[styles.footerName, { fontSize: 25 }]}>
-                    Marry: {this.props.contact1 || "555-555-5555"}
+        <View style={styles.cardContent}>
+          <View style={[styles.stateContent, { justifyContent: 'center', alignContent: 'center' }]}>
+            <View style={[styles.avatarImageView, { flex: 1, justifyContent: "flex-start", alignItems: "center", marginTop: 20 }]}>
+              <Image
+                style={styles.avatarImage}
+                source={this.props.photo ? { uri: this.props.photo } : images.babyId}
+              />
+            </View>
+          </View>
+          <View style={[styles.propertyContent,  { justifyContent: 'center', alignItems: 'flex-start'}]}>
+            <View>
+              <View style={styles.inforDetailContainer}>
+                <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
+                  <Text style={styles.inforTitle}>Breed:</Text>
+                  <Text style={styles.inforDetail}>
+                    {this.props.breed || "Golder Retrieve"}
                   </Text>
                 </View>
-
+              </View>
+            </View>
+            <View>
+              <View style={styles.inforDetailContainer}>
+                <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
+                  <Text style={styles.inforTitle}>Missing Since:</Text>
+                  <Text style={styles.inforDetail}>
+                    {moment(this.props.missingDate || new Date()).format("MM-DD-YYYY")}
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
-        </Card>
-      )
+        </View>
+
+        <View style={{ flexDirection: 'row', backgroundColor: '#FFF7E2', marginTop: 20, }}>
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}>
+            <Text
+              style={[
+                styles.headerName,
+                {
+                  padding: 15,
+                  justifyContent: 'flex-start',
+                  fontFamily: "Metropolis-Bold",
+                  fontWeight: '900',
+                  color: Colors.missingHeader,
+                  fontSize: PlatformConstants.interfaceIdiom == 'pad' ? 20 : 15
+                }
+              ]}
+            >
+              Note: {this.props.note || "Blue eyes, Red collar, Gray tag"}
+            </Text>
+          </View>
+        </View>
+
+        <View style={styles.cardFooter}>
+          <View
+            style={{
+              height: 45,
+              width: "100%",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Image
+              source={images.phoneIcon1}
+              style={{ width: 18, height: 18, tintColor: Colors.white, marginRight: 3 }}
+            />
+            <Text style={[styles.headerState, {fontSize: 15}]} uppercase>
+              Please call
+            </Text>
+          </View>
+
+          <View style={{ height: 45, width: "100%" }}>
+            <View style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={[styles.footerName, { fontSize: 25 }]}>
+                  PH: {this.props.contact || "555-555-5555"}
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </Card>
     );
   }
 }

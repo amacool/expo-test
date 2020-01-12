@@ -8,6 +8,10 @@ import {
   Item,
   Input,
   Title,
+  Card,
+  CardItem,
+  Body,
+  Text
 } from "native-base";
 
 import * as React from "react";
@@ -18,6 +22,7 @@ import Colors from "../../constants/Colors";
 import CardInputComponent from "../../components/CardInputComponent";
 import CardPickerComponent from "../../components/CardPickerComponent";
 import images from "../../assets/images";
+import { Col, Grid } from "react-native-easy-grid";
 
 export interface Props {}
 
@@ -38,17 +43,17 @@ export const render = (compRef: CheckOutScreen) => (
   <Container style={styles.container}>
     <HeaderComponent title="Check Out" message back checked={compRef.state.isValid}/>
     <Content style={styles.container} disableKBDismissScroll={true}>
+      <Title
+        style={{
+          fontFamily: "Metropolis-Bold",
+          color: Colors.black,
+          textAlign: 'left',
+          padding: 5,
+          marginLeft: 15
+        }}>
+        Shipping address
+      </Title>
       <Form style={{padding: 10}}>
-        <Title
-          style={{
-            fontFamily: "Metropolis-Bold",
-            color: Colors.black,
-            textAlign: 'left',
-            padding: 5,
-            marginLeft: 10
-          }}>
-          Shipping address
-        </Title>
         <CardInputComponent label="Full Name">
           <Input
             onChangeText={(text) => compRef.state.changeInfo('name', text)}
@@ -103,6 +108,7 @@ export const render = (compRef: CheckOutScreen) => (
               width: "100%",
               height: 40,
               borderBottomWidth: 0,
+              color: Colors.activeTextColor,
               backgroundColor: Colors.itemActive,
             }}
             itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
@@ -200,16 +206,97 @@ export const render = (compRef: CheckOutScreen) => (
             })}
           </Picker>
         </CardPickerComponent>
-
-        <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
-          <TouchableOpacity
-            style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
-            onPress={compRef.state.checkOut}
-          >
-            <Image source={images.submitOrder} style={{width: '85%', resizeMode: 'contain'}}/>
-          </TouchableOpacity>
-        </View>
       </Form>
+      <Title
+        style={{
+          fontFamily: "Metropolis-Bold",
+          color: Colors.black,
+          textAlign: 'left',
+          padding: 5,
+          marginLeft: 15
+        }}>
+        Delivery method
+      </Title>
+      <Grid style={{padding: 10}}>
+        <Col>
+          <Card>
+            <CardItem>
+              <Body style={{
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                height: 50,
+                padding: 10
+              }}>
+                <Image
+                  source={images.fedexIcon}
+                  resizeMode="contain"
+                  style={{
+                    width: "100%",
+                  }}
+                />
+                <Text style={{ fontSize: 12, fontFamily: 'Metropolis-Thin' }}>
+                  FedEx
+                </Text>
+              </Body>
+            </CardItem>
+          </Card>
+        </Col>
+        <Col>
+          <Card>
+            <CardItem>
+              <Body style={{
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                height: 50,
+              }}>
+                <Image
+                  source={images.uspsIcon}
+                  resizeMode="contain"
+                  style={{
+                    width: "100%",
+                  }}
+                />
+                <Text style={{ fontSize: 12, fontFamily: 'Metropolis-Thin' }}>
+                  USPSCOM
+                </Text>
+              </Body>
+            </CardItem>
+          </Card>
+        </Col>
+        <Col>
+          <Card>
+            <CardItem>
+              <Body style={{
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                height: 50,
+              }}>
+                <Image
+                  source={images.dhlIcon}
+                  resizeMode="contain"
+                  style={{
+                    width: "100%",
+                  }}
+                />
+                <Text style={{ fontSize: 12, fontFamily: 'Metropolis-Thin' }}>
+                  DHL
+                </Text>
+              </Body>
+            </CardItem>
+          </Card>
+        </Col>
+      </Grid>
+      <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
+        <TouchableOpacity
+          style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+          onPress={compRef.state.checkOut}
+        >
+          <Image source={images.submitOrder} style={{width: '85%', resizeMode: 'contain'}}/>
+        </TouchableOpacity>
+      </View>
     </Content>
   </Container>
 );

@@ -1,33 +1,38 @@
 interface MessingCardInterface {
   name?: string;
-  state?: string;
-  city?: string;
-  photo?: string;
-  weight?: number;
-  height?: number;
-  haircolor?: string;
-  eyecolor?: string;
-  issueDate?: Date;
   birthday?: Date;
-  missingDate?: Date;
-  contact1?: string,
-  contact2?: string,
-  medical?: string;
-  note?: string;
+  breed: string,
+  color: string,
   gender?: string;
+  contact?: string;
+  contactoth?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zipcode?: string;
+  country?: string;
+  note?: string;
+  issueDate?: Date;
+  photo?: string;
   istemp?: boolean;
+  missingDate?: Date;
 }
 interface MissingCardStatusInterface {
   name?: boolean;
-  statecity?: boolean;
-  photo?: boolean;
-  weightheight?: boolean;
-  haireyescolor?: boolean;
-  missingDate?: boolean;
-  issueDate?: boolean;
   birthday?: boolean;
-  contact?: boolean,
-  medical?: boolean;
-  note?: boolean;
+  breed?: boolean;
   gender?: boolean;
+  color?: boolean,
+  contact?: boolean;
+  contactoth?: boolean;
+  address?: boolean,
+  city?: boolean;
+  state?: boolean;
+  zipcode?: boolean;
+  country?: boolean;
+  note?: boolean;
+  issueDate?: boolean;
+  photo?: boolean;
+  istemp?: boolean;
+  missingDate?: boolean;
 }

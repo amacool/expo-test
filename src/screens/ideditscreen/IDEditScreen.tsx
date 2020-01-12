@@ -53,7 +53,7 @@ export default class IDEditScreen extends React.Component<screenUtils.Props, scr
       },
       isValid: false,
       states: states,
-      uploadPhoto: () => this.uploadPhoto(),
+      uploadPhoto: () => this.onUploadPhoto(),
       changeInfo: (key, value) => this.onChangeInfo(key, value),
       changeContactInfo: (key, value) => this.onChangeContactInfo(key, value),
       createKidsId: () => this.createKidsId(),
@@ -98,11 +98,13 @@ export default class IDEditScreen extends React.Component<screenUtils.Props, scr
     this.setState({ isValid: isValid });
   }
 
-  uploadPhoto = async () => {
+  onUploadPhoto = async () => {
     await this.askPermissionsAsync();
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       aspect: [1, 1],
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 1
     });
 
     if (!result.cancelled) {
@@ -138,8 +140,12 @@ export default class IDEditScreen extends React.Component<screenUtils.Props, scr
   };
 
   askPermissionsAsync = async () => {
-    await Permissions.askAsync(Permissions.CAMERA);
-    await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    try {
+      await Permissions.askAsync(Permissions.CAMERA);
+      await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    } catch (e) {
+      console.log('permission Error', e);
+    }
   };
 
   public render() {
