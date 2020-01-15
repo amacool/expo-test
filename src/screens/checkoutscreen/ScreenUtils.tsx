@@ -1,4 +1,4 @@
-import {TouchableOpacity, View, Image} from "react-native";
+import { TouchableOpacity, View, Image, ActivityIndicator } from "react-native";
 import {
   Container,
   Content,
@@ -28,11 +28,13 @@ export interface Props {}
 
 // Define States
 export interface State {
+  checkoutData: any,
   checkOutInfo: CheckOutModel;
   checkOutInfoValidation: CheckOutStatusModel;
   states: any;
   countries: any,
   isValid: boolean,
+  isLoading: boolean,
   allCountryData: any,
   checkOut: () => void;
   changeCountry: (value: any, index: number) => void;
@@ -42,192 +44,199 @@ export interface State {
 export const render = (compRef: CheckOutScreen) => (
   <Container style={styles.container}>
     <HeaderComponent title="Check Out" message back checked={compRef.state.isValid}/>
-    <Content style={styles.container} disableKBDismissScroll={true}>
-      <Title
-        style={{
-          fontFamily: "Metropolis-Bold",
-          color: Colors.black,
-          textAlign: 'left',
-          padding: 5,
-          marginLeft: 15
-        }}>
-        Shipping address
-      </Title>
-      <Form style={{padding: 10}}>
-        <CardInputComponent label="Full Name">
-          <Input
-            onChangeText={(text) => compRef.state.changeInfo('name', text)}
-            maxLength={25}
-            placeholder="Enter Full Name"
-            placeholderTextColor={Colors.placeholder}
-            value={compRef.state.checkOutInfo.name}
-            style={[
-              styles.formText,
-              compRef.state.checkOutInfoValidation.name &&
-              !compRef.state.checkOutInfo.name && styles.inValidForm,
-            ]}
-          />
-        </CardInputComponent>
-
-        <CardInputComponent label="Address">
-          <Input
-            onChangeText={(text) => compRef.state.changeInfo('address', text)}
-            maxLength={25}
-            placeholder="Enter Address"
-            placeholderTextColor={Colors.placeholder}
-            value={compRef.state.checkOutInfo.address}
-            style={[
-              styles.formText,
-              compRef.state.checkOutInfoValidation.address &&
-              !compRef.state.checkOutInfo.address && styles.inValidForm,
-            ]}
-          />
-        </CardInputComponent>
-
-        <CardInputComponent label="City">
-          <Input
-            onChangeText={(text) => compRef.state.changeInfo('city', text)}
-            maxLength={25}
-            placeholder="Enter City"
-            placeholderTextColor={Colors.placeholder}
-            value={compRef.state.checkOutInfo.city}
-            style={[
-              styles.formText,
-              compRef.state.checkOutInfoValidation.city &&
-              !compRef.state.checkOutInfo.city && styles.inValidForm,
-            ]}
-          />
-        </CardInputComponent>
-
-        <CardPickerComponent label="State/Province/Region">
-          <Picker
-            mode="dropdown"
-            placeholder="Select State"
-            placeholderStyle={{ color: Colors.placeholder }}
-            style={{
-              width: "100%",
-              height: 40,
-              borderBottomWidth: 0,
-              color: Colors.activeTextColor,
-              backgroundColor: Colors.itemActive,
-            }}
-            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
-            iosIcon={
-              <Icon
-                name="arrow-down"
-                style={{ fontSize: 25, position: "absolute", right: 0 }}
-              />
-            }
-            selectedValue={
-              compRef.state.checkOutInfo.state !== ""
-                ? compRef.state.checkOutInfo.state
-                : "Select State"
-            }
-            onValueChange={(itemValue, itemIndex) =>
-              compRef.state.changeInfo('state', itemValue)
-            }
-          >
-            <Item
-              label="Select State"
-              value=""
-              color={Colors.placeholder}
-              style={{ width: 100, backgroundColor: Colors.white }}
+    {compRef.state && compRef.state.isLoading &&
+      <ActivityIndicator
+        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        size="large"
+        color={Colors.tintColor} />
+    }
+    {compRef.state && !compRef.state.isLoading &&
+      <Content style={styles.container} disableKBDismissScroll={true}>
+        <Title
+          style={{
+            fontFamily: "Metropolis-Bold",
+            color: Colors.black,
+            textAlign: 'left',
+            padding: 5,
+            marginLeft: 15
+          }}>
+          Shipping address
+        </Title>
+        <Form style={{padding: 10}}>
+          <CardInputComponent label="Full Name">
+            <Input
+              onChangeText={(text) => compRef.state.changeInfo('name', text)}
+              maxLength={25}
+              placeholder="Enter Full Name"
+              placeholderTextColor={Colors.placeholder}
+              value={compRef.state.checkOutInfo.name}
+              style={[
+                styles.formText,
+                compRef.state.checkOutInfoValidation.name &&
+                !compRef.state.checkOutInfo.name && styles.inValidForm,
+              ]}
             />
-            {compRef.state.states &&
-            compRef.state.states.map((item, key) => {
-              return (
-                <Item
-                  color={Colors.activeTextColor}
-                  label={item.name}
-                  value={item.name}
-                  key={key}
-                  style={{ width: 100, backgroundColor: Colors.white }}
+          </CardInputComponent>
+
+          <CardInputComponent label="Address">
+            <Input
+              onChangeText={(text) => compRef.state.changeInfo('address', text)}
+              maxLength={25}
+              placeholder="Enter Address"
+              placeholderTextColor={Colors.placeholder}
+              value={compRef.state.checkOutInfo.address}
+              style={[
+                styles.formText,
+                compRef.state.checkOutInfoValidation.address &&
+                !compRef.state.checkOutInfo.address && styles.inValidForm,
+              ]}
+            />
+          </CardInputComponent>
+
+          <CardInputComponent label="City">
+            <Input
+              onChangeText={(text) => compRef.state.changeInfo('city', text)}
+              maxLength={25}
+              placeholder="Enter City"
+              placeholderTextColor={Colors.placeholder}
+              value={compRef.state.checkOutInfo.city}
+              style={[
+                styles.formText,
+                compRef.state.checkOutInfoValidation.city &&
+                !compRef.state.checkOutInfo.city && styles.inValidForm,
+              ]}
+            />
+          </CardInputComponent>
+
+          <CardPickerComponent label="State/Province/Region">
+            <Picker
+              mode="dropdown"
+              placeholder="Select State"
+              placeholderStyle={{ color: Colors.placeholder }}
+              style={{
+                width: "100%",
+                height: 40,
+                borderBottomWidth: 0,
+                color: Colors.activeTextColor,
+                backgroundColor: Colors.itemActive,
+              }}
+              itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
+              iosIcon={
+                <Icon
+                  name="arrow-down"
+                  style={{ fontSize: 25, position: "absolute", right: 0 }}
                 />
-              );
-            })}
-          </Picker>
-        </CardPickerComponent>
-
-        <CardInputComponent label="Zip Code(Postal Code)">
-          <Input
-            onChangeText={(text) => compRef.state.changeInfo('zipcode', text)}
-            maxLength={25}
-            placeholder="Enter Zip Code"
-            placeholderTextColor={Colors.placeholder}
-            value={compRef.state.checkOutInfo.zipcode}
-            style={[
-              styles.formText,
-              compRef.state.checkOutInfoValidation.zipcode &&
-              !compRef.state.checkOutInfo.zipcode && styles.inValidForm,
-            ]}
-          />
-        </CardInputComponent>
-
-        <CardPickerComponent label="Country">
-          <Picker
-            mode="dropdown"
-            placeholder="Select Country"
-            placeholderStyle={{ color: Colors.placeholder }}
-            style={{
-              width: "100%",
-              height: 40,
-              borderBottomWidth: 0,
-              color: Colors.activeTextColor,
-              backgroundColor: Colors.itemActive,
-            }}
-            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
-            iosIcon={
-              <Icon
-                name="arrow-down"
-                style={{ fontSize: 25, position: "absolute", right: 0 }}
+              }
+              selectedValue={
+                compRef.state.checkOutInfo.state !== ""
+                  ? compRef.state.checkOutInfo.state
+                  : "Select State"
+              }
+              onValueChange={(itemValue, itemIndex) =>
+                compRef.state.changeInfo('state', itemValue)
+              }
+            >
+              <Item
+                label="Select State"
+                value=""
+                color={Colors.placeholder}
+                style={{ width: 100, backgroundColor: Colors.white }}
               />
-            }
-            selectedValue={
-              compRef.state.checkOutInfo.country !== ""
-                ? compRef.state.checkOutInfo.country
-                : "Select State"
-            }
-            onValueChange={(itemValue, itemIndex) =>
-              compRef.state.changeCountry(itemValue, itemIndex)
-            }
-          >
-            {compRef.state.countries &&
-            compRef.state.countries.length &&
-            compRef.state.countries.map((item, key) => {
-              return (
-                <Item
-                  color={Colors.activeTextColor}
-                  label={item.name}
-                  value={item.name}
-                  key={key}
-                  style={{ width: 100, backgroundColor: Colors.white }}
+              {compRef.state.states &&
+              compRef.state.states.map((item, key) => {
+                return (
+                  <Item
+                    color={Colors.activeTextColor}
+                    label={item.name}
+                    value={item.name}
+                    key={key}
+                    style={{ width: 100, backgroundColor: Colors.white }}
+                  />
+                );
+              })}
+            </Picker>
+          </CardPickerComponent>
+
+          <CardInputComponent label="Zip Code(Postal Code)">
+            <Input
+              onChangeText={(text) => compRef.state.changeInfo('zipcode', text)}
+              maxLength={25}
+              placeholder="Enter Zip Code"
+              placeholderTextColor={Colors.placeholder}
+              value={compRef.state.checkOutInfo.zipcode}
+              style={[
+                styles.formText,
+                compRef.state.checkOutInfoValidation.zipcode &&
+                !compRef.state.checkOutInfo.zipcode && styles.inValidForm,
+              ]}
+            />
+          </CardInputComponent>
+
+          <CardPickerComponent label="Country">
+            <Picker
+              mode="dropdown"
+              placeholder="Select Country"
+              placeholderStyle={{ color: Colors.placeholder }}
+              style={{
+                width: "100%",
+                height: 40,
+                borderBottomWidth: 0,
+                color: Colors.activeTextColor,
+                backgroundColor: Colors.itemActive,
+              }}
+              itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
+              iosIcon={
+                <Icon
+                  name="arrow-down"
+                  style={{ fontSize: 25, position: "absolute", right: 0 }}
                 />
-              );
-            })}
-          </Picker>
-        </CardPickerComponent>
-      </Form>
-      <Title
-        style={{
-          fontFamily: "Metropolis-Bold",
-          color: Colors.black,
-          textAlign: 'left',
-          padding: 5,
-          marginLeft: 15
-        }}>
-        Delivery method
-      </Title>
-      <Grid style={{padding: 10}}>
-        <Col>
-          <Card>
-            <CardItem>
-              <Body style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-                height: 50,
-                padding: 10
-              }}>
+              }
+              selectedValue={
+                compRef.state.checkOutInfo.country !== ""
+                  ? compRef.state.checkOutInfo.country
+                  : "Select State"
+              }
+              onValueChange={(itemValue, itemIndex) =>
+                compRef.state.changeCountry(itemValue, itemIndex)
+              }
+            >
+              {compRef.state.countries &&
+              compRef.state.countries.length &&
+              compRef.state.countries.map((item, key) => {
+                return (
+                  <Item
+                    color={Colors.activeTextColor}
+                    label={item.name}
+                    value={item.name}
+                    key={key}
+                    style={{ width: 100, backgroundColor: Colors.white }}
+                  />
+                );
+              })}
+            </Picker>
+          </CardPickerComponent>
+        </Form>
+        <Title
+          style={{
+            fontFamily: "Metropolis-Bold",
+            color: Colors.black,
+            textAlign: 'left',
+            padding: 5,
+            marginLeft: 15
+          }}>
+          Delivery method
+        </Title>
+        <Grid style={{padding: 10}}>
+          <Col>
+            <Card>
+              <CardItem>
+                <Body style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  height: 50,
+                  padding: 10
+                }}>
                 <Image
                   source={images.fedexIcon}
                   resizeMode="contain"
@@ -238,19 +247,19 @@ export const render = (compRef: CheckOutScreen) => (
                 <Text style={{ fontSize: 12, fontFamily: 'Metropolis-Thin' }}>
                   FedEx
                 </Text>
-              </Body>
-            </CardItem>
-          </Card>
-        </Col>
-        <Col>
-          <Card>
-            <CardItem>
-              <Body style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-                height: 50,
-              }}>
+                </Body>
+              </CardItem>
+            </Card>
+          </Col>
+          <Col>
+            <Card>
+              <CardItem>
+                <Body style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  height: 50,
+                }}>
                 <Image
                   source={images.uspsIcon}
                   resizeMode="contain"
@@ -261,19 +270,19 @@ export const render = (compRef: CheckOutScreen) => (
                 <Text style={{ fontSize: 12, fontFamily: 'Metropolis-Thin' }}>
                   USPSCOM
                 </Text>
-              </Body>
-            </CardItem>
-          </Card>
-        </Col>
-        <Col>
-          <Card>
-            <CardItem>
-              <Body style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-                height: 50,
-              }}>
+                </Body>
+              </CardItem>
+            </Card>
+          </Col>
+          <Col>
+            <Card>
+              <CardItem>
+                <Body style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  height: 50,
+                }}>
                 <Image
                   source={images.dhlIcon}
                   resizeMode="contain"
@@ -284,19 +293,20 @@ export const render = (compRef: CheckOutScreen) => (
                 <Text style={{ fontSize: 12, fontFamily: 'Metropolis-Thin' }}>
                   DHL
                 </Text>
-              </Body>
-            </CardItem>
-          </Card>
-        </Col>
-      </Grid>
-      <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
-        <TouchableOpacity
-          style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
-          onPress={compRef.state.checkOut}
-        >
-          <Image source={images.submitOrder} style={{width: '85%', resizeMode: 'contain'}}/>
-        </TouchableOpacity>
-      </View>
-    </Content>
+                </Body>
+              </CardItem>
+            </Card>
+          </Col>
+        </Grid>
+        <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
+          <TouchableOpacity
+            style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+            onPress={compRef.state.checkOut}
+          >
+            <Image source={images.submitOrder} style={{width: '85%', resizeMode: 'contain'}}/>
+          </TouchableOpacity>
+        </View>
+      </Content>
+    }
   </Container>
 );

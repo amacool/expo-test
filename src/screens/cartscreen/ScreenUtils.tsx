@@ -3,7 +3,8 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 import {Card, CardItem, Body, Content, ListItem, Right, Input} from "native-base";
 import * as React from "react";
@@ -12,6 +13,7 @@ import { styles } from "./Styles";
 import HeaderComponent from "../../components/headerComponent";
 import images from "../../assets/images";
 import CartCard from "../../components/CartCard";
+import Colors from "../../constants/Colors";
 
 export interface Props {}
 
@@ -19,6 +21,7 @@ export interface Props {}
 export interface State {
   isVerifedGit: boolean;
   isValid: boolean;
+  isLoading: boolean,
   data: any;
   gitCode: string;
   addCart: (key: string) => void;
@@ -31,7 +34,13 @@ export interface State {
 export const render = (compRef: CartScreen) => (
   <View style={styles.container}>
     <HeaderComponent title="Cart" message back checked={compRef.state.isValid}/>
-    {compRef.state && !compRef.state.isVerifedGit &&
+    {compRef.state && compRef.state.isLoading &&
+      <ActivityIndicator
+        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        size="large"
+        color={Colors.tintColor} />
+    }
+    {compRef.state && !compRef.state.isLoading && !compRef.state.isVerifedGit &&
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Card style={{width: '95%'}}>
           <CardItem>

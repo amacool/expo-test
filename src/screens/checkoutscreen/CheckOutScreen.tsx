@@ -8,7 +8,9 @@ export default class CheckOutScreen extends React.Component<screenUtils.Props, s
   public imageRef;
   constructor(props) {
     super(props);
+    const params = props.navigation.state.params;
     this.state = {
+      checkoutData: params.data,
       checkOutInfo: {
         name: "",
         address: "",
@@ -27,6 +29,7 @@ export default class CheckOutScreen extends React.Component<screenUtils.Props, s
         country: false,
         issueDate: true,
       },
+      isLoading: false,
       isValid: false,
       allCountryData: states,
       countries: states.map((item)=> item),
@@ -68,9 +71,63 @@ export default class CheckOutScreen extends React.Component<screenUtils.Props, s
     this.checkValid();
   };
 
+  uploadData = async (url, data) => {
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    let formData = new FormData();
+
+    formData.append('handle', data.handle);
+    formData.append('comment', data.comment);
+    formData.append('date', data.date || new Date());
+    formData.append('latitude', data.latitude);
+    formData.append('longitude', data.longitude);
+    formData.append('file', {
+      uri: data.uri,
+      type: 'image/jpeg',
+      name: `sm_${new Date().getTime()}`
+    });
+
+    let opts = {
+      method: 'POST',
+      headers: myHeaders,
+      body: formData
+    };
+
+    return new Promise((res, rej) => {
+      let xhr = new XMLHttpRequest();
+      xhr.open(opts.method || 'get', `url`);
+      for (let i in opts.headers || {})
+        xhr.setRequestHeader(i, opts.headers[i]);
+      xhr.onload = e => {
+        return res(data);
+      };
+      xhr.onerror = error => {
+        return rej(error);
+      };
+      if (xhr.upload) xhr.upload.onprogress = (progress) => {
+        console.log('progress', progress);
+      };
+      xhr.send(opts.body);
+    });
+  };
+
   onCheckOut = async () => {
-    if (this.state.isValid)
-      navigationStore.navigateTo("success");
+    if (this.state.isValid) {
+      let multiUpload = [];
+      this.state.checkoutData.map(item => multiUpload.push(this.uploadData(`http://webhook.site`, item)));
+      if (multiUpload.length) {
+        Promise.all(multiUpload).then(result => {
+          alert("Upload Success.");
+          this.setState({isLoading: false});
+          navigationStore.navigateTo("success");
+        }, error => {
+          alert(`Uploading Failed. ${JSON.stringify(error)}`);
+          this.setState({isLoading: false});
+          navigationStore.navigateTo("success");
+        });
+      }
+    }
     else
       alert("Some field is missing.");
   };

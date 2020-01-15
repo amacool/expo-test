@@ -5,6 +5,7 @@ import TabBarIcon from "../../components/TabBarIcon";
 import images from "../../assets/images";
 import * as screenUtils from "./ScreenUtils";
 import navigationStore from "../../stores/navigationStore";
+import {get} from "../../helpers/Request";
 
 interface InterfaceStyle {
   [key: string]: ViewStyle;
@@ -22,6 +23,7 @@ export default class CartScreen extends React.Component<screenUtils.Props, scree
     super(props);
     this.state = {
       isVerifedGit: false,
+      isLoading: false,
       data: [],
       gitCode: "",
       isValid: false,
@@ -53,8 +55,13 @@ export default class CartScreen extends React.Component<screenUtils.Props, scree
   }
 
   _checkOut () {
-    if (this.state.isValid)
-      navigationStore.navigateTo('checkout');
+    if (this.state.isValid) {
+      let checkoutData = [];
+      this.state.data.map(item => {
+        if (item.count > 0) checkoutData.push(item);
+      });
+      navigationStore.navigateTo('checkout', {data: checkoutData});
+    }
     else
       alert("Add one at least");
   }
@@ -79,9 +86,33 @@ export default class CartScreen extends React.Component<screenUtils.Props, scree
     this.setState({gitCode: code});
   }
 
-  _enterGitCode () {
-    if (this.state.gitCode)
-      this.setState({isVerifedGit: true});
+  async _enterGitCode () {
+    if (this.state.gitCode) {
+      this.setState({isLoading: true});
+      fetch(`http://68.183.137.59:10000/promo`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'x-api-key': 'testtoken123',
+          'x-api-promo': this.state.gitCode,
+          'Content-Type': 'application/json'
+        },
+      }).then(result => {
+        console.log('result =============== ;', result);
+        result.json().then(_r => {
+          alert(_r.message);
+          this.setState({isLoading: false, isVerifedGit: true});
+        }, _e => {
+          alert("Failed json parsing.");
+          this.setState({isLoading: false});
+        });
+
+      }, error => {
+        console.log('error =============== ;', error);
+        alert("Network Failed!");
+        this.setState({isLoading: false});
+      });
+    }
     else
       alert("Enter code please");
   }
