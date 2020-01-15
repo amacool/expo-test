@@ -83,7 +83,7 @@ export default class CheckOutScreen extends React.Component<screenUtils.Props, s
     formData.append('latitude', data.latitude);
     formData.append('longitude', data.longitude);
     formData.append('file', {
-      uri: data.uri,
+      // uri: data.uri,
       type: 'image/jpeg',
       name: `sm_${new Date().getTime()}`
     });
