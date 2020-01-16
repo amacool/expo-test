@@ -6,6 +6,7 @@ import images from "../../assets/images";
 import * as screenUtils from "./ScreenUtils";
 import navigationStore from "../../stores/navigationStore";
 import {get} from "../../helpers/Request";
+import Config from "../../Config";
 
 interface InterfaceStyle {
   [key: string]: ViewStyle;
@@ -89,7 +90,7 @@ export default class CartScreen extends React.Component<screenUtils.Props, scree
   async _enterGitCode () {
     if (this.state.gitCode) {
       this.setState({isLoading: true});
-      fetch(`http://68.183.137.59:10000/promo`, {
+      fetch(Config.promoEndpoint, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',

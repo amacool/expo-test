@@ -117,7 +117,7 @@ export default class CheckOutScreen extends React.Component<screenUtils.Props, s
       let multiUpload = [];
       console.log(this.state.checkoutData);
       this.state.checkoutData.map(item =>
-        multiUpload.push(this.uploadData(`http://webhook.site/${Config.webhookToken}`, item))
+        multiUpload.push(this.uploadData(Config.checkoutEndpoint, item))
       );
       if (multiUpload.length) {
         Promise.all(multiUpload).then(result => {
