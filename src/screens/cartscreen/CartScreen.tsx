@@ -94,7 +94,7 @@ export default class CartScreen extends React.Component<screenUtils.Props, scree
         method: 'GET',
         headers: {
           'Accept': 'application/json',
-          'x-api-key': 'testtoken123',
+          'x-api-key': Config.xApiKey,
           'x-api-promo': this.state.gitCode,
           'Content-Type': 'application/json'
         },
