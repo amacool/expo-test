@@ -108,54 +108,21 @@ export const render = (compRef: CheckOutScreen) => (
             />
           </CardInputComponent>
 
-          <CardPickerComponent label="State/Province/Region">
-            <Picker
-              mode="dropdown"
-              placeholder="Select State"
-              placeholderStyle={{ color: Colors.placeholder }}
-              style={{
-                width: "100%",
-                height: 40,
-                borderBottomWidth: 0,
-                color: Colors.activeTextColor,
-                backgroundColor: Colors.itemActive,
-              }}
-              itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
-              iosIcon={
-                <Icon
-                  name="arrow-down"
-                  style={{ fontSize: 25, position: "absolute", right: 0 }}
-                />
-              }
-              selectedValue={
-                compRef.state.checkOutInfo.state !== ""
-                  ? compRef.state.checkOutInfo.state
-                  : "Select State"
-              }
-              onValueChange={(itemValue, itemIndex) =>
-                compRef.state.changeInfo('state', itemValue)
-              }
-            >
-              <Item
-                label="Select State"
-                value=""
-                color={Colors.placeholder}
-                style={{ width: 100, backgroundColor: Colors.white }}
-              />
-              {compRef.state.states &&
-              compRef.state.states.map((item, key) => {
-                return (
-                  <Item
-                    color={Colors.activeTextColor}
-                    label={item.name}
-                    value={item.name}
-                    key={key}
-                    style={{ width: 100, backgroundColor: Colors.white }}
-                  />
-                );
-              })}
-            </Picker>
-          </CardPickerComponent>
+          <CardInputComponent label="State/Province/Region">
+            <Input
+              onChangeText={(text) => compRef.state.changeInfo('state', text)}
+              maxLength={25}
+              placeholder="Enter City"
+              placeholderTextColor={Colors.placeholder}
+              value={compRef.state.checkOutInfo.state}
+              style={[
+                styles.formText,
+                compRef.state.checkOutInfoValidation.state &&
+                !compRef.state.checkOutInfo.state && styles.inValidForm,
+              ]}
+            />
+          </CardInputComponent>
+
 
           <CardInputComponent label="Zip Code(Postal Code)">
             <Input

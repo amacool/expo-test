@@ -3,6 +3,7 @@ import { takeSnapshotAsync } from "expo";
 import * as screenUtils from "./ScreenUtils";
 import states from "../../constants/States";
 import navigationStore from "../../stores/navigationStore";
+import Config from "../../Config";
 
 export default class CheckOutScreen extends React.Component<screenUtils.Props, screenUtils.State> {
   public imageRef;
@@ -38,6 +39,7 @@ export default class CheckOutScreen extends React.Component<screenUtils.Props, s
       changeCountry: (value, index) => this.onChangeCountry(value, index),
       checkOut: () => this.onCheckOut(),
     };
+    console.log('this.state.checkoutData', params.data);
   }
 
   checkValid() {
@@ -58,7 +60,7 @@ export default class CheckOutScreen extends React.Component<screenUtils.Props, s
     let someProperty = { ...this.state.checkOutInfo };
     delete someProperty['state'];
     someProperty['country'] = value;
-    this.setState({ states: this.state.allCountryData[index].states });
+    // this.setState({ states: this.state.allCountryData[index].states });
     this.setState({ checkOutInfo: someProperty });
     this.checkValid();
   };
@@ -76,10 +78,11 @@ export default class CheckOutScreen extends React.Component<screenUtils.Props, s
     myHeaders.append("Content-Type", "application/json");
 
     let formData = new FormData();
-
-    formData.append('count', data.count);
+    Object.keys(data).map(key => {
+      formData.append(key, data[key]);
+    });
     formData.append('file', {
-      // uri: data.uri,
+      uri: data.photo,
       type: 'image/jpeg',
       name: `sm_${new Date().getTime()}`
     });
@@ -92,13 +95,14 @@ export default class CheckOutScreen extends React.Component<screenUtils.Props, s
 
     return new Promise((res, rej) => {
       let xhr = new XMLHttpRequest();
-      xhr.open(opts.method || 'get', `url`);
+      xhr.open(opts.method || 'get', url);
       for (let i in opts.headers || {})
         xhr.setRequestHeader(i, opts.headers[i]);
       xhr.onload = e => {
         return res(data);
       };
       xhr.onerror = error => {
+        console.log('error===============;', error);
         return rej(error);
       };
       if (xhr.upload) xhr.upload.onprogress = (progress) => {
@@ -111,13 +115,17 @@ export default class CheckOutScreen extends React.Component<screenUtils.Props, s
   onCheckOut = async () => {
     if (this.state.isValid) {
       let multiUpload = [];
-      this.state.checkoutData.map(item => multiUpload.push(this.uploadData(`http://webhook.site`, item)));
+      console.log(this.state.checkoutData);
+      this.state.checkoutData.map(item =>
+        multiUpload.push(this.uploadData(`http://webhook.site/${Config.webhookToken}`, item))
+      );
       if (multiUpload.length) {
         Promise.all(multiUpload).then(result => {
           alert("Upload Success.");
           this.setState({isLoading: false});
           navigationStore.navigateTo("success");
         }, error => {
+          console.log('error', error);
           alert(`Uploading Failed. ${JSON.stringify(error)}`);
           this.setState({isLoading: false});
           navigationStore.navigateTo("success");

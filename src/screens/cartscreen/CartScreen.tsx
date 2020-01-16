@@ -121,11 +121,3 @@ export default class CartScreen extends React.Component<screenUtils.Props, scree
     return screenUtils.render(this);
   }
 }
-
-const styles = StyleSheet.create<InterfaceStyle>({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: "#fff",
-  },
-});
