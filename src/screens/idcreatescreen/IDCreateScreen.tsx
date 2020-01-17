@@ -8,6 +8,7 @@ import navigationStore from "../../stores/navigationStore";
 import images from "../../assets/images";
 import TabBarBigIcon from "../../components/TabBarBigIcon";
 import { captureRef as takeSnapshotAsync } from 'react-native-view-shot';
+import ViewScreenSnapStore from "../../stores/viewScreenSnapStore";
 
 export default class IDCreateScreen extends React.Component<screenUtils.Props, screenUtils.State> {
   public imageRef;
@@ -112,6 +113,7 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
         format: "png",
       });
       data.cardImage = result;
+      await ViewScreenSnapStore.download(this.imageRef);
       console.log(data);
       const kidIds = await AsyncStorage.getItem("petsIds");
       let kidIdsArr = kidIds ? JSON.parse(kidIds) : [];
@@ -137,20 +139,27 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
 
   uploadPhoto = async () => {
     await this.askPermissionsAsync();
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      aspect: [1, 1],
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      quality: 1
-    });
+    try {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+        aspect: [1, 1],
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 1
+      });
 
-    if (!result.cancelled) {
-      let someProperty = { ...this.state.idcardInfo };
-      someProperty.photo = result.uri;
-      this.setState({ idcardInfo: someProperty });
-      this.setState({ idcardRender: someProperty });
+      console.log(result);
+
+      if (!result.cancelled) {
+        let someProperty = { ...this.state.idcardInfo };
+        someProperty.photo = result.uri;
+        this.setState({ idcardInfo: someProperty });
+        this.setState({ idcardRender: someProperty });
+      }
+      this.checkValid();
+
+    } catch (e) {
+      console.log(e);
     }
-    this.checkValid();
   };
 
   onChangeInfo = (key, value) => {

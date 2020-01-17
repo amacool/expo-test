@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as screenUtils from "./ScreenUtils";
 import states from "../../constants/States";
-import navigationStore from "../../stores/navigationStore";
 import ViewScreenSnapStore from "../../stores/viewScreenSnapStore";
 export default class IDViewScreen extends React.Component<screenUtils.Props, screenUtils.State> {
   public static navigationOptions = {
