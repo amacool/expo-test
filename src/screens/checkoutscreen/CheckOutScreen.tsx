@@ -23,10 +23,10 @@ export default class CheckOutScreen extends React.Component<screenUtils.Props, s
       },
       checkOutInfoValidation: {
         name: true,
-        address: true,
-        city: true,
+        address: false,
+        city: false,
         state: false,
-        zipcode: true,
+        zipcode: false,
         country: false,
         issueDate: true,
       },
