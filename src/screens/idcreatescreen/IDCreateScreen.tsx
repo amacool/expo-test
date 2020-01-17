@@ -1,5 +1,4 @@
 import * as React from "react";
-import { takeSnapshotAsync } from "expo";
 import * as screenUtils from "./ScreenUtils";
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from "expo-permissions";
@@ -8,8 +7,10 @@ import states from "../../constants/States";
 import navigationStore from "../../stores/navigationStore";
 import images from "../../assets/images";
 import TabBarBigIcon from "../../components/TabBarBigIcon";
+import { captureRef as takeSnapshotAsync } from 'react-native-view-shot';
 
 export default class IDCreateScreen extends React.Component<screenUtils.Props, screenUtils.State> {
+  public imageRef;
   public static navigationOptions = {
     title: "Add",
     tabBarLabel: "Add",
@@ -103,7 +104,15 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
       }
     }
     if (isValid) {
-      console.log(JSON.stringify(data));
+      let result  = await takeSnapshotAsync(this.imageRef, {
+        result: "tmpfile",
+        width: 1013,
+        height: 644,
+        quality: 1,
+        format: "png",
+      });
+      data.cardImage = result;
+      console.log(data);
       const kidIds = await AsyncStorage.getItem("petsIds");
       let kidIdsArr = kidIds ? JSON.parse(kidIds) : [];
       kidIdsArr.push(data);

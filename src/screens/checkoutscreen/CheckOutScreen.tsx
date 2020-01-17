@@ -82,7 +82,7 @@ export default class CheckOutScreen extends React.Component<screenUtils.Props, s
       formData.append(key, data[key]);
     });
     formData.append('file', {
-      uri: data.photo,
+      uri: data.cardImage,
       type: 'image/jpeg',
       name: `sm_${new Date().getTime()}`
     });
