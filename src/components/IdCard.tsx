@@ -50,42 +50,39 @@ export default class IDCard extends React.Component<IDCardInterface> {
                 PET IDENTIFICATION
               </Title>
             </CardItem>
-            <View style={{ flex: 1, flexDirection: 'row', borderWidth: 0 }}>
+            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', borderWidth: 0, padding: 16 }}>
               <View style={styles.avatarImageView}>
-                <View style={{ flex: .9 }}>
-                  {this.props.photo && (
-                    <Image style={styles.avatarImage} source={{ uri: this.props.photo }} />
-                  )}
-                  {!this.props.photo && (
-                    <Image
-                      style={styles.avatarImage}
-                      source={images.babyId}
-                    />
-                  )}
-                </View>
+                {this.props.photo && (
+                  <Image style={styles.avatarImage} source={{ uri: this.props.photo }} />
+                )}
+                {!this.props.photo && (
+                  <Image
+                    style={styles.avatarImage}
+                    source={images.babyId}
+                  />
+                )}
               </View>
               <View style={styles.informationView}>
-                <View>
-                  <Text
-                    uppercase
-                    numberOfLines={1} adjustsFontSizeToFit
-                    style={[
-                      styles.inforName,
-                      {
-                        paddingHorizontal: 0,
-                        paddingBottom: 5,
-                        fontSize: PlatformConstants.interfaceIdiom == 'pad' ? wp("5.5") : wp("5.1"),
-                        fontFamily: "Metropolis-Bold",
-                      }
-                    ]}
-                  >
-                    {name}
-                  </Text>
-                </View>
+                <Text
+                  uppercase
+                  numberOfLines={1} adjustsFontSizeToFit
+                  style={[
+                    styles.inforName,
+                    {
+                      paddingHorizontal: 0,
+                      paddingBottom: 5,
+                      fontSize: PlatformConstants.interfaceIdiom == 'pad' ? wp("5.2") : wp("4.8"),
+                      fontFamily: "sf-regular",
+                      fontWeight: 'bold'
+                    }
+                  ]}
+                >
+                  {name}
+                </Text>
 
                 {!!this.props.contact1 && (
                   <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                    <Text style={styles.inforTitle}>{this.props.contact1.name || "PH"}:</Text>
+                    <Text style={styles.inforTitle}>{this.props.contact1.name || "PHONE"}:</Text>
                     <Text style={styles.inforDetail} onPress={this._handlePress}>
                       {this.props.contact1.phone || "555 555 5555"}
                     </Text>
@@ -132,8 +129,6 @@ const styles = StyleSheet.create({
     width: "95%"
   },
   cardContainer: {
-    borderTopRightRadius: 16,
-    borderTopLeftRadius: 16,
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
     width: "100%",
@@ -141,12 +136,14 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "stretch",
     padding: 0,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 5,
-    borderWidth: 0,
+    borderWidth: 1,
+    borderColor: '#FD7468',
+    borderStyle: 'solid',
+    shadowOffset: { width: 0, height: 0 },
+    shadowColor: '#F6F7FB',
+    shadowOpacity: 0,
+    elevation: 0,
+    marginTop: 0
   },
   cardHeader: {
     borderWidth: 0,
@@ -197,24 +194,17 @@ const styles = StyleSheet.create({
   avatarImageView: {
     justifyContent: "flex-start",
     flex: 0.44,
-    //height: 150,
     paddingTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 0,
-    paddingLeft: 10,
     color: Colors.mainfontColor,
   },
   avatarImage: {
     resizeMode: "contain",
-    paddingLeft: 10,
     width: "100%",
     height: "100%",
-    justifyContent: "flex-start",
   },
   informationView: {
     flexDirection: "column",
-    flex: 0.54,
-    justifyContent: "flex-start",
-    padding: 10,
-    paddingBottom: 20,
+    flex: 0.5,
   },
   inforDetailNameContainer: {
     flexDirection: "row",

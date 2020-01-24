@@ -50,13 +50,8 @@ export const render = (compRef: HomeScreen) => (
           <IDCard {...compRef.state.idcardInfo} isHome={true} />
         </View>
         <View style={styles.bottomContainer}>
-          <Text
-            style={[
-              styles.headerBodayTitle,
-              { fontFamily: "Metropolis-Medium", color: "#000", fontWeight: "400" },
-            ]}
-          >
-            Don't Risk It. Keep Your Dog Safe.
+          <Text style={[styles.headerBodayTitle]}>
+            Don't Risk It.{"\n"}Keep Your Dog Safe.
           </Text>
         </View>
 
@@ -65,7 +60,9 @@ export const render = (compRef: HomeScreen) => (
             style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
             onPress={compRef._handleHelpPress}
           >
-            <Image source={images.createDogIdBtn} style={{width: '85%', resizeMode: 'contain'}}/>
+            <Text style={[styles.createDogIdBtn]}>
+              Create Your Dog's ID
+            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

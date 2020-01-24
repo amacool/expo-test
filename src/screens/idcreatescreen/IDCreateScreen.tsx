@@ -39,7 +39,7 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
         contactoth: "",
         address: "",
         city: "",
-        state: "",
+        state: "CALIFORNIA",
         zipcode: "",
         country: "",
         note: "",

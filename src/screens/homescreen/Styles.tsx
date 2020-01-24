@@ -16,6 +16,7 @@ interface HomeScreenStyles {
   welcomeImage: ImageStyle;
   claimBotton: ViewStyle;
   claimText: TextStyle;
+  createDogIdBtn: TextStyle;
 }
 
 export const styles = StyleSheet.create<HomeScreenStyles>({
@@ -39,22 +40,17 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     paddingHorizontal: wp('10'),
   },
   welcomeContainer: {
-    // marginTop: 20,
-    // backgroundColor:'red',
     marginTop:wp('5'),
-
     alignItems: "center",
     paddingHorizontal: 0,
   },
   bottomContainer: {
-    // marginTop: 20,
-    marginTop:wp('5'),
-    marginBottom:wp('5'),
+    marginTop: wp('5'),
+    marginBottom: wp('1'),
     alignItems: "center",
     paddingHorizontal: wp('10'),
   },
   buttonContainer: {
-    // marginTop: 20,
     marginTop:wp('3'),
     alignItems: "center",
     marginBottom: wp('20'),
@@ -71,6 +67,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     color: Colors.mainfontColor,
     lineHeight: wp('8'),
     textAlign: "center",
+    fontWeight: "400"
   },
   bottomTitle: {
     fontSize: RF(2.8),
@@ -89,7 +86,6 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     borderRadius: wp('8'),
     backgroundColor: '#00CCCC',
     paddingHorizontal: wp('20'),
-
   },
   claimText: {
     fontSize: RF(2.2),
@@ -97,4 +93,18 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     color: "#fff",
     fontWeight:'600'
   },
+  createDogIdBtn: {
+    fontFamily: "Metropolis-Medium",
+    color: "white",
+    fontWeight: "400",
+    borderRadius: wp('4'),
+    backgroundColor: '#FD7468',
+    lineHeight: wp('8'),
+    marginBottom: wp('15'),
+    width: wp('95'),
+    fontSize: RF(2.7),
+    textTransform: 'none',
+    padding: wp(3),
+    textAlign: 'center'
+  }
 });
