@@ -33,20 +33,11 @@ export const render = (compRef: HomeScreen) => (
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <View style={styles.bodyContainer}>
           <Text
-            style={[
-              styles.headerBodayTitle,
-              { color: "#000", fontWeight: "400", fontFamily: "Metropolis-Medium" },
-            ]}
+            style={
+              styles.headerBodayTitle
+            }
           >
-            New Way To
-          </Text>
-          <Text
-            style={[
-              styles.headerBodayTitle,
-              { color: "#000", fontWeight: "400", fontFamily: "Metropolis-Medium" },
-            ]}
-          >
-            Keep Your Dog Safe
+            New Way To{"\n"}Keep Your Dog Safe
           </Text>
         </View>
         <View style={styles.welcomeContainer}>

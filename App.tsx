@@ -86,7 +86,7 @@ export default class App extends React.Component<InterfaceProps, InterfaceState>
         require("./src/assets/images/blank.png"),
         require("./src/assets/images/header-message.png"),
         require("./src/assets/images/header-check.png"),
-        require("./src/assets/images/cardtop-slot.png"),
+        require("./src/assets/images/card-top.png"),
         require("./src/assets/images/button-gradient.png"),
         require("./src/assets/images/buy-button.png"),
         require("./src/assets/images/arrow-forward.png"),

@@ -16,7 +16,7 @@ const images = {
   blankPhoto: require("../../src/assets/images/blank.png"),
   messageIcon: require("../../src/assets/images/header-message.png"),
   headerCheckIcon: require("../../src/assets/images/header-check.png"),
-  cardTopSlot: require("../../src/assets/images/cardtop-slot.png"),
+  cardTopSlot: require("../../src/assets/images/card-top.png"),
   buttonGradient: require("../../src/assets/images/button-gradient.png"),
   buyButton: require("../../src/assets/images/buy-button.png"),
   arrowForward: require("../../src/assets/images/arrow-forward.png"),
