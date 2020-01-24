@@ -41,8 +41,8 @@ export default class HeaderComponent extends React.Component<InterfaceProps> {
 
         <View style={styles.headerRightIcon}>
           {this.props.message &&
-            <TouchableOpacity style={{width: 50, height: 35}} onPress={() => navigationStore.navigateTo('contact')}>
-              <Image style={styles.headerBackIcon} source={images.messageIcon} />
+            <TouchableOpacity onPress={() => navigationStore.navigateTo('contact')}>
+              <Image style={styles.headerMessageIcon} source={images.messageIcon} />
             </TouchableOpacity>
           }
         </View>
@@ -58,21 +58,13 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.tabBar,
     flexDirection: "column",
     justifyContent: "space-between",
-    borderBottomWidth: 0,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 3,
     marginBottom: 10,
   },
   headerTitle: {
-    color: "#F75356",
+    color: "#1E202B",
     textAlign: "left",
     fontFamily: 'Metropolis-Bold',
+    fontWeight: 'bold',
     marginLeft: wp("3"),
     alignSelf: 'center',
     fontSize: wp("7"),
@@ -87,5 +79,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     right: 0,
+  },
+  headerMessageIcon: {
+    width: wp("7"),
+    height: wp("7"),
+    marginRight: wp("3"),
+    marginBottom: 10
   }
 });
