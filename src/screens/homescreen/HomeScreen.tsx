@@ -19,10 +19,12 @@ export default class HomeScreen extends React.Component<screenUtils.Props, scree
         name: 'Rocky',
         state: 'CALIFORNIA',
         issueDate: new Date(),
-        contact1: {name: 'PH', phone: '555-555-1234'},
-        contact2: {name: 'PH', phone: '555-555-5678'},
-        medical: 'POODLE',
+        contact1: { name: 'PHONE', phone: '555-555-1234', address: '3 Newbridge Court,\nCalifornia, US' },
+        medical: 'Pug',
+        color: 'Black',
+        birthday: new Date(),
         note: 'SUPERHERO',
+        breed: 'POODLE'
       }
     };
   }

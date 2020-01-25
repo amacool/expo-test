@@ -5,7 +5,9 @@ import { Image, Linking, NativeModules, StyleSheet } from "react-native";
 import images from "../assets/images";
 import Colors from "../constants/Colors";
 import { widthPercentageToDP as wp } from "../helpers/Responsive";
+
 const { PlatformConstants } = NativeModules;
+
 export default class IDCard extends React.Component<IDCardInterface> {
   state = {
     isFontLoaded: false,
@@ -43,14 +45,14 @@ export default class IDCard extends React.Component<IDCardInterface> {
     return (
       !!this.state.isFontLoaded && (
         <View style={styles.container}>
-          <Image source={images.cardTopSlot} style={styles.cardTop}/>
+          <View style={{ width: '100%', position: 'relative' }}>
+            <Image source={images.cardTopSlot} style={styles.cardTop}/>
+            <Text numberOfLines={1} style={styles.headerState}>
+              {this.props.state}
+            </Text>
+          </View>
           <Card style={[styles.cardContainer, styles.noPadding]}>
-            <CardItem header style={styles.cardHeader}>
-              <Title style={[styles.headerState,  {fontFamily: "Metropolis-Bold",}]} uppercase>
-                PET IDENTIFICATION
-              </Title>
-            </CardItem>
-            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', borderWidth: 0, padding: 16 }}>
+            <View style={styles.infoWrapper}>
               <View style={styles.avatarImageView}>
                 {this.props.photo && (
                   <Image style={styles.avatarImage} source={{ uri: this.props.photo }} />
@@ -62,16 +64,13 @@ export default class IDCard extends React.Component<IDCardInterface> {
                   />
                 )}
               </View>
-              <View style={styles.informationView}>
+              <View style={styles.informationViewWrapper}>
                 <Text
                   uppercase
-                  numberOfLines={1} adjustsFontSizeToFit
                   style={[
                     styles.inforName,
                     {
-                      paddingHorizontal: 0,
-                      paddingBottom: 5,
-                      fontSize: PlatformConstants.interfaceIdiom == 'pad' ? wp("5.2") : wp("4.8"),
+                      fontSize: PlatformConstants.interfaceIdiom == 'pad' ? wp("4.6") : wp("4.1"),
                       fontFamily: "sf-regular",
                       fontWeight: 'bold'
                     }
@@ -80,39 +79,63 @@ export default class IDCard extends React.Component<IDCardInterface> {
                   {name}
                 </Text>
 
-                {!!this.props.contact1 && (
-                  <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                    <Text style={styles.inforTitle}>{this.props.contact1.name || "PHONE"}:</Text>
-                    <Text style={styles.inforDetail} onPress={this._handlePress}>
-                      {this.props.contact1.phone || "555 555 5555"}
-                    </Text>
+                <View style={styles.informationView}>
+                  <View style={styles.informationViewLabelWrapper}>
+                    {!!this.props.contact1 && (
+                      <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
+                        <Text style={styles.inforTitle} uppercase>{this.props.contact1.name || "PHONE"}:</Text>
+                      </View>
+                    )}
+                    {!!this.props.birthday && (
+                      <View style={[styles.inforDetailContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ? 40 : 20 }]}>
+                        <Text style={styles.inforTitle} uppercase>Birthday</Text>
+                      </View>
+                    )}
+                    <View style={[styles.inforDetailContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ?  40 : 20 }]}>
+                      <Text style={styles.inforTitle} uppercase>Color</Text>
+                    </View>
+                    <View style={[styles.inforDetailContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ?  40 : 20 }]}>
+                      <Text style={styles.inforTitle} uppercase>Breed</Text>
+                    </View>
+                    <View style={[styles.inforDetailNoteContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ?  40 : 20 }]}>
+                      <Text style={styles.inforTitle} uppercase>Address</Text>
+                    </View>
                   </View>
-                )}
-                {!!this.props.contact2 && (
-                  <View style={[styles.inforDetailContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                    <Text style={styles.inforTitle}>{this.props.contact2.name || "PH"}:</Text>
-                    <Text style={styles.inforDetail}>
-                      {this.props.contact2.phone || "555 555 5555"}
-                    </Text>
+                  <View>
+                    {!!this.props.contact1 && (
+                      <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
+                        <Text style={styles.inforDetail} onPress={this._handlePress}>
+                          {this.props.contact1.phone || "555 555 5555"}
+                        </Text>
+                      </View>
+                    )}
+                    {!!this.props.birthday && (
+                      <View style={[styles.inforDetailContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ?  40 : 20 }]}>
+                        <Text style={styles.inforDetail}>
+                          {moment(this.props.birthday || new Date()).format("MM-DD-YYYY")}
+                        </Text>
+                      </View>
+                    )}
+                    <View style={[styles.inforDetailContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ?  40 : 20 }]}>
+                      <Text style={styles.inforDetail}>{this.props.color || "Black"}</Text>
+                    </View>
+                    <View style={[styles.inforDetailContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ?  40 : 20 }]}>
+                      <Text style={styles.inforDetail}>{this.props.medical || "Breed"}</Text>
+                    </View>
+                    {!!this.props.contact1 && (
+                      <View style={[styles.inforDetailNoteContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ?  40 : 20 }]}>
+                        <Text style={[styles.inforDetail, { marginTop: 15 }]}>{this.props.contact1.address || "somewhere"}</Text>
+                      </View>
+                    )}
                   </View>
-                )}
-                {!!this.props.birthday && (
-                  <View style={[styles.inforDetailContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                    <Text style={styles.inforTitle}>Birthday:</Text>
-                    <Text style={styles.inforDetail}>
-                      {moment(this.props.birthday || new Date()).format("MM-DD-YYYY")}
-                    </Text>
-                  </View>
-                )}
-                <View style={[styles.inforDetailContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                  <Text style={styles.inforTitle} uppercase>Breed:</Text>
-                  <Text style={styles.inforDetail}>{this.props.medical || "Breed"}</Text>
-                </View>
-                <View style={[styles.inforDetailNoteContainer, { marginTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 5, height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                  <Text style={styles.inforTitle} uppercase>Note:</Text>
-                  <Text style={styles.inforDetail}>{this.props.note || "Note"}</Text>
                 </View>
               </View>
+            </View>
+            <View style={styles.supportWrapper}>
+              <Image style={styles.starImage} source={images.star} />
+              <Text numberOfLines={1} style={{ fontSize: wp("3"), fontFamily: "sf-regular", fontWeight: 'bold' }}>
+                SUPPORT DOG
+              </Text>
             </View>
           </Card>
         </View>
@@ -162,10 +185,16 @@ const styles = StyleSheet.create({
   },
   headerState: {
     lineHeight: wp("5.1"),
-    fontSize: wp("5.1"),
-    margin: 1,
-    fontFamily: 'Metropolis-Bold',
-    color: Colors.tintColor,
+    fontSize: wp("5.2"),
+    fontFamily: 'sf-regular',
+    fontWeight: 'bold',
+    letterSpacing: 2,
+    color: 'white',
+    textAlign: 'center',
+    position: 'absolute',
+    width: '100%',
+    marginTop: wp("11.3"),
+    marginLeft: wp("1.2"),
   },
   headerIssueDate: {
     color: "#000",
@@ -193,18 +222,27 @@ const styles = StyleSheet.create({
   },
   avatarImageView: {
     justifyContent: "flex-start",
-    flex: 0.44,
-    paddingTop: PlatformConstants.interfaceIdiom == 'pad' ? 10 : 0,
+    flex: 0.5,
     color: Colors.mainfontColor,
   },
   avatarImage: {
     resizeMode: "contain",
     width: "100%",
     height: "100%",
+    alignSelf: 'flex-start'
+  },
+  informationViewWrapper: {
+    display: 'flex',
+    flexDirection: "column",
+    flex: 1,
+    marginLeft: 10
   },
   informationView: {
-    flexDirection: "column",
-    flex: 0.5,
+    display: 'flex',
+    flexDirection: "row",
+  },
+  informationViewLabelWrapper: {
+    marginRight: 16
   },
   inforDetailNameContainer: {
     flexDirection: "row",
@@ -231,17 +269,18 @@ const styles = StyleSheet.create({
     height: PlatformConstants.interfaceIdiom == 'pad' ? 26 : 13,
   },
   inforTitle: {
-    fontSize: wp("3.5"),
-    fontFamily: "Metropolis-Medium",
+    fontSize: wp("2.5"),
+    fontFamily: "sf-regular",
     marginLeft: PlatformConstants.interfaceIdiom == 'pad' ? 15 : 5,
     color: "#000",
   },
   inforDetail: {
-    fontSize: wp("4.8"),
+    fontSize: wp("3"),
     marginLeft: 5,
-    fontFamily: "Metropolis-Bold",
+    fontFamily: "sf-regular",
     fontWeight: "bold",
     color: "#000",
+    letterSpacing: 0.5
   },
   logoImage: {
     position: "absolute",
@@ -254,5 +293,26 @@ const styles = StyleSheet.create({
     width: "100%",
     resizeMode: 'stretch',
     height: wp('19')
+  },
+  infoWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    borderWidth: 0,
+    padding: 16
+  },
+  supportWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    marginTop: -5,
+    marginLeft: 16,
+    marginBottom: 20
+  },
+  starImage: {
+    marginRight: 10,
+    width: wp("5"),
+    height: wp("5"),
   }
 });

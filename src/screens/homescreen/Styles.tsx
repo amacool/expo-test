@@ -67,7 +67,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     color: Colors.mainfontColor,
     lineHeight: wp('8'),
     textAlign: "center",
-    fontWeight: "400"
+    fontWeight: "bold"
   },
   bottomTitle: {
     fontSize: RF(2.8),
