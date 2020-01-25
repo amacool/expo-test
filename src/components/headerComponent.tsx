@@ -16,7 +16,7 @@ export default class HeaderComponent extends React.Component<InterfaceProps> {
     super(props);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (Platform.OS === "android") StatusBar.setTranslucent(true);
   }
 

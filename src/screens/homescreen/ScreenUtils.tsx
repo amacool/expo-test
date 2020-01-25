@@ -1,14 +1,10 @@
 // Define PropTypes
-import { LinearGradient } from "expo";
 import * as React from "react";
 import { Dimensions, Platform, ScrollView, Text, TouchableOpacity, View, Image } from "react-native";
 import IDCard from "../../components/IdCard";
-import { widthPercentageToDP as wp } from "../../helpers/Responsive";
 import HomeScreen from "./HomeScreen";
 import { styles } from "./Styles";
 import HeaderComponent from "../../components/headerComponent";
-import GradientButton from "../../components/GradientButton";
-import images from "../../assets/images";
 
 export interface Props { }
 

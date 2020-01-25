@@ -96,10 +96,8 @@ class TabBar extends React.Component<Props, States> {
       onPress: () => { },
     };
   }
-  componentWillMount() {
-    AppState.addEventListener("change", this._handleAppStateChange);
-  }
   componentDidMount = () => {
+    AppState.addEventListener("change", this._handleAppStateChange);
     this.startAnimation();
 
     this.props.navigation.addListener("willFocus", (payload) => {
