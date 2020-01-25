@@ -38,6 +38,7 @@ const images = {
   uspsIcon: require("../../src/assets/images/usps.png"),
   fbIcon: require("../../src/assets/images/fbIcon.png"),
   instaIcon: require("../../src/assets/images/instaIcon.png"),
+  headerArrowBack: require("../../src/assets/images/header-back.png"),
 
   phoneIcon: require("../../src/assets/images/phone.png"),
   phoneIcon1: require("../../src/assets/images/phone1.png"),

@@ -24,7 +24,7 @@ export interface State {
 
 export const render = (compRef: HomeScreen) => (
   <View style={styles.container}>
-    <HeaderComponent title="Home" message back={false}/>
+    <HeaderComponent title="Home" message back/>
     {!!compRef.state.isFontLoaded && (
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <View style={styles.bodyContainer}>
@@ -38,12 +38,12 @@ export const render = (compRef: HomeScreen) => (
         </View>
         <View style={styles.welcomeContainer}>
           {/* <Image
-          source={require('../../assets/images/baby_id.png')}
-          resizeMode="contain"
-          style={{height:wp('64'),width:wp('130')}}
-          />
-      */}
-          <IDCard {...compRef.state.idcardInfo} isHome={true} />
+            source={require('../../assets/images/baby_id.png')}
+            resizeMode="contain"
+            style={{height:wp('64'),width:wp('130')}}
+          /> */}
+        
+          <IDCard {...compRef.state.idcardInfo} />
         </View>
         <View style={styles.bottomContainer}>
           <Text style={[styles.headerBodayTitle]}>

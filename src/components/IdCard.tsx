@@ -1,5 +1,5 @@
 import moment from "moment";
-import { Card, Text, View } from "native-base";
+import { Container, Card, Text, View } from "native-base";
 import React from "react";
 import { Image, Linking, NativeModules, StyleSheet } from "react-native";
 import images from "../assets/images";
@@ -44,7 +44,7 @@ export default class IDCard extends React.Component<IDCardInterface> {
     const name = this.state.renderFullName(this.props.name);
     return (
       !!this.state.isFontLoaded && (
-        <View style={styles.container}>
+        <Card style={styles.container}>
           <View style={{ width: '100%', position: 'relative' }}>
             <Image source={images.cardTopSlot} style={styles.cardTop}/>
             <Text numberOfLines={1} style={styles.headerState}>
@@ -138,7 +138,7 @@ export default class IDCard extends React.Component<IDCardInterface> {
               </Text>
             </View>
           </Card>
-        </View>
+        </Card>
       )
     );
   }
@@ -149,7 +149,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    width: "95%"
+    width: '100%',
+    elevation: 0,
+    shadowOpacity: 0,
+    margin: 0, 
+    padding: 0, 
+    borderColor: 'transparent',
+    borderWidth: 0,
+    backgroundColor: 'transparent'
   },
   cardContainer: {
     borderBottomLeftRadius: 16,
@@ -166,7 +173,9 @@ const styles = StyleSheet.create({
     shadowColor: '#F6F7FB',
     shadowOpacity: 0,
     elevation: 0,
-    marginTop: 0
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 0,
   },
   cardHeader: {
     borderWidth: 0,

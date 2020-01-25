@@ -34,15 +34,13 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     paddingHorizontal: 30,
   },
   bodyContainer: {
-    // marginTop: 20,
-    marginTop:wp('5'),
+    marginTop: wp('5'),
     alignItems: "center",
     paddingHorizontal: wp('10'),
   },
   welcomeContainer: {
-    marginTop:wp('5'),
-    alignItems: "center",
-    paddingHorizontal: 0,
+    marginTop: wp('5'),
+    paddingHorizontal: wp('5'),
   },
   bottomContainer: {
     marginTop: wp('5'),

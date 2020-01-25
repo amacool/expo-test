@@ -26,7 +26,8 @@ export default class HeaderComponent extends React.Component<InterfaceProps> {
       <View style={styles.headerStyle}>
         <View style={{ width: 50 }}>
           {this.props.back && <Button transparent onPress={() => navigationStore.back()}>
-            <Icon name="arrow-back" style={styles.headerBackIcon} color={Colors.black}/>
+            {/* <Icon name="arrow-back" style={styles.headerBackIcon} color={Colors.black}/> */}
+            <Image source={images.headerArrowBack} />
           </Button>}
         </View>
 
