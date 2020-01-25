@@ -37,6 +37,5 @@ export default class HomeScreen extends React.Component<screenUtils.Props, scree
 
   _handleHelpPress = () => {
     navigationStore.navigateTo('create_id');
-
   };
 }

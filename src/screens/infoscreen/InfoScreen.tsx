@@ -22,7 +22,7 @@ export default class MissingScreen extends React.Component<screenUtils.Props, sc
     this.state = {
       cardIndex: -1,
       idcardInfo: {
-        name: "",
+        name: "ROCKET",
         birthday: new Date(),
         breed: "",
         gender: "male",
@@ -39,7 +39,7 @@ export default class MissingScreen extends React.Component<screenUtils.Props, sc
         missingDate: new Date(),
       },
       idcardRender: {
-        name: "",
+        name: "ROCKET",
         birthday: new Date(),
         breed: "",
         gender: "male",

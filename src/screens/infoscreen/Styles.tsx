@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import Colors from "../../constants/Colors";
+import { widthPercentageToDP as wp} from "../../helpers/Responsive";
+import RF from "react-native-responsive-fontsize";
 
 interface HomeScreenStyles {
   container: ViewStyle;
@@ -14,6 +16,8 @@ interface HomeScreenStyles {
   createBotton: ViewStyle;
   claimText: TextStyle;
   problemText: TextStyle;
+  btnExisting: TextStyle;
+  switchReward: TextStyle;
 }
 
 export const styles = StyleSheet.create<HomeScreenStyles>({
@@ -90,4 +94,32 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     fontFamily: "sf-regular",
     color: Colors.mainfontColor,
   },
+  btnExisting: {
+    fontFamily: "Metropolis-Medium",
+    color: "white",
+    fontWeight: "400",
+    borderRadius: wp('4'),
+    backgroundColor: '#FD7468',
+    lineHeight: wp('8'),
+    marginBottom: wp('15'),
+    width: wp('95'),
+    fontSize: RF(2.7),
+    textTransform: 'none',
+    padding: wp(3),
+    textAlign: 'center'
+  },
+  switchReward: {
+    fontFamily: "Metropolis-Medium",
+    color: Colors.mainfontColor,
+    fontWeight: "400",
+    borderRadius: wp('4'),
+    backgroundColor: 'white',
+    lineHeight: wp('8'),
+    marginBottom: wp('15'),
+    width: wp('95'),
+    fontSize: RF(2.7),
+    textTransform: 'none',
+    padding: wp(3),
+    textAlign: 'center'
+  }
 });

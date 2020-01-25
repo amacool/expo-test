@@ -23,7 +23,6 @@ export default class MissingCard extends React.Component<MessingCardInterface> {
   }
 
   renderFullName(name) {
-    console.log(name);
     if (!!name) {
       let nameArray = name.split(" ");
       let nameStr = " ";
@@ -37,123 +36,72 @@ export default class MissingCard extends React.Component<MessingCardInterface> {
   }
 
   public render() {
-    const name = this.state.renderFullName(this.props.name);
     return (
       <Card style={styles.cardContainer}>
         <View style={styles.cardHeader}>
           <View
             style={{ height: 65, width: "100%", justifyContent: "center", alignItems: "center" }}
           >
-            <Title style={[styles.headerState, {color: Colors.warningBackground}]}>MISSING DOG</Title>
-          </View>
-          <View style={{ flexDirection: 'row', backgroundColor: '#FFF7E2' }}>
-            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignContent: 'center'}}>
-              <Title
-                style={[
-                  styles.headerName,
-                  {
-                    padding: 5,
-                    textAlign: 'left',
-                    fontFamily: "Metropolis-Bold",
-                    fontWeight: '900',
-                    color: Colors.missingHeader,
-                    fontSize: PlatformConstants.interfaceIdiom == 'pad' ? 45 : 30
-                  }
-                ]}
-              >
-                {name}
-              </Title>
-            </View>
+            <Title style={styles.headerState}>MISSING DOG</Title>
           </View>
         </View>
 
         <View style={styles.cardContent}>
-          <View style={[styles.stateContent, { justifyContent: 'center', alignContent: 'center' }]}>
-            <View style={[styles.avatarImageView, { flex: 1, justifyContent: "flex-start", alignItems: "center", marginTop: 20 }]}>
-              <Image
-                style={styles.avatarImage}
-                source={this.props.photo ? { uri: this.props.photo } : images.babyId}
-              />
-            </View>
+          <View style={styles.stateContent}>
+            <Image
+              style={styles.avatarImage}
+              source={this.props.photo ? { uri: this.props.photo } : images.babyId}
+            />
           </View>
-          <View style={[styles.propertyContent,  { justifyContent: 'center', alignItems: 'flex-start'}]}>
-            <View>
-              <View style={styles.inforDetailContainer}>
-                <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                  <Text style={styles.inforTitle}>Breed:</Text>
-                  <Text style={styles.inforDetail}>
-                    {this.props.breed || "Golder Retrieve"}
-                  </Text>
-                </View>
-              </View>
+          <View style={styles.propertyContent}>
+            <View style={styles.inforDetailContainer}>
+              <Text style={styles.inforName}>{this.props.name}</Text>
             </View>
-            <View>
-              <View style={styles.inforDetailContainer}>
-                <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                  <Text style={styles.inforTitle}>Missing Since:</Text>
-                  <Text style={styles.inforDetail}>
-                    {moment(this.props.missingDate || new Date()).format("MM-DD-YYYY")}
-                  </Text>
-                </View>
-              </View>
+            <View style={styles.inforDetailContainer}>
+              <Text style={styles.inforTitle}>Breed</Text>
+              <Text style={styles.inforDetail}>
+                {this.props.breed || "Golder Retrieve"}
+              </Text>
+            </View>
+            <View style={styles.inforDetailContainer}>
+              <Text style={styles.inforTitle}>Missing Since</Text>
+              <Text style={styles.inforDetail}>
+                {moment(this.props.missingDate || new Date()).format("MM-DD-YYYY")}
+              </Text>
             </View>
           </View>
         </View>
 
-        <View style={{ flexDirection: 'row', backgroundColor: '#FFF7E2', marginTop: 20, }}>
+        <View style={{ flexDirection: 'row', marginTop: 20, padding: 16 }}>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}>
-            <Text
-              style={[
-                styles.headerName,
-                {
-                  padding: 15,
-                  justifyContent: 'flex-start',
-                  fontFamily: "Metropolis-Bold",
-                  fontWeight: '900',
-                  color: Colors.missingHeader,
-                  fontSize: PlatformConstants.interfaceIdiom == 'pad' ? 20 : 15
-                }
-              ]}
-            >
-              Note: {this.props.note || "Blue eyes, Red collar, Gray tag"}
-            </Text>
+            <Text style={styles.headerNameLabel}>Notes</Text>
+            <Text style={styles.headerName}>{this.props.note || "Blue eyes, Red collar & Black fur"}</Text>
           </View>
         </View>
 
         <View style={styles.cardFooter}>
           <View
             style={{
-              height: 45,
               width: "100%",
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
+              marginBottom: 15
             }}
           >
-            <Image
-              source={images.phoneIcon1}
-              style={{ width: 18, height: 18, tintColor: Colors.white, marginRight: 3 }}
-            />
-            <Text style={[styles.headerState, {fontSize: 15}]} uppercase>
-              Please call
+            <Text style={styles.pleaseCall}>
+              Please Call
             </Text>
           </View>
 
-          <View style={{ height: 45, width: "100%" }}>
-            <View style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}>
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={[styles.footerName, { fontSize: 25 }]}>
-                  PH: {this.props.contact || "555-555-5555"}
-                </Text>
-              </View>
-            </View>
+          <View style={{
+            width: "100%",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}>
+            <Text style={styles.phoneNumber}>{this.props.contact || "+1 (425) 632-1264"}</Text>
+            <Text style={styles.phoneNumber}>{this.props.contact || "+1 (425) 632-1264"}</Text>
           </View>
         </View>
       </Card>
@@ -163,37 +111,29 @@ export default class MissingCard extends React.Component<MessingCardInterface> {
 
 const styles = StyleSheet.create({
   cardContainer: {
-    borderRadius: 15,
     width: "95%",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
+    shadowOpacity: 0,
+    elevation: 0,
+    borderColor: Colors.mainColor
   },
   cardHeader: {
-    borderTopRightRadius: 15,
-    borderTopLeftRadius: 15,
-    //height: PlatformConstants.interfaceIdiom == 'pad' ? 120 : 100,
-    backgroundColor: Colors.missingHeader,
+    backgroundColor: Colors.mainColor,
     position: "relative",
   },
   cardFooter: {
-    borderBottomRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    height: 90,
-    backgroundColor: Colors.missingHeader,
+    paddingBottom: 10
   },
   cardContent: {
-    //position: "relative",
-    //height: DEVICE_WIDTH * 1.1 - 250,
     flexDirection: "row",
-    flex: 1,
+    padding: 16
   },
   stateContent: {
-    flex: .28,
+    flex: .6,
+    borderRadius: 0
   },
   propertyContent: {
-    flex: 0.70,
+    flex: 0.4,
+    marginLeft: 16
   },
   noPadding: {
     paddingTop: 0,
@@ -201,22 +141,24 @@ const styles = StyleSheet.create({
   },
   headerState: {
     lineHeight: wp("8"),
-    fontSize: wp("7"),
-    margin: 1,
-    fontFamily: "Metropolis-Bold",
-    fontWeight: '900',
+    fontSize: wp("6"),
+    fontFamily: "sf-regular",
+    fontWeight: 'bold',
     color: Colors.white,
+    letterSpacing: 2.5
+  },
+  headerNameLabel: {
+    color: 'rgba(127, 143, 166, 0.7)',
+    marginRight: 15
   },
   headerName: {
-    fontFamily: "Roboto",
-    // fontFamily: 'sf-regular',
-    color: Colors.white,
+    fontFamily: 'sf-regular',
+    color: Colors.mainfontColor,
   },
   footerName: {
-    lineHeight: 45,
-    fontSize: 45,
+    fontSize: wp("4"),
     fontFamily: "Roboto",
-    color: Colors.white,
+    marginBottom: 8
   },
   headerIssueDate: {
     color: Colors.mainfontColor,
@@ -241,17 +183,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.white,
   },
-  avatarImageView: {
-    alignItems: 'center',
-    height: PlatformConstants.interfaceIdiom == 'pad' ? 200 : 100,
-    width: PlatformConstants.interfaceIdiom == 'pad' ? 200 : 100,
-    color: Colors.mainfontColor,
-  },
   avatarImage: {
     resizeMode: "contain",
     width: "100%",
-    height: "100%",
-    alignItems: 'center'
+    flexDirection: 'row',
   },
   informationView: {
     paddingHorizontal: 10,
@@ -264,9 +199,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inforDetailContainer: {
-    flexDirection: "row",
     height: PlatformConstants.interfaceIdiom == 'pad' ? 60 : 40,
-    alignItems: "center",
+    marginBottom: 25
   },
   inforDetailNoteContainer: {
     flexDirection: "row",
@@ -274,26 +208,26 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 5,
   },
-  inforName: {
-    paddingHorizontal: 10,
-    fontWeight: "bold",
-  },
   inforIcon: {
     width: 13,
     height: 13,
   },
+  inforName: {
+    fontWeight: "bold",
+    fontSize: wp("6"),
+    fontFamily: 'sf-regular',
+    letterSpacing: 2,
+    color: Colors.mainColor
+  },
   inforTitle: {
-    fontSize: wp("3.5"),
-    fontFamily: "Metropolis-Medium",
-    marginLeft: PlatformConstants.interfaceIdiom == 'pad' ? 15 : 5,
-    color: Colors.missingHeader,
+    fontSize: wp("3"),
+    fontFamily: "sf-regular",
+    color: 'rgba(127, 143, 166, 0.7)'
   },
   inforDetail: {
-    fontSize: wp("4.8"),
-    marginLeft: 5,
-    fontFamily: "Metropolis-Bold",
-    fontWeight: "bold",
-    color: Colors.missingHeader,
+    fontSize: wp("4"),
+    fontFamily: "sf-regular",
+    color: '#19232D',
   },
   logoImage: {
     position: "absolute",
@@ -303,4 +237,15 @@ const styles = StyleSheet.create({
     height: 49,
     resizeMode: "contain",
   },
+  pleaseCall: {
+    color: Colors.mainColor
+  },
+  phoneNumber: {
+    fontSize: wp("4"),
+    letterSpacing: 2,
+    marginBottom: 5,
+    color: Colors.mainfontColor,
+    fontFamily: "sf-regular",
+    fontWeight: "bold"
+  }
 });

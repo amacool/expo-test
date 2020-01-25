@@ -1,7 +1,7 @@
 import {ImageStyle, StyleSheet, TextStyle, ViewStyle} from 'react-native';
 import Colors from "../../constants/Colors";
-import RF from "react-native-responsive-fontsize"
-import { widthPercentageToDP as wp} from "../../helpers/Responsive"
+import RF from "react-native-responsive-fontsize";
+import { widthPercentageToDP as wp} from "../../helpers/Responsive";
 interface HomeScreenStyles {
   container: ViewStyle;
   contentContainer: ViewStyle;

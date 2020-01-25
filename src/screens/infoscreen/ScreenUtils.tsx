@@ -93,7 +93,18 @@ export const render = (compRef: MissingScreen) => (
           style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
           onPress={compRef.state.chooseExistingID}
         >
-          <Image source={images.useExistingBtn} style={{width: '85%', resizeMode: 'contain'}}/>
+          <Text style={styles.btnExisting}>
+            Use Existing ID
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={[styles.buttonContainer, { marginBottom: 10 }]}>
+        <TouchableOpacity
+          style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+          onPress={compRef.state.chooseExistingID}
+        >
+          <Text style={styles.switchReward}>Reward</Text>
+          
         </TouchableOpacity>
       </View>
       {compRef.state.isIDSelected && (

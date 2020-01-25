@@ -17,7 +17,7 @@ export default {
   signColor: "#4F7E7E",
   transparent: "transparent",
   buttonRed: "#FF3300",
-  missingHeader: "#EE6752",
+  mainColor: "#FD7468",
 
   white: "#fff",
   black: "#000",
