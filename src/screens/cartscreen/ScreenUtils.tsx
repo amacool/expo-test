@@ -41,34 +41,55 @@ export const render = (compRef: CartScreen) => (
         color={Colors.tintColor} />
     }
     {compRef.state && !compRef.state.isLoading && !compRef.state.isVerifedGit &&
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Card style={{width: '95%'}}>
-          <CardItem>
+      <View style={{ flex: 1, justifyContent: "space-between", alignItems: "center" }}>
+        <View></View>
+        <View style={{ width: '100%', justifyContent: "center", alignItems: "center" }}>
+          <View style={styles.inputWrapper}>
             <Body>
-            <ListItem icon style={{width: '100%', borderWidth: 0}} noBorder>
-              <Body>
               <Input
                 placeholder="Enter your Git code"
+                placeholderTextColor="#7F8FA6"
                 onChangeText={(text) => compRef.state.changeGitCode(text)}
                 style={styles.formText}
-                value={compRef.state.gitCode} />
-              </Body>
-              <Right>
-                <TouchableOpacity onPress={compRef.state.enterGitCode}>
-                  <Image
-                    source={images.arrowForward}
-                    resizeMode="contain"
-                    style={{
-                      width: 50,
-                      marginTop: 8
-                    }}
-                  />
-                </TouchableOpacity>
-              </Right>
-            </ListItem>
+                value={compRef.state.gitCode}
+              />
             </Body>
-          </CardItem>
-        </Card>
+            <Right>
+              <TouchableOpacity onPress={compRef.state.enterGitCode}>
+                <Image
+                  source={images.arrowForward}
+                  resizeMode="contain"
+                  style={{
+                    width: 40,
+                    marginRight: 12,
+                  }}
+                />
+              </TouchableOpacity>
+            </Right>
+          </View>
+          <View style={styles.bottomWrapper}>
+            <Text style={styles.description}>
+              We work with kid friendly companies{"\n"}
+              to deliver a Free Kids ID to you.{"\n"}
+              If you don't have a gift code,{"\n"}
+              please recommend a kid friendly company{"\n"}
+              (dentist, day care, ice cream shop) you'd{"\n"}
+              like us to work with to get you a Free Kids ID.
+            </Text>
+            <Text style={styles.btnContact}>
+              Contact now
+            </Text>
+          </View>
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+          >
+            <Text style={styles.btnBottom}>
+              Next
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     }
     {compRef.state.data && compRef.state.isVerifedGit &&

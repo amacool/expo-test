@@ -1,5 +1,5 @@
 import moment from "moment";
-import { Card, CardItem, Text, View, Title } from "native-base";
+import { Card, Text, View } from "native-base";
 import React from "react";
 import { Image, Linking, NativeModules, StyleSheet } from "react-native";
 import images from "../assets/images";

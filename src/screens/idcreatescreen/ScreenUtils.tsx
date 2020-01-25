@@ -56,7 +56,7 @@ export const render = (compRef: IDCreateScreen) => (
           <Text style={styles.uploadPhotoText}>Upload Photo</Text>
           <Image 
             style={styles.uplaodPhotoBtnStyle}
-            source={images.uploadPhotoBtn} 
+            source={images.uploadPhotoBtn}
           />
         </TouchableOpacity>
       </View>
@@ -240,14 +240,14 @@ export const render = (compRef: IDCreateScreen) => (
             <Item
               label="Select State"
               value=""
-              color={Colors.placeholder}
+              // color={Colors.placeholder}
               style={{ width: 100, backgroundColor: Colors.white }}
             />
             {compRef.state.states &&
             compRef.state.states.map((item, key) => {
               return (
                 <Item
-                  color={Colors.activeTextColor}
+                  // color={Colors.activeTextColor}
                   label={item.name}
                   value={item.name}
                   key={key}
