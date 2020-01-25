@@ -13,13 +13,10 @@ export default class HeaderTabComponent extends React.Component {
     };
   }
 
-  componentWillMount() {
-    if (Platform.OS === "android") StatusBar.setTranslucent(true);
-  }
-
   // you can put this inside your render method
 
   async componentDidMount() {
+    if (Platform.OS === "android") StatusBar.setTranslucent(true);
     this.setState({ isFontLoaded: true });
   }
   public render() {
