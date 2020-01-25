@@ -1,6 +1,7 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import Colors from "../../constants/Colors";
-
+import { widthPercentageToDP as wp} from "../../helpers/Responsive";
+import RF from "react-native-responsive-fontsize";
 interface HomeScreenStyles {
   container: ViewStyle;
   welcomeContainer: ViewStyle;
@@ -14,6 +15,9 @@ interface HomeScreenStyles {
   createBotton: ViewStyle;
   claimText: TextStyle;
   problemText: TextStyle;
+  uploadPhotoButtonStyle: ViewStyle;
+  uploadPhotoText: TextStyle;
+  uplaodPhotoBtnStyle: ViewStyle;
 }
 
 export const styles = StyleSheet.create<HomeScreenStyles>({
@@ -34,12 +38,10 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   formText: {
     width: "100%",
     backgroundColor: Colors.transparent,
-    borderBottomWidth: 0.1,
     height: 20,
-    borderBottomColor: Colors.tabIconDefault,
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: 'Metropolis-Medium',
-    color: Colors.black,
+    color: Colors.mainfontColor
   },
   inValidForm: {
     borderBottomColor: Colors.buttonRed,
@@ -90,4 +92,34 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     fontFamily: "sf-regular",
     color: Colors.mainfontColor,
   },
+  uploadPhotoButtonStyle: {
+    fontFamily: "Metropolis-Medium",
+    color: "white",
+    fontWeight: "400",
+    borderRadius: wp('4'),
+    backgroundColor: '#FD7468',
+    lineHeight: wp('8'),
+    marginBottom: wp('15'),
+    width: wp('95'),
+    fontSize: RF(3),
+    textTransform: 'none',
+    padding: wp(4),
+    textAlign: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  uploadPhotoText: {
+    fontFamily: "Metropolis-Medium",
+    fontSize: RF(2.2),
+    color: "white",
+    fontWeight: "400",
+    paddingLeft: 10
+  },
+  uplaodPhotoBtnStyle: {
+    width: wp('5'),
+    height: wp('5'),
+    marginRight: 10,
+    resizeMode: 'contain'
+  }
 });

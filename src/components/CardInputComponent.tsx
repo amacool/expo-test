@@ -1,6 +1,7 @@
 import React, {ReactNode} from "react";
 import { Font } from "expo";
-import {Body, CardItem, Item, Card, Label} from "native-base";
+import {View, Item, Label} from "native-base";
+import { widthPercentageToDP as wp} from "../helpers/Responsive";
 interface InterfaceProps {
   label: string;
   children?: ReactNode;
@@ -8,16 +9,18 @@ interface InterfaceProps {
 export default class CardInputComponent extends React.Component<InterfaceProps> {
   render() {
     return (
-      <Card>
-        <CardItem>
-          <Body>
-          <Item stackedLabel style={{width: "100%"}}>
+      <View style={{
+        backgroundColor: 'white',
+        borderRadius: 12,
+        marginVertical: 6,
+        paddingHorizontal: wp('3'),
+        paddingVertical: wp('3.8')
+      }}>
+          <View style={{width: "100%", alignItems: 'center'}}>
             <Label style={{width: "100%", fontSize: 12, paddingLeft: 5, fontFamily: 'Metropolis-Thin'}}>{this.props.label}</Label>
             {this.props.children}
-          </Item>
-          </Body>
-        </CardItem>
-      </Card>
+          </View>
+       </View>
     );
   }
 }

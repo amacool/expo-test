@@ -8,7 +8,8 @@ import {
   DatePicker,
   Picker,
   Item,
-  Input
+  Input,
+  Text
 } from "native-base";
 
 import * as React from "react";
@@ -49,10 +50,14 @@ export const render = (compRef: IDCreateScreen) => (
       </View>
       <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
         <TouchableOpacity
-          style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+          style={styles.uploadPhotoButtonStyle}
           onPress={compRef.state.uploadPhoto}
         >
-          <Image source={images.uploadPhotoBtn} style={{width: '85%', resizeMode: 'contain'}}/>
+          <Text style={styles.uploadPhotoText}>Upload Photo</Text>
+          <Image 
+            style={styles.uplaodPhotoBtnStyle}
+            source={images.uploadPhotoBtn} 
+          />
         </TouchableOpacity>
       </View>
       {/*<View style={styles.buttonContainer}>*/}
@@ -69,9 +74,7 @@ export const render = (compRef: IDCreateScreen) => (
             placeholderTextColor={Colors.placeholder}
             value={compRef.state.idcardInfo.name}
             style={[
-              styles.formText,
-              compRef.state.idcardInfoValidation.name &&
-              !compRef.state.idcardInfo.name && styles.inValidForm,
+              styles.formText
             ]}
           />
         </CardInputComponent>
@@ -98,9 +101,7 @@ export const render = (compRef: IDCreateScreen) => (
             onChangeText={(text) => compRef.state.changeInfo('breed', text)}
             value={compRef.state.idcardInfo.breed}
             style={[
-              styles.formText,
-              compRef.state.idcardInfoValidation.breed &&
-              !compRef.state.idcardInfo.breed && styles.inValidForm,
+              styles.formText
             ]}
           />
         </CardInputComponent>
@@ -111,16 +112,18 @@ export const render = (compRef: IDCreateScreen) => (
             placeholder="Select Gender"
             placeholderStyle={{ color: Colors.placeholder, fontFamily: 'Metropolis-Medium' }}
             style={{
-              width: "100%",
+              width: "90%",
               height: 40,
               borderBottomWidth: 0,
-              backgroundColor: Colors.itemActive,
+              position: 'relative',
+              backgroundColor: 'white',
+              borderTopWidth: 0
             }}
             itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Medium" }}
             iosIcon={
               <Icon
                 name="arrow-down"
-                style={{ fontSize: 25, position: "absolute", right: 0 }}
+                style={{ fontSize: 25, position: "absolute", right: 0, invisible: false }}
               />
             }
             textStyle={{fontFamily: 'Metropolis-Medium'}}
@@ -137,13 +140,13 @@ export const render = (compRef: IDCreateScreen) => (
               label="Male"
               value="male"
               color={Colors.activeTextColor}
-              style={{ width: 100, backgroundColor: Colors.white }}
+              style={{ width: 100, backgroundColor: Colors.white, borderBottomWidth: 0 }}
             />
             <Item
               label="Female"
               value="female"
               color={Colors.activeTextColor}
-              style={{ width: 100, backgroundColor: Colors.white }}
+              style={{ width: 100, backgroundColor: Colors.white, borderBottomWidth: 0 }}
             />
           </Picker>
         </CardPickerComponent>
@@ -155,10 +158,7 @@ export const render = (compRef: IDCreateScreen) => (
             onChangeText={(text) => compRef.state.changeInfo('color', text)}
             value={compRef.state.idcardInfo.color}
             style={[
-              styles.formText,
-              compRef.state.idcardInfoValidation.color &&
-              !compRef.state.idcardInfo.color &&
-              styles.inValidForm,
+              styles.formText
             ]}
           />
         </CardInputComponent>
@@ -175,10 +175,7 @@ export const render = (compRef: IDCreateScreen) => (
               compRef.state.idcardInfo.contact
             }
             style={[
-              styles.formText,
-              compRef.state.idcardInfoValidation.contact &&
-              !compRef.state.idcardInfo.contact &&
-              styles.inValidForm,
+              styles.formText
             ]}
           />
         </CardInputComponent>
@@ -222,7 +219,7 @@ export const render = (compRef: IDCreateScreen) => (
               width: "100%",
               height: 40,
               borderBottomWidth: 0,
-              backgroundColor: Colors.itemActive,
+              backgroundColor: 'white'
             }}
             itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Medium" }}
             iosIcon={
@@ -284,9 +281,9 @@ export const render = (compRef: IDCreateScreen) => (
             style={{
               width: "100%",
               height: 40,
+              backgroundColor: 'white',
               borderBottomWidth: 0,
-              color: Colors.activeTextColor,
-              backgroundColor: Colors.itemActive,
+              color: Colors.activeTextColor
             }}
             itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Medium" }}
             iosIcon={
@@ -327,10 +324,7 @@ export const render = (compRef: IDCreateScreen) => (
             placeholder="Enter Note..."
             placeholderTextColor={Colors.placeholder}
             style={[
-              styles.formText,
-              compRef.state.idcardInfoValidation.note &&
-              !compRef.state.idcardInfo.note &&
-              styles.inValidForm,
+              styles.formText
             ]}
           />
         </CardInputComponent>
