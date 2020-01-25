@@ -75,6 +75,7 @@ export default class MissingScreen extends React.Component<screenUtils.Props, sc
       },
       isValid: false,
       isIDSelected: false,
+      isRewarded: false,
       states: states,
       uploadPhoto: () => this.uploadPhoto(),
       chooseExistingID: () => this.chooseExistingID(),

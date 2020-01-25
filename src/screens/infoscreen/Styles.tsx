@@ -27,9 +27,9 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     marginBottom: 30,
   },
   welcomeContainer: {
-    marginTop: 30,
+    marginTop: 10,
     alignItems: "center",
-    paddingHorizontal: 0,
+    paddingHorizontal: 20,
   },
   buttonContainer: {
     marginTop: 10,
@@ -92,7 +92,8 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   problemText: {
     fontSize: 15,
     fontFamily: "sf-regular",
-    color: Colors.mainfontColor,
+    color: "#7F8FA6",
+    fontWeight: '300'
   },
   btnExisting: {
     fontFamily: "Metropolis-Medium",
@@ -100,26 +101,34 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     fontWeight: "400",
     borderRadius: wp('4'),
     backgroundColor: '#FD7468',
-    lineHeight: wp('8'),
-    marginBottom: wp('15'),
+    marginBottom: 1,
     width: wp('95'),
     fontSize: RF(2.7),
     textTransform: 'none',
-    padding: wp(3),
-    textAlign: 'center'
+    paddingTop: wp(3),
+    paddingBottom: wp(3),
+    paddingLeft: wp(7),
+    paddingRight: wp(7),
+    textAlign: 'left'
   },
   switchReward: {
     fontFamily: "Metropolis-Medium",
-    color: Colors.mainfontColor,
     fontWeight: "400",
+    fontSize: RF(4),
+    color: Colors.mainfontColor,
     borderRadius: wp('4'),
     backgroundColor: 'white',
-    lineHeight: wp('8'),
-    marginBottom: wp('15'),
+    marginBottom: 1,
     width: wp('95'),
-    fontSize: RF(2.7),
     textTransform: 'none',
     padding: wp(3),
-    textAlign: 'center'
+    textAlign: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: wp(3),
+    paddingBottom: wp(3),
+    paddingLeft: wp(7),
+    paddingRight: wp(7),
   }
 });

@@ -1,9 +1,8 @@
 import {Card, Text, Title, View} from "native-base";
 import React from "react";
-import { Dimensions, Image, NativeModules, StyleSheet } from "react-native";
+import { Image, NativeModules, StyleSheet } from "react-native";
 import images from "../assets/images";
 import Colors from "../constants/Colors";
-import states from "../constants/States";
 import { widthPercentageToDP as wp } from "../helpers/Responsive";
 import moment from "moment";
 const { PlatformConstants } = NativeModules;
@@ -72,7 +71,7 @@ export default class MissingCard extends React.Component<MessingCardInterface> {
           </View>
         </View>
 
-        <View style={{ flexDirection: 'row', marginTop: 20, padding: 16 }}>
+        <View style={{ flexDirection: 'row', paddingHorizontal: 16 }}>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}>
             <Text style={styles.headerNameLabel}>Notes</Text>
             <Text style={styles.headerName}>{this.props.note || "Blue eyes, Red collar & Black fur"}</Text>
@@ -86,12 +85,10 @@ export default class MissingCard extends React.Component<MessingCardInterface> {
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
-              marginBottom: 15
+              marginVertical: 15
             }}
           >
-            <Text style={styles.pleaseCall}>
-              Please Call
-            </Text>
+            <Text style={styles.pleaseCall}>Please Call</Text>
           </View>
 
           <View style={{
@@ -104,6 +101,11 @@ export default class MissingCard extends React.Component<MessingCardInterface> {
             <Text style={styles.phoneNumber}>{this.props.contact || "+1 (425) 632-1264"}</Text>
           </View>
         </View>
+        {this.props.isRewarded && (
+          <View style={styles.rewardWrapper}>
+            <Text style={styles.rewardText}>REWARD $$$</Text>
+          </View>
+        )}
       </Card>
     );
   }
@@ -125,6 +127,7 @@ const styles = StyleSheet.create({
   },
   cardContent: {
     flexDirection: "row",
+    alignItems: 'flex-start',
     padding: 16
   },
   stateContent: {
@@ -187,6 +190,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     width: "100%",
     flexDirection: 'row',
+    height: 250
   },
   informationView: {
     paddingHorizontal: 10,
@@ -247,5 +251,17 @@ const styles = StyleSheet.create({
     color: Colors.mainfontColor,
     fontFamily: "sf-regular",
     fontWeight: "bold"
+  },
+  rewardWrapper: {
+    backgroundColor: Colors.mainColor,
+    padding: wp("3"),
+  },
+  rewardText: {
+    color: 'white',
+    fontSize: wp("4"),
+    textAlign: 'center',
+    fontFamily: "sf-regular",
+    fontWeight: 'bold',
+    letterSpacing: 5
   }
 });

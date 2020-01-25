@@ -1,31 +1,23 @@
 // Define PropTypes
-import {Image, ScrollView, TouchableOpacity, View} from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
+import RF from "react-native-responsive-fontsize";
 import {
   Container,
-  Header,
   Content,
   Form,
-  ListItem,
   Text,
   Icon,
   DatePicker,
-  Body,
-  Right,
-  Switch,
   Picker,
   Item,
-  Label,
   Input,
 } from "native-base";
-import moment from "moment";
-import { Col, Row, Grid } from "react-native-easy-grid";
 import * as React from "react";
+import { Switch } from 'react-native-switch';
 import MissingCard from "../../components/MissingCard";
 import MissingScreen from "./InfoScreen";
 import { styles } from "./Styles";
-import HeaderTabComponent from "../../components/headerTabComponent";
 import Colors from "../../constants/Colors";
-import { widthPercentageToDP as wp } from "../../helpers/Responsive";
 import HeaderComponent from "../../components/headerComponent";
 import images from "../../assets/images";
 import CardInputComponent from "../../components/CardInputComponent";
@@ -42,6 +34,7 @@ export interface State {
   states: any;
   isValid: boolean,
   isIDSelected: boolean,
+  isRewarded: boolean,
   chooseExistingID: () => void;
   uploadPhoto: () => void;
   changeInfo: (key: string, value: string) => void;
@@ -54,9 +47,11 @@ export const render = (compRef: MissingScreen) => (
     <HeaderComponent title={"Report Missing"} message back/>
     <Content style={styles.container} disableKBDismissScroll={true}>
       <View style={styles.welcomeContainer}>
-        <MissingCard ref={(ref) => (compRef.imageRef = ref)} {...compRef.state.idcardRender} />
+        <MissingCard isRewarded={compRef.state.isRewarded} ref={(ref) => (compRef.imageRef = ref)} {...compRef.state.idcardRender} />
+        <Text style={[styles.problemText, { marginTop: 15 }]}>Do you have a missing dog?</Text>
+        <Text style={[styles.problemText, { marginBottom: 15 }]}>Create poster!</Text>
       </View>
-      {compRef.state.isIDSelected && (
+      {/* {compRef.state.isIDSelected && (
         <View style={[styles.buttonContainer, {marginTop: 5}]}>
           <Grid>
             <Col style={{justifyContent: 'flex-end', alignItems: 'flex-end'}}>
@@ -84,10 +79,36 @@ export const render = (compRef: MissingScreen) => (
               </TouchableOpacity>
             </Col>
           </Grid>
-          <Text style={[styles.problemText]}>Do you have a missing dog?</Text>
-          <Text style={[styles.problemText]}>Create a poster!</Text>
         </View>
-      )}
+      )} */}
+      <View style={[styles.buttonContainer, { marginBottom: 10 }]}>
+        <View style={styles.switchReward}>
+          <Text style={{ fontSize: RF(3) }}>Reward</Text>
+          <Switch
+            value={compRef.state.isRewarded}
+            onValueChange={(val) => compRef.setState({ isRewarded: val })}
+            disabled={false}
+            activeText={'On'}
+            inActiveText={'Off'}
+            circleSize={22}
+            barHeight={25}
+            circleBorderWidth={0}
+            backgroundActive={Colors.mainColor}
+            backgroundInactive={'rgba(127, 143, 166, 0.5)'}
+            circleActiveColor={'white'}
+            circleInActiveColor={'white'}
+            changeValueImmediately={true}
+            // renderInsideCircle={() => <CustomComponent />}
+            innerCircleStyle={{ alignItems: "center", justifyContent: "center" }}
+            outerCircleStyle={{}}
+            renderActiveText={false}
+            renderInActiveText={false}
+            switchLeftPx={2}
+            switchRightPx={2}
+            switchWidthMultiplier={2.2}
+          />
+        </View>
+      </View>
       <View style={[styles.buttonContainer, { marginBottom: 10 }]}>
         <TouchableOpacity
           style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
@@ -98,22 +119,14 @@ export const render = (compRef: MissingScreen) => (
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={[styles.buttonContainer, { marginBottom: 10 }]}>
-        <TouchableOpacity
-          style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
-          onPress={compRef.state.chooseExistingID}
-        >
-          <Text style={styles.switchReward}>Reward</Text>
-          
-        </TouchableOpacity>
-      </View>
-      {compRef.state.isIDSelected && (
+
+      {/* {compRef.state.isIDSelected && ( */}
         <View style={{alignItems: "center"}}>
           <TouchableOpacity style={styles.problemBotton}>
-            <Text style={[styles.problemText]}>OR FILL THE FORM BELOW</Text>
+            <Text style={[styles.problemText]}>OR fill the form below</Text>
           </TouchableOpacity>
         </View>
-      )}
+      {/* )} */}
       {compRef.state.isIDSelected && (
         <View style={[styles.buttonContainer, { marginBottom: 10 }]}>
           <TouchableOpacity
@@ -129,7 +142,8 @@ export const render = (compRef: MissingScreen) => (
       {/*<Text style={[styles.problemText]}>PROBLEM UPLOADING?</Text>*/}
       {/*</TouchableOpacity>*/}
       {/*</View>*/}
-      {compRef.state.isIDSelected && (
+
+      {/* {compRef.state.isIDSelected && ( */}
         <Form style={{padding: 10}}>
           <CardInputComponent label="Name">
             <Input
@@ -383,16 +397,30 @@ export const render = (compRef: MissingScreen) => (
               onDateChange={(date) => compRef.state.changeInfo('missingDate', date)}
             />
           </CardPickerComponent>
-          <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
-            <TouchableOpacity
+          <CardInputComponent label="Description">
+            <Input
+              placeholder="Enter Description..."
+              placeholderTextColor={Colors.placeholder}
+              onChangeText={(text) => compRef.state.changeInfo('zipcode', text)}
+              value={compRef.state.idcardInfo.zipcode}
+              style={[
+                styles.formText,
+                compRef.state.idcardInfoValidation.zipcode &&
+                !compRef.state.idcardInfo.zipcode &&
+                styles.inValidForm,
+              ]}
+            />
+          </CardInputComponent>
+          <View style={[styles.buttonContainer, { marginBottom: 15 }]}>
+            {/* <TouchableOpacity
               style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
               onPress={compRef.state.createKidsId}
             >
               <Image source={images.createPosterBtn} style={{width: '85%', resizeMode: 'contain'}}/>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </Form>
-      )}
+      {/* )} */}
     </Content>
   </Container>
 );
