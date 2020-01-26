@@ -1,6 +1,6 @@
 import React from "react";
 import {StatusBar, StyleSheet, TouchableOpacity, View, Platform, Image} from "react-native";
-import { Icon, Button, Title } from "native-base";
+import { Text, Button, Title } from "native-base";
 import Colors from "../constants/Colors";
 import navigationStore from "../stores/navigationStore";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "../helpers/Responsive";
@@ -24,10 +24,11 @@ export default class HeaderComponent extends React.Component<InterfaceProps> {
     return (
 
       <View style={styles.headerStyle}>
-        <View style={{ width: 50 }}>
+        <View style={{ width: 150 }}>
           {this.props.back && <Button transparent onPress={() => navigationStore.back()}>
             {/* <Icon name="arrow-back" style={styles.headerBackIcon} color={Colors.black}/> */}
-            <Image source={images.headerArrowBack} />
+            <Image style={styles.headerArrowBack} source={images.headerArrowBack} />
+            <Text style={styles.headerBackText}>Back</Text>
           </Button>}
         </View>
 
@@ -68,8 +69,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: wp("3"),
     alignSelf: 'center',
-    fontSize: wp("7"),
+    fontSize: wp("9"),
     justifyContent: "center",
+  },
+  headerArrowBack: {
+    width: 15,
+    height: 25,
+    marginLeft: wp("3"),
+  },
+  headerBackText: {
+    color: Colors.mainColor,
+    fontSize: wp("4"),
+    width: 200,
+    marginLeft: -5,
+    fontFamily: 'sf-regular'
   },
   headerBackIcon: {
     marginLeft: 10,
