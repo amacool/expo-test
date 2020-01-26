@@ -24,7 +24,7 @@ export interface State {
 
 export const render = (compRef: HomeScreen) => (
   <View style={styles.container}>
-    <HeaderComponent title="Home" message back/>
+    <HeaderComponent title="Home" message back={false} />
     {!!compRef.state.isFontLoaded && (
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <View style={styles.bodyContainer}>
