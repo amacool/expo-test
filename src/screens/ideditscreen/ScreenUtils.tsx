@@ -1,24 +1,15 @@
 // Define PropTypes
-import {Image, ScrollView, TouchableOpacity, View} from "react-native";
+import { Image, TouchableOpacity, View, Text } from "react-native";
 import {
   Container,
-  Header,
   Content,
   Form,
-  ListItem,
-  Text,
   Icon,
   DatePicker,
-  Body,
-  Right,
-  Switch,
   Picker,
   Item,
-  Label,
   Input,
 } from "native-base";
-import moment from "moment";
-import { Col, Row, Grid } from "react-native-easy-grid";
 import * as React from "react";
 import IDCard from "../../components/IdCard";
 import IDEditScreen from "./IDEditScreen";
@@ -53,19 +44,20 @@ export const render = (compRef: IDEditScreen) => (
       <View style={styles.welcomeContainer}>
         <IDCard ref={(ref) => (compRef.imageRef = ref)} {...compRef.state.idcardRender} />
       </View>
-      <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
+      <View style={styles.buttonContainer}>
         <TouchableOpacity
-          style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+          style={styles.btnUpload}
           onPress={compRef.state.uploadPhoto}
         >
-          <Image source={images.uploadPhotoBtn} style={{width: '85%', resizeMode: 'contain'}}/>
+          <Text style={styles.btnUploadText}>Upload Photo</Text>
+          <Image source={images.uploadPhotoBtn} style={{ width: 30, height: 30 }} />
         </TouchableOpacity>
       </View>
-      {/*<View style={styles.buttonContainer}>*/}
-      {/*<TouchableOpacity onPress={compRef._handleHelpPress} style={styles.problemBotton}>*/}
-      {/*<Text style={[styles.problemText]}>PROBLEM UPLOADING?</Text>*/}
-      {/*</TouchableOpacity>*/}
-      {/*</View>*/}
+      <View style={[styles.buttonContainer, { marginBottom: 10 }]}>
+        <TouchableOpacity onPress={compRef._handleHelpPress}>
+          <Text style={styles.problemText}>Problem Uploading?</Text>
+        </TouchableOpacity>
+      </View>
       <Form style={{padding: 10}}>
         <CardInputComponent label="Name">
           <Input
@@ -308,10 +300,10 @@ export const render = (compRef: IDEditScreen) => (
         </CardInputComponent>
         <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
           <TouchableOpacity
-            style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+            style={[styles.btnUpload, styles.btnSave]}
             onPress={compRef.state.createKidsId}
           >
-            <Image source={images.saveIdBtn} style={{width: '85%', resizeMode: 'contain'}}/>
+            <Text style={styles.btnUploadText}>Save</Text>
           </TouchableOpacity>
         </View>
       </Form>

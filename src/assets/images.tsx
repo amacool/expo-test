@@ -26,6 +26,7 @@ const images = {
   successImg: require("../../src/assets/images/illustration.png"),
   createDogIdBtn: require("../../src/assets/images/create-dog-id.png"),
   useExistingBtn: require("../../src/assets/images/use-existing.png"),
+  downloadPhotoBtn: require("../../src/assets/images/download-photo.png"),
   uploadPhotoBtn: require("../../src/assets/images/upload-photo.png"),
   createPosterBtn: require("../../src/assets/images/create-poster.png"),
   saveIdBtn: require("../../src/assets/images/save-id.png"),

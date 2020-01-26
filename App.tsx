@@ -96,7 +96,7 @@ export default class App extends React.Component<InterfaceProps, InterfaceState>
         require("./src/assets/images/illustration.png"),
         require("./src/assets/images/create-dog-id.png"),
         require("./src/assets/images/use-existing.png"),
-        require("./src/assets/images/upload-photo.png"),
+        require("./src/assets/images/download-photo.png"),
         require("./src/assets/images/create-poster.png"),
         require("./src/assets/images/save-id.png"),
         require("./src/assets/images/phone.png"),

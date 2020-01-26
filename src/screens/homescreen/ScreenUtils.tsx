@@ -56,7 +56,7 @@ export const render = (compRef: HomeScreen) => (
             style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
             onPress={compRef._handleHelpPress}
           >
-            <Text style={[styles.createDogIdBtn]}>
+            <Text style={styles.createDogIdBtn}>
               Create Your Dog's ID
             </Text>
           </TouchableOpacity>

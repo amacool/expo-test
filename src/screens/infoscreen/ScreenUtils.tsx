@@ -133,13 +133,13 @@ export const render = (compRef: MissingScreen) => (
             style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
             onPress={compRef.state.uploadPhoto}
           >
-            <Image source={images.uploadPhotoBtn} style={{width: '85%', resizeMode: 'contain'}}/>
+            <Image source={images.downloadPhotoBtn} style={{width: '85%', resizeMode: 'contain'}}/>
           </TouchableOpacity>
         </View>
       )}
       {/*<View style={styles.buttonContainer}>*/}
       {/*<TouchableOpacity onPress={compRef._handleHelpPress} style={styles.problemBotton}>*/}
-      {/*<Text style={[styles.problemText]}>PROBLEM UPLOADING?</Text>*/}
+      {/*<Text style={[styles.problemText]}>Problem Uploading?</Text>*/}
       {/*</TouchableOpacity>*/}
       {/*</View>*/}
 

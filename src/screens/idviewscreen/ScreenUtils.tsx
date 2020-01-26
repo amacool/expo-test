@@ -37,9 +37,9 @@ export const render = (compRef: IDViewScreen) => (
         </TouchableOpacity>
         <TouchableOpacity style={[styles.btnAction, styles.btnSave]} onPress={compRef.state.download}>
           <Text style={[styles.btnText, styles.saveText]}>Save</Text>
-          <Image 
+          <Image
             style={styles.uplaodPhotoBtnStyle}
-            source={images.uploadPhotoBtn}
+            source={images.downloadPhotoBtn}
           />
         </TouchableOpacity>
       </View>

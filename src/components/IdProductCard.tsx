@@ -81,7 +81,7 @@ export default class IdProductCard extends React.Component<IDCardInterface> {
 
               {!!this.props.contact && (
                 <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                  <Text style={styles.inforTitle}>PH:</Text>
+                  <Text style={styles.inforTitle}>PHONE</Text>
                   <Text style={styles.inforDetail}>
                     {this.props.contact || "555 555 5555"}
                   </Text>

@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import Colors from "../../constants/Colors";
+import RF from "react-native-responsive-fontsize";
+import { widthPercentageToDP as wp} from "../../helpers/Responsive";
 
 interface HomeScreenStyles {
   container: ViewStyle;
@@ -10,25 +12,27 @@ interface HomeScreenStyles {
   inValidForm: ViewStyle;
   formSwitch: ViewStyle;
   uploadBotton: ViewStyle;
-  problemBotton: ViewStyle;
   createBotton: ViewStyle;
   claimText: TextStyle;
   problemText: TextStyle;
+  btnUpload: ViewStyle;
+  btnUploadText: TextStyle;
+  uploadPhotoBtn: ViewStyle;
+  btnSave: ViewStyle;
 }
 
 export const styles = StyleSheet.create<HomeScreenStyles>({
   container: {
     flex: 1,
-    backgroundColor: Colors.backgroundDefault,
-    marginBottom: 30,
+    backgroundColor: Colors.backgroundDefault
   },
   welcomeContainer: {
     marginTop: 30,
     alignItems: "center",
-    paddingHorizontal: 0,
+    paddingHorizontal: '2.5%'
   },
   buttonContainer: {
-    marginTop: 20,
+    marginTop: 30,
     alignItems: "center",
   },
   formText: {
@@ -61,15 +65,6 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     backgroundColor: Colors.tintColor,
     paddingHorizontal: 25,
   },
-  problemBotton: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "70%",
-    paddingVertical: 12,
-    borderRadius: 12,
-    backgroundColor: Colors.transparent,
-    paddingHorizontal: 25,
-  },
   createBotton: {
     justifyContent: "center",
     alignItems: "center",
@@ -86,8 +81,33 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     color: "#fff",
   },
   problemText: {
-    fontSize: 15,
+    fontSize: wp(4),
     fontFamily: "sf-regular",
-    color: Colors.mainfontColor,
+    color: "#7F8FA6",
   },
+  btnUpload: {
+    borderRadius: wp('4.5'),
+    backgroundColor: '#FD7468',
+    lineHeight: wp('8'),
+    width: wp('95'),
+    paddingVertical: wp(4),
+    paddingHorizontal: wp(6),
+    textAlign: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  btnUploadText: {
+    color: Colors.white,
+    fontFamily: "sf-regular",
+    fontSize: RF(2.7),
+    textTransform: 'none',
+  },
+  uploadPhotoBtn: {
+    width: 30,
+    height: 30,
+  },
+  btnSave: {
+    justifyContent: 'center'
+  }
 });

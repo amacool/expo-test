@@ -56,13 +56,13 @@ export const render = (compRef: IDCreateScreen) => (
           <Text style={styles.uploadPhotoText}>Upload Photo</Text>
           <Image 
             style={styles.uplaodPhotoBtnStyle}
-            source={images.uploadPhotoBtn}
+            source={images.downloadPhotoBtn}
           />
         </TouchableOpacity>
       </View>
       {/*<View style={styles.buttonContainer}>*/}
       {/*<TouchableOpacity onPress={compRef._handleHelpPress} style={styles.problemBotton}>*/}
-      {/*<Text style={[styles.problemText]}>PROBLEM UPLOADING?</Text>*/}
+      {/*<Text style={[styles.problemText]}>Problem Uploading?</Text>*/}
       {/*</TouchableOpacity>*/}
       {/*</View>*/}
       <Form style={{padding: 10}}>

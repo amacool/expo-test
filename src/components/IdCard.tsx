@@ -83,7 +83,7 @@ export default class IDCard extends React.Component<IDCardInterface> {
                   <View style={styles.informationViewLabelWrapper}>
                     {!!this.props.contact1 && (
                       <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                        <Text style={styles.inforTitle} uppercase>{this.props.contact1.name || "PHONE"}:</Text>
+                        <Text style={styles.inforTitle} uppercase>{this.props.contact1.name || "PHONE"}</Text>
                       </View>
                     )}
                     {!!this.props.birthday && (
