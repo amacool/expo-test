@@ -29,6 +29,7 @@ const images = {
   uploadPhotoBtn: require("../../src/assets/images/upload-photo.png"),
   createPosterBtn: require("../../src/assets/images/create-poster.png"),
   saveIdBtn: require("../../src/assets/images/save-id.png"),
+  forwardBtn: require("../../src/assets/images/forward.png"),
   sendMessageBtn: require("../../src/assets/images/send-email.png"),
   fedexIcon: require("../../src/assets/images/fedex.png"),
   dhlIcon: require("../../src/assets/images/dhl.png"),

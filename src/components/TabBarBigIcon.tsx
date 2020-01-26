@@ -1,7 +1,5 @@
 import React from "react";
-import {
-  Image, View,
-} from "react-native";
+import { Image, View } from "react-native";
 import Colors from "../constants/Colors";
 
 interface InterfaceProps {
@@ -24,10 +22,9 @@ export default class TabBarBigIcon extends React.Component<InterfaceProps> {
         }}/>}
         <Image
           source={this.props.focused ? this.props.active : this.props.inactive}
-          style={{height:58,width:58, resizeMode: 'contain', marginTop: -58}}
+          style={{ height: 58,width:58, resizeMode: 'contain', marginTop: -58, zIndex: 10 }}
         />
       </>
-
     );
   }
 }

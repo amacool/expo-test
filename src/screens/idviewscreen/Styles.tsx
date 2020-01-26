@@ -18,6 +18,10 @@ interface HomeScreenStyles {
   uplaodPhotoBtnStyle: ViewStyle;
   btnContainer: ViewStyle;
   btnAction: ViewStyle;
+  btnForward: ViewStyle;
+  btnSave: ViewStyle;
+  forwardText: TextStyle;
+  saveText: TextStyle;
 }
 
 export const styles = StyleSheet.create<HomeScreenStyles>({
@@ -83,7 +87,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     fontFamily: 'sf-regular',
     color: Colors.mainfontColor,
   },
-  uploadPhotoText: {
+  btnText: {
     fontFamily: "Metropolis-Medium",
     fontSize: RF(2.2),
     color: "white",
@@ -97,11 +101,9 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     resizeMode: 'contain'
   },
   btnAction: {
-    fontFamily: "Metropolis-Medium",
-    color: "white",
+    fontFamily: "sf-regular",
     fontWeight: "400",
     borderRadius: wp('4'),
-    backgroundColor: '#FD7468',
     lineHeight: wp('8'),
     marginBottom: wp('15'),
     width: '48%',
@@ -117,7 +119,16 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: '2.5%'
-    // padding
+    padding: '2.5%',
+  },
+  forwardText: {
+    color: Colors.mainColor,
+  },
+  btnForward: {
+    backgroundColor: Colors.white,
+  },
+  btnSave: {
+    backgroundColor: Colors.mainColor,
+    color: Colors.mainColor
   }
 });

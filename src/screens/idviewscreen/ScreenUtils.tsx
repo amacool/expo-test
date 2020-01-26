@@ -28,15 +28,15 @@ export const render = (compRef: IDViewScreen) => (
         <IDCard {...compRef.state.idcardInfo} />
       </View>
       <View style={styles.btnContainer}>
-        <TouchableOpacity style={styles.btnAction} onPress={compRef.state.share}>
-          <Text style={styles.uploadPhotoText}>Forward</Text>
+        <TouchableOpacity style={[styles.btnAction, styles.btnForward]} onPress={compRef.state.share}>
+          <Text style={[styles.btnText, styles.forwardText]}>Forward</Text>
           <Image 
             style={styles.uplaodPhotoBtnStyle}
-            source={images.uploadPhotoBtn}
+            source={images.forwardBtn}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btnAction} onPress={compRef.state.download}>
-          <Text style={styles.uploadPhotoText}>Save</Text>
+        <TouchableOpacity style={[styles.btnAction, styles.btnSave]} onPress={compRef.state.download}>
+          <Text style={[styles.btnText, styles.saveText]}>Save</Text>
           <Image 
             style={styles.uplaodPhotoBtnStyle}
             source={images.uploadPhotoBtn}
