@@ -1,12 +1,11 @@
 import React from "react";
-import {StyleSheet, Image, Dimensions, TouchableOpacity, NativeModules} from "react-native";
-import {View, Card, CardItem, Text, Body, Spinner, Title} from "native-base";
+import { StyleSheet, Image, Dimensions, TouchableOpacity, NativeModules } from "react-native";
+import { View, Card, CardItem, Text, Body, Spinner, Title } from "native-base";
 import Colors from "../constants/Colors";
 import images from "../assets/images";
-import moment from "moment";
 import { Col, Grid } from "react-native-easy-grid";
-const { PlatformConstants } = NativeModules;
 import { widthPercentageToDP as wp } from "../helpers/Responsive";
+const { PlatformConstants } = NativeModules;
 
 interface Props {
   name?: string;
@@ -49,13 +48,11 @@ export default class CreatedID extends React.Component<Props> {
           noShadow
         >
           <CardItem header style={styles.cardHeader}>
-            {/* <Image source={images.cardTopSlot}  style={{position: 'absolute', top: -20, zIndex: 10,}}/> */}
             <Title style={[styles.headerState,  {fontFamily: "Metropolis-Bold",}]} uppercase>
-              PET IDENTIFICATION
+              Pet Identification
             </Title>
           </CardItem>
           <CardItem style={styles.noPadding}>
-
             <Body style={styles.cardBody}>
               <View style={styles.avatarImageView}>
                 {!!this.props.photo && (
@@ -68,12 +65,30 @@ export default class CreatedID extends React.Component<Props> {
               <View style={styles.informationView}>
                 <View style={styles.inforDetailContainer}>
                   <View style={styles.inforDetaiItem}>
-                    <Text style={styles.inforDetail} uppercase>{this.props.name}</Text>
+                    <Text style={styles.inforTitle} uppercase>{this.props.name}</Text>
                   </View>
                   <View style={styles.inforDetaiItem}>
-                    <Text style={styles.inforTitle}>Date:</Text>
+                    <Image style={styles.inforIcon} source={images.phoneIcon1} />
                     <Text style={styles.inforDetail}>
-                      {moment(this.props.issueDate).format("DD/MM/YYYY")}
+                      +1 (425) 632-1264
+                    </Text>
+                  </View>
+                  <View style={styles.inforDetaiItem}>
+                    <Image style={styles.inforIcon} source={images.appleIcon} />
+                    <Text style={styles.inforDetail}>
+                      23/01/2015
+                    </Text>
+                  </View>
+                  <View style={styles.inforDetaiItem}>
+                    <Image style={styles.inforIcon} source={images.dialIcon} />
+                    <Text style={styles.inforDetail}>
+                      Black
+                    </Text>
+                  </View>
+                  <View style={styles.inforDetaiItem}>
+                    <Image style={styles.inforIcon} source={images.pugIcon} />
+                    <Text style={styles.inforDetail}>
+                      Pug
                     </Text>
                   </View>
                 </View>
@@ -89,7 +104,7 @@ export default class CreatedID extends React.Component<Props> {
             </Body>
           </CardItem>
           <CardItem style={styles.cardHeader}>
-            <Grid style={{ flex: 1, justifyContent: "space-between", marginLeft: 5}}>
+            <Grid style={{ flex: 1, justifyContent: "space-between" }}>
               <Col style={{ height: 50, flexDirection: 'column', alignItems: 'center' }} size={3}>
                 <TouchableOpacity
                   style={{
@@ -100,12 +115,7 @@ export default class CreatedID extends React.Component<Props> {
                   }}
                   onPress={() => this.props.viewId(this.props.index)}
                 >
-                  <Image
-                    source={require("../assets/images/view.png")}
-                    resizeMode="contain"
-                    style={{ height: wp("5"), width: wp("5"), marginRight: wp("2") }}
-                  />
-                  <Text style={{ fontFamily: "Roboto", fontSize: wp("4"), color: Colors.tintColor }}>
+                  <Text style={styles.btnAction}>
                     View
                   </Text>
                 </TouchableOpacity>
@@ -120,12 +130,7 @@ export default class CreatedID extends React.Component<Props> {
                   }}
                   onPress={() => this.props.editId(this.props.index)}
                 >
-                  <Image
-                    source={require("../assets/images/Vector.png")}
-                    resizeMode="contain"
-                    style={{ height: wp("4.5"), width: wp("4.5"), marginRight: wp("2") }}
-                  />
-                  <Text style={{ fontFamily: "Roboto", fontSize: wp("4"), color: Colors.tintColor }}>
+                  <Text style={styles.btnAction}>
                     Edit
                   </Text>
                 </TouchableOpacity>
@@ -140,14 +145,9 @@ export default class CreatedID extends React.Component<Props> {
                   }}
                   onPress={() => this.props.deleteId(this.props.index)}
                 >
-                  <Image
-                    source={images.buyButton}
-                    resizeMode="contain"
-                    style={{
-                      width: '100%',
-                      marginTop: 8
-                    }}
-                  />
+                  <Text style={styles.btnBuy}>
+                    Buy
+                  </Text>
                 </TouchableOpacity>
               </Col>
             </Grid>
@@ -172,12 +172,10 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "stretch",
     padding: 0,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-    elevation: 2,
+    shadowOpacity: 0,
+    elevation: 0,
     borderWidth: 0,
+    borderColor: 'transparent',
     alignSelf: "center",
   },
   cardHeader: {
@@ -196,10 +194,10 @@ const styles = StyleSheet.create({
   },
   headerState: {
     lineHeight: wp("5.1"),
-    fontSize: wp("5.1"),
-    margin: 1,
+    fontSize: wp("5.3"),
+    marginTop: wp("2"),
     fontFamily: 'Metropolis-Bold',
-    color: Colors.tintColor,
+    color: Colors.mainfontColor,
   },
   headerIssueDate: {
     color: Colors.mainfontColor,
@@ -209,10 +207,8 @@ const styles = StyleSheet.create({
   },
 
   cardBody: {
-    display: "flex",
     flexDirection: "row",
     padding: 0,
-    flex: 1,
     backgroundColor: Colors.white,
   },
   footerContainer: {
@@ -225,7 +221,7 @@ const styles = StyleSheet.create({
   },
   avatarImageView: {
     justifyContent: "flex-start",
-    flex: 0.44,
+    flex: 0.4,
     height: Dimensions.get("screen").width * 0.35,
     color: Colors.mainfontColor,
   },
@@ -236,10 +232,9 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   informationView: {
-    paddingHorizontal: 10,
+    paddingLeft: 20,
     flexDirection: "column",
-    flex: 0.54,
-    height: Dimensions.get("screen").width * 0.4 - 10,
+    flex: 0.58,
     justifyContent: "space-evenly",
   },
   inforDetailNameContainer: {
@@ -249,8 +244,10 @@ const styles = StyleSheet.create({
   inforDetailContainer: {
     flexDirection: "column",
     flex: 1,
-    height: 30,
-    marginTop: 5,
+    justifyContent: 'space-between',
+    height: '100%'
+    // height: 30,
+    // marginTop: 5,
   },
   inforDetaiItem: {
     flexDirection: "row",
@@ -264,23 +261,26 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   inforName: {
+    fontSize: wp("4.8"),
     paddingHorizontal: 10,
     fontWeight: "bold",
-  },
-  inforIcon: {
-    width: 13,
-    height: 13,
+    color: Colors.mainfontColor
   },
   inforTitle: {
-    fontSize: wp("3.5"),
-    fontFamily: "Metropolis-Medium",
+    fontSize: wp("4.2"),
+    fontFamily: "sf-regular",
+    fontWeight: 'bold',
     marginLeft: PlatformConstants.interfaceIdiom == 'pad' ? 15 : 5,
-    color: "#000",
+    color: Colors.mainfontColor
+  },
+  inforIcon: {
+    width: wp("3"),
+    height: wp("3"),
   },
   inforDetail: {
-    fontSize: wp("4.8"),
-    marginLeft: 5,
-    fontFamily: "Metropolis-Bold",
+    fontSize: wp("3.4"),
+    marginLeft: 20,
+    fontFamily: "sf-regular",
     fontWeight: "bold",
     color: "#000",
   },
@@ -301,4 +301,22 @@ const styles = StyleSheet.create({
     height: 49,
     resizeMode: "contain",
   },
+  btnAction: {
+    fontFamily: "sf-regular",
+    fontSize: wp("4"),
+    color: Colors.mainfontColor,
+    backgroundColor: 'rgba(197, 201, 217, 0.16)',
+    paddingHorizontal: wp("6"),
+    paddingVertical: wp("3"),
+    borderRadius: 20
+  },
+  btnBuy: {
+    fontFamily: "sf-regular",
+    fontSize: wp("4"),
+    color: Colors.white,
+    backgroundColor: Colors.mainColor,
+    paddingHorizontal: wp("10"),
+    paddingVertical: wp("3"),
+    borderRadius: 20
+  }
 });

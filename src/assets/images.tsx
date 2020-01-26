@@ -48,5 +48,8 @@ const images = {
   blankBaby: require("../../src/assets/images/blankbaby.jpg"),
   babyId: require("../../src/assets/images/babyid.png"),
   star: require("../../src/assets/images/star.png"),
+  appleIcon: require("../../src/assets/images/apple.png"),
+  dialIcon: require("../../src/assets/images/dial.png"),
+  pugIcon: require("../../src/assets/images/pug.png"),
 };
 export default images;
