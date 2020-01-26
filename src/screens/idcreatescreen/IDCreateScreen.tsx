@@ -13,8 +13,8 @@ import ViewScreenSnapStore from "../../stores/viewScreenSnapStore";
 export default class IDCreateScreen extends React.Component<screenUtils.Props, screenUtils.State> {
   public imageRef;
   public static navigationOptions = {
-    title: "Add",
-    tabBarLabel: "Add",
+    title: "",
+    tabBarLabel: "",
     tabBarIcon: ({ focused }) => (
       <TabBarBigIcon
         focused={focused}
