@@ -37,21 +37,16 @@ export const render = (compRef: HomeScreen) => (
           </Text>
         </View>
         <View style={styles.welcomeContainer}>
-          {/* <Image
-            source={require('../../assets/images/baby_id.png')}
-            resizeMode="contain"
-            style={{height:wp('64'),width:wp('130')}}
-          /> */}
-        
           <IDCard {...compRef.state.idcardInfo} />
         </View>
+
         <View style={styles.bottomContainer}>
           <Text style={[styles.headerBodayTitle]}>
             Don't Risk It.{"\n"}Keep Your Dog Safe.
           </Text>
         </View>
 
-        <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
+        <View style={[styles.buttonContainer, { marginBottom: 20 }]}>
           <TouchableOpacity
             style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
             onPress={compRef._handleHelpPress}

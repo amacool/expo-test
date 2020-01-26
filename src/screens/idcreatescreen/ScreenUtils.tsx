@@ -48,7 +48,7 @@ export const render = (compRef: IDCreateScreen) => (
       <View style={styles.welcomeContainer}>
         <IDCard ref={(ref) => (compRef.imageRef = ref)} {...compRef.state.idcardRender} />
       </View>
-      <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
+      <View style={[styles.buttonContainer, { marginTop: 30 }]}>
         <TouchableOpacity
           style={styles.uploadPhotoButtonStyle}
           onPress={compRef.state.uploadPhoto}
@@ -56,15 +56,15 @@ export const render = (compRef: IDCreateScreen) => (
           <Text style={styles.uploadPhotoText}>Upload Photo</Text>
           <Image 
             style={styles.uplaodPhotoBtnStyle}
-            source={images.downloadPhotoBtn}
+            source={images.uploadPhotoBtn}
           />
         </TouchableOpacity>
       </View>
-      {/*<View style={styles.buttonContainer}>*/}
-      {/*<TouchableOpacity onPress={compRef._handleHelpPress} style={styles.problemBotton}>*/}
-      {/*<Text style={[styles.problemText]}>Problem Uploading?</Text>*/}
-      {/*</TouchableOpacity>*/}
-      {/*</View>*/}
+      <View style={[styles.buttonContainer, { marginTop: 10 }]}>
+        <TouchableOpacity onPress={compRef._handleHelpPress}>
+          <Text style={styles.problemText}>Problem Uploading?</Text>
+        </TouchableOpacity>
+      </View>
       <Form style={{padding: 10}}>
         <CardInputComponent label="Name">
           <Input
@@ -258,7 +258,7 @@ export const render = (compRef: IDCreateScreen) => (
           </Picker>
         </CardPickerComponent>
 
-        <CardInputComponent label="Zip Code(Postal Code)">
+        <CardInputComponent label="Zip Code (Postal Code)">
           <Input
             placeholder="Enter ZipCode..."
             placeholderTextColor={Colors.placeholder}
@@ -317,7 +317,7 @@ export const render = (compRef: IDCreateScreen) => (
           </Picker>
         </CardPickerComponent>
 
-        <CardInputComponent label="Note">
+        <CardInputComponent label="Notes">
           <Input
             onChangeText={(text) => compRef.state.changeInfo('note', text)}
             value={compRef.state.idcardInfo.note}
@@ -330,10 +330,10 @@ export const render = (compRef: IDCreateScreen) => (
         </CardInputComponent>
         <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
           <TouchableOpacity
-            style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+            style={[styles.btnUpload, styles.btnSave]}
             onPress={compRef.state.createKidsId}
           >
-            <Image source={images.saveIdBtn} style={{width: '85%', resizeMode: 'contain'}}/>
+            <Text style={styles.btnUploadText}>Save</Text>
           </TouchableOpacity>
         </View>
       </Form>

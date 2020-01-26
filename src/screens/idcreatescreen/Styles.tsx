@@ -18,6 +18,7 @@ interface HomeScreenStyles {
   uploadPhotoButtonStyle: ViewStyle;
   uploadPhotoText: TextStyle;
   uplaodPhotoBtnStyle: ViewStyle;
+  btnSave: ViewStyle;
 }
 
 export const styles = StyleSheet.create<HomeScreenStyles>({
@@ -29,7 +30,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   welcomeContainer: {
     marginTop: 30,
     alignItems: "center",
-    paddingHorizontal: 0,
+    paddingHorizontal: '2.5%',
   },
   buttonContainer: {
     marginTop: 20,
@@ -88,9 +89,9 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     color: "#fff",
   },
   problemText: {
-    fontSize: 15,
+    fontSize: wp(3.5),
     fontFamily: "sf-regular",
-    color: Colors.mainfontColor,
+    color: "#7F8FA6",
   },
   uploadPhotoButtonStyle: {
     fontFamily: "Metropolis-Medium",
@@ -99,7 +100,6 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     borderRadius: wp('4'),
     backgroundColor: '#FD7468',
     lineHeight: wp('8'),
-    marginBottom: wp('15'),
     width: wp('95'),
     fontSize: RF(3),
     textTransform: 'none',
@@ -121,5 +121,8 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     height: wp('5'),
     marginRight: 10,
     resizeMode: 'contain'
+  },
+  btnSave: {
+    justifyContent: 'center'
   }
 });

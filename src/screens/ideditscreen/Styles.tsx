@@ -32,7 +32,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     paddingHorizontal: '2.5%'
   },
   buttonContainer: {
-    marginTop: 30,
+    marginTop: 20,
     alignItems: "center",
   },
   formText: {
@@ -81,7 +81,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     color: "#fff",
   },
   problemText: {
-    fontSize: wp(4),
+    fontSize: wp(3.5),
     fontFamily: "sf-regular",
     color: "#7F8FA6",
   },

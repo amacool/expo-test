@@ -52,6 +52,8 @@ export default class IDEditScreen extends React.Component<screenUtils.Props, scr
         issueDate: true,
       },
       isValid: false,
+      allCountryData: states,
+      countries: states.map((item)=> item),
       states: states,
       uploadPhoto: () => this.onUploadPhoto(),
       changeInfo: (key, value) => this.onChangeInfo(key, value),

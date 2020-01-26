@@ -23,7 +23,6 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   container: {
     flex: 1,
     backgroundColor: Colors.backgroundDefault,
-    marginBottom: 10
   },
   contentContainer: {
     padding: 0,
@@ -40,7 +39,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   },
   welcomeContainer: {
     marginTop: wp('5'),
-    paddingHorizontal: wp('5'),
+    paddingHorizontal: '2.5%',
   },
   bottomContainer: {
     marginTop: wp('5'),
@@ -98,7 +97,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     borderRadius: wp('4'),
     backgroundColor: '#FD7468',
     lineHeight: wp('8'),
-    marginBottom: wp('15'),
+    marginBottom: wp('20'),
     width: wp('95'),
     fontSize: RF(2.7),
     textTransform: 'none',
