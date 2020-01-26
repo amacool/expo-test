@@ -1,5 +1,7 @@
-import {ImageStyle, StyleSheet, TextStyle, ViewStyle} from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 import Colors from "../../constants/Colors";
+import RF from "react-native-responsive-fontsize";
+import { widthPercentageToDP as wp} from "../../helpers/Responsive";
 
 interface HomeScreenStyles {
   container: ViewStyle;
@@ -12,6 +14,10 @@ interface HomeScreenStyles {
   createBotton: ViewStyle;
   claimText: TextStyle;
   problemText: TextStyle;
+  uploadPhotoText: TextStyle;
+  uplaodPhotoBtnStyle: ViewStyle;
+  btnContainer: ViewStyle;
+  btnAction: ViewStyle;
 }
 
 export const styles = StyleSheet.create<HomeScreenStyles>({
@@ -21,8 +27,11 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   },
   welcomeContainer: {
     marginTop: 20,
+    display: 'flex',
+    flexDirection: 'column',
     alignItems: "center",
-    paddingHorizontal: 0,
+    justifyContent: 'center',
+    paddingHorizontal: '2.5%',
   },
   buttonContainer: {
     marginTop: 20,
@@ -74,4 +83,41 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     fontFamily: 'sf-regular',
     color: Colors.mainfontColor,
   },
+  uploadPhotoText: {
+    fontFamily: "Metropolis-Medium",
+    fontSize: RF(2.2),
+    color: "white",
+    fontWeight: "400",
+    paddingLeft: 10
+  },
+  uplaodPhotoBtnStyle: {
+    width: wp('5'),
+    height: wp('5'),
+    marginRight: 10,
+    resizeMode: 'contain'
+  },
+  btnAction: {
+    fontFamily: "Metropolis-Medium",
+    color: "white",
+    fontWeight: "400",
+    borderRadius: wp('4'),
+    backgroundColor: '#FD7468',
+    lineHeight: wp('8'),
+    marginBottom: wp('15'),
+    width: '48%',
+    fontSize: RF(3),
+    textTransform: 'none',
+    padding: wp(4),
+    textAlign: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  btnContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: '2.5%'
+    // padding
+  }
 });

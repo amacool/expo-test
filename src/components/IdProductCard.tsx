@@ -41,9 +41,9 @@ export default class IdProductCard extends React.Component<IDCardInterface> {
       <TouchableOpacity style={{width: "100%"}}>
         <Card style={[styles.cardContainer, styles.noPadding, {flex: 1, marginTop: 21}]}>
           <CardItem header style={styles.cardHeader}>
-            <Image source={images.cardTopSlot}  style={{position: 'absolute', top: -20, zIndex: 10,}}/>
+            {/* <Image source={images.cardTopSlot}  style={{position: 'absolute', top: -20, zIndex: 10,}}/> */}
             <Title style={[styles.headerState,  {fontFamily: "Metropolis-Bold",}]} uppercase>
-              PET IDENTIFICATION
+              Pet Identification
             </Title>
           </CardItem>
           <View style={{ flex: 1, flexDirection: 'row', borderWidth: 0 }}>

@@ -1,13 +1,12 @@
 // Define PropTypes
-import { Image, ScrollView, TouchableOpacity, View } from "react-native";
-import { Container, Content, Text } from "native-base";
+import { Image, TouchableOpacity, View, Text } from "react-native";
+import { Container, Content } from "native-base";
 import * as React from "react";
-import IdProductCard from "../../components/IdProductCard";
+import IDCard from "../../components/IdCard";
 import IDViewScreen from "./IDViewScreen";
 import { styles } from "./Styles";
 import HeaderComponent from "../../components/headerComponent";
 import images from "../../assets/images";
-import { Col, Grid } from "react-native-easy-grid";
 
 export interface Props {}
 
@@ -26,24 +25,24 @@ export const render = (compRef: IDViewScreen) => (
     <HeaderComponent title="View ID" message back/>
     <Content>
       <View style={styles.welcomeContainer}>
-        <IdProductCard ref={(ref) => (compRef.imageRef = ref)} {...compRef.state.idcardInfo} />
+        <IDCard {...compRef.state.idcardInfo} />
       </View>
-      <Grid>
-        <Col>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity style={{width: '100%', justifyContent: 'center', alignItems: 'center'}} onPress={compRef.state.share}>
-              <Image source={images.shareBtn} style={{width: '85%', resizeMode: 'contain'}}/>
-            </TouchableOpacity>
-          </View>
-        </Col>
-        <Col>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity style={{width: '100%', justifyContent: 'center', alignItems: 'center'}} onPress={compRef.state.download}>
-              <Image source={images.downloadBtn} style={{width: '85%', resizeMode: 'contain'}}/>
-            </TouchableOpacity>
-          </View>
-        </Col>
-      </Grid>
+      <View style={styles.btnContainer}>
+        <TouchableOpacity style={styles.btnAction} onPress={compRef.state.share}>
+          <Text style={styles.uploadPhotoText}>Forward</Text>
+          <Image 
+            style={styles.uplaodPhotoBtnStyle}
+            source={images.uploadPhotoBtn}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btnAction} onPress={compRef.state.download}>
+          <Text style={styles.uploadPhotoText}>Save</Text>
+          <Image 
+            style={styles.uplaodPhotoBtnStyle}
+            source={images.uploadPhotoBtn}
+          />
+        </TouchableOpacity>
+      </View>
     </Content>
   </Container>
 );

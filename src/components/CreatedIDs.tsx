@@ -104,8 +104,8 @@ export default class CreatedID extends React.Component<Props> {
             </Body>
           </CardItem>
           <CardItem style={styles.cardHeader}>
-            <Grid style={{ flex: 1, justifyContent: "space-between" }}>
-              <Col style={{ height: 50, flexDirection: 'column', alignItems: 'center' }} size={3}>
+            <Grid style={{ flex: 1, justifyContent: "space-between", padding: 0 }}>
+              <Col style={{ height: 50, flexDirection: 'column', alignItems: 'center', paddingHorizontal: 0 }} size={3}>
                 <TouchableOpacity
                   style={{
                     flex: 1,
@@ -303,20 +303,20 @@ const styles = StyleSheet.create({
   },
   btnAction: {
     fontFamily: "sf-regular",
-    fontSize: wp("4"),
+    fontSize: wp("4.5"),
     color: Colors.mainfontColor,
     backgroundColor: 'rgba(197, 201, 217, 0.16)',
     paddingHorizontal: wp("6"),
-    paddingVertical: wp("3"),
+    paddingVertical: wp("2"),
     borderRadius: 20
   },
   btnBuy: {
     fontFamily: "sf-regular",
-    fontSize: wp("4"),
+    fontSize: wp("4.5"),
     color: Colors.white,
     backgroundColor: Colors.mainColor,
-    paddingHorizontal: wp("10"),
-    paddingVertical: wp("3"),
+    paddingHorizontal: wp("12"),
+    paddingVertical: wp("2"),
     borderRadius: 20
   }
 });
