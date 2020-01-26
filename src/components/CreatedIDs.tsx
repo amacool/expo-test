@@ -49,7 +49,7 @@ export default class CreatedID extends React.Component<Props> {
           noShadow
         >
           <CardItem header style={styles.cardHeader}>
-            <Image source={images.cardTopSlot}  style={{position: 'absolute', top: -20, zIndex: 10,}}/>
+            {/* <Image source={images.cardTopSlot}  style={{position: 'absolute', top: -20, zIndex: 10,}}/> */}
             <Title style={[styles.headerState,  {fontFamily: "Metropolis-Bold",}]} uppercase>
               PET IDENTIFICATION
             </Title>
