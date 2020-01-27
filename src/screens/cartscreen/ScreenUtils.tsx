@@ -76,9 +76,11 @@ export const render = (compRef: CartScreen) => (
               (dentist, day care, ice cream shop) you'd{"\n"}
               like us to work with to get you a Free Kids ID.
             </Text>
-            <Text style={styles.btnContact}>
-              Contact now
-            </Text>
+            <TouchableOpacity onPress={compRef._handleContactPress}>
+              <Text style={styles.btnContact}>
+                Contact now
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.buttonContainer}>

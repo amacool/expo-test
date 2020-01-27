@@ -118,6 +118,10 @@ export default class CartScreen extends React.Component<screenUtils.Props, scree
       alert("Enter code please");
   }
 
+  _handleContactPress = () => {
+    navigationStore.navigateTo('contact');
+  };
+
   public render() {
     return screenUtils.render(this);
   }

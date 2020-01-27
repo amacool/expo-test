@@ -1,12 +1,13 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import Colors from "../../constants/Colors";
+import { widthPercentageToDP as wp} from "../../helpers/Responsive";
+import RF from "react-native-responsive-fontsize";
 
 interface CheckOutScreenStyles {
   container: ViewStyle;
   welcomeContainer: ViewStyle;
   buttonContainer: ViewStyle;
   formText: ViewStyle;
-  inValidForm: ViewStyle;
   multilineInput: ViewStyle;
   formSwitch: ViewStyle;
   uploadBotton: ViewStyle;
@@ -14,6 +15,7 @@ interface CheckOutScreenStyles {
   createBotton: ViewStyle;
   claimText: TextStyle;
   problemText: TextStyle;
+  btnSendMsg: TextStyle;
 }
 
 export const styles = StyleSheet.create<CheckOutScreenStyles>({
@@ -31,21 +33,17 @@ export const styles = StyleSheet.create<CheckOutScreenStyles>({
     alignItems: "center",
   },
   formText: {
-    fontFamily: 'Metropolis-Thin',
+    fontFamily: 'sf-regular',
     width: "100%",
     backgroundColor: Colors.transparent,
-    borderBottomWidth: 1,
-    height: 20,
-    borderBottomColor: Colors.tabIconDefault,
-  },
-  inValidForm: {
-    fontFamily: 'Metropolis-Thin',
-    borderBottomColor: Colors.buttonRed,
+    borderBottomWidth: 0,
+    borderBottomColor: 'transparent',
+    marginTop: 10,
+    textAlign: 'left'
   },
   multilineInput: {
-    fontFamily: 'Metropolis-Thin',
+    fontFamily: 'sf-regular',
     minHeight: 100,
-    paddingTop: 10,
     textAlignVertical: 'top'
   },
   formSwitch: {
@@ -89,4 +87,17 @@ export const styles = StyleSheet.create<CheckOutScreenStyles>({
     fontFamily: "sf-regular",
     color: Colors.mainfontColor,
   },
+  btnSendMsg: {
+    fontFamily: "Metropolis-Medium",
+    color: "white",
+    fontWeight: "400",
+    borderRadius: wp('4'),
+    backgroundColor: '#FD7468',
+    lineHeight: wp('8'),
+    width: wp('95'),
+    fontSize: RF(2.7),
+    textTransform: 'none',
+    padding: wp(3),
+    textAlign: 'center'
+  }
 });
