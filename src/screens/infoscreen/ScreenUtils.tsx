@@ -137,11 +137,6 @@ export const render = (compRef: MissingScreen) => (
           </TouchableOpacity>
         </View>
       )}
-      {/*<View style={styles.buttonContainer}>*/}
-      {/*<TouchableOpacity onPress={compRef._handleHelpPress} style={styles.problemBotton}>*/}
-      {/*<Text style={[styles.problemText]}>Problem Uploading?</Text>*/}
-      {/*</TouchableOpacity>*/}
-      {/*</View>*/}
 
       {/* {compRef.state.isIDSelected && ( */}
         <Form style={{padding: 10}}>
@@ -264,21 +259,6 @@ export const render = (compRef: MissingScreen) => (
             />
           </CardInputComponent>
 
-          <CardInputComponent label="Address">
-            <Input
-              placeholder="Enter Address..."
-              placeholderTextColor={Colors.placeholder}
-              onChangeText={(text) => compRef.state.changeInfo('address', text)}
-              value={compRef.state.idcardInfo.address}
-              style={[
-                styles.formText,
-                compRef.state.idcardInfoValidation.address &&
-                !compRef.state.idcardInfo.address &&
-                styles.inValidForm,
-              ]}
-            />
-          </CardInputComponent>
-
           <CardInputComponent label="City">
             <Input
               placeholder="Enter City..."
@@ -355,7 +335,7 @@ export const render = (compRef: MissingScreen) => (
             />
           </CardInputComponent>
 
-          <CardInputComponent label="Country">
+          {/* <CardInputComponent label="Country">
             <Input
               placeholder="Enter Country..."
               placeholderTextColor={Colors.placeholder}
@@ -368,7 +348,51 @@ export const render = (compRef: MissingScreen) => (
                 styles.inValidForm,
               ]}
             />
-          </CardInputComponent>
+          </CardInputComponent> */}
+          
+          <CardPickerComponent label="Country">
+          <Picker
+            mode="dropdown"
+            placeholder="Select Country"
+            placeholderStyle={{ color: Colors.placeholder }}
+            style={{
+              width: "100%",
+              height: 40,
+              backgroundColor: 'white',
+              borderBottomWidth: 0,
+              color: Colors.activeTextColor
+            }}
+            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Medium" }}
+            iosIcon={
+              <Icon
+                name="arrow-down"
+                style={{ fontSize: 25, position: "absolute", right: 0 }}
+              />
+            }
+            selectedValue={
+              compRef.state.idcardInfo.country !== ""
+                ? compRef.state.idcardInfo.country
+                : "Select State"
+            }
+            onValueChange={(itemValue, itemIndex) =>
+              compRef.state.changeCountry(itemValue, itemIndex)
+            }
+          >
+            {compRef.state.countries &&
+            compRef.state.countries.length &&
+            compRef.state.countries.map((item, key) => {
+              return (
+                <Item
+                  color={Colors.activeTextColor}
+                  label={item.name}
+                  value={item.name}
+                  key={key}
+                  style={{ width: 100, backgroundColor: Colors.white }}
+                />
+              );
+            })}
+          </Picker>
+        </CardPickerComponent>
 
           <CardInputComponent label="Note">
             <Input

@@ -159,6 +159,7 @@ export const render = (compRef: IDEditScreen) => (
         </CardInputComponent>
 
         <CardInputComponent label="Contact">
+          <Text style={{ color: Colors.mainColor, alignSelf: 'flex-end', marginTop: -20 }}>+ Add another</Text>
           <Input
             placeholder="555 555 5555"
             placeholderTextColor={Colors.placeholder}
