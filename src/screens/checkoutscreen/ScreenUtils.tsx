@@ -22,7 +22,7 @@ import Colors from "../../constants/Colors";
 import CardInputComponent from "../../components/CardInputComponent";
 import CardPickerComponent from "../../components/CardPickerComponent";
 import images from "../../assets/images";
-import { Col, Grid } from "react-native-easy-grid";
+import { Grid } from "react-native-easy-grid";
 
 export interface Props {}
 
@@ -43,24 +43,45 @@ export interface State {
 
 export const render = (compRef: CheckOutScreen) => (
   <Container style={styles.container}>
-    <HeaderComponent title="Check Out" message back checked={compRef.state.isValid}/>
+    <HeaderComponent title="Checkout" message back checked={compRef.state.isValid}/>
     {compRef.state && compRef.state.isLoading &&
       <ActivityIndicator
         style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         size="large"
         color={Colors.tintColor} />
     }
+    <View style={styles.totalContainer}>
+      <View style={styles.totalRow}>
+        <Text style={styles.totalLabel}>Cart total (IDs x5)</Text>
+        <Text style={styles.totalValue}>$0</Text>
+      </View>
+      <View style={styles.totalRow}>
+        <Text style={styles.totalLabel}>Tax</Text>
+        <Text style={styles.totalValue}>$0</Text>
+      </View>
+      <View style={[styles.totalRow, { borderBottomColor: '#7F8FA6', borderBottomStyle: 'solid', borderBottomWidth: 1 }]}>
+        <Text style={styles.totalLabel}>Delivery</Text>
+        <Text style={styles.totalValue}>$0</Text>
+      </View>
+      <View style={[styles.totalRow, { marginTop: 15, paddingBottom: 0 }]}>
+        <Text style={styles.totalLabel}>Subtotal</Text>
+        <Text style={[styles.totalValue, { fontSize: 20 }]}>FREE</Text>
+      </View>
+    </View>
     {compRef.state && !compRef.state.isLoading &&
       <Content style={styles.container} disableKBDismissScroll={true}>
         <Title
           style={{
-            fontFamily: "Metropolis-Bold",
-            color: Colors.black,
+            fontFamily: "sf-regular",
+            fontWeight: 'bold',
+            color: Colors.mainfontColor,
             textAlign: 'left',
             padding: 5,
-            marginLeft: 15
-          }}>
-          Shipping address
+            marginLeft: 15,
+            marginTop: 25
+          }}
+        >
+          Shipping method
         </Title>
         <Form style={{padding: 10}}>
           <CardInputComponent label="Full Name">
@@ -72,8 +93,8 @@ export const render = (compRef: CheckOutScreen) => (
               value={compRef.state.checkOutInfo.name}
               style={[
                 styles.formText,
-                compRef.state.checkOutInfoValidation.name &&
-                !compRef.state.checkOutInfo.name && styles.inValidForm,
+                // compRef.state.checkOutInfoValidation.name &&
+                // !compRef.state.checkOutInfo.name && styles.inValidForm,
               ]}
             />
           </CardInputComponent>
@@ -185,25 +206,27 @@ export const render = (compRef: CheckOutScreen) => (
         </Form>
         <Title
           style={{
-            fontFamily: "Metropolis-Bold",
-            color: Colors.black,
+            fontFamily: "sf-regular",
+            color: Colors.mainfontColor,
+            fontWeight: 'bold',
             textAlign: 'left',
             padding: 5,
-            marginLeft: 15
-          }}>
+            marginLeft: 15,
+            marginTop: 25
+          }}
+        >
           Delivery method
         </Title>
-        <Grid style={{padding: 10}}>
-          <Col>
-            <Card>
-              <CardItem>
-                <Body style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                  height: 50,
-                  padding: 10
-                }}>
+        <Grid style={{padding: 10, justifyContent: 'space-between'}}>
+          <Card style={styles.cardWrapper}>
+            <CardItem style={styles.card}>
+              <Body style={{
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                height: 50,
+                padding: 10
+              }}>
                 <Image
                   source={images.fedexIcon}
                   resizeMode="contain"
@@ -211,22 +234,18 @@ export const render = (compRef: CheckOutScreen) => (
                     width: "100%",
                   }}
                 />
-                <Text style={{ fontSize: 12, fontFamily: 'Metropolis-Thin' }}>
-                  FedEx
-                </Text>
-                </Body>
-              </CardItem>
-            </Card>
-          </Col>
-          <Col>
-            <Card>
-              <CardItem>
-                <Body style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                  height: 50,
-                }}>
+              </Body>
+            </CardItem>
+            <Text style={styles.totalLabel}>2-3 days</Text>
+          </Card>
+          <Card style={styles.cardWrapper}>
+            <CardItem style={styles.card}>
+              <Body style={{
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                height: 50,
+              }}>
                 <Image
                   source={images.uspsIcon}
                   resizeMode="contain"
@@ -234,22 +253,18 @@ export const render = (compRef: CheckOutScreen) => (
                     width: "100%",
                   }}
                 />
-                <Text style={{ fontSize: 12, fontFamily: 'Metropolis-Thin' }}>
-                  USPSCOM
-                </Text>
-                </Body>
-              </CardItem>
-            </Card>
-          </Col>
-          <Col>
-            <Card>
-              <CardItem>
-                <Body style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                  height: 50,
-                }}>
+              </Body>
+            </CardItem>
+            <Text style={styles.totalLabel}>2-3 days</Text>
+          </Card>
+          <Card style={styles.cardWrapper}>
+            <CardItem style={styles.card}>
+              <Body style={{
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                height: 50,
+              }}>
                 <Image
                   source={images.dhlIcon}
                   resizeMode="contain"
@@ -257,20 +272,19 @@ export const render = (compRef: CheckOutScreen) => (
                     width: "100%",
                   }}
                 />
-                <Text style={{ fontSize: 12, fontFamily: 'Metropolis-Thin' }}>
-                  DHL
-                </Text>
-                </Body>
-              </CardItem>
-            </Card>
-          </Col>
+              </Body>
+            </CardItem>
+            <Text style={styles.totalLabel}>2-3 days</Text>
+          </Card>
         </Grid>
         <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
           <TouchableOpacity
             style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
             onPress={compRef.state.checkOut}
           >
-            <Image source={images.submitOrder} style={{width: '85%', resizeMode: 'contain'}}/>
+            <Text style={styles.btnBottom}>
+              Checkout
+            </Text>
           </TouchableOpacity>
         </View>
       </Content>

@@ -68,7 +68,7 @@ export const styles = StyleSheet.create<CartScreenStyles>({
     textDecorationLine: 'underline',
   },
   btnBottom: {
-    fontFamily: "Metropolis-Medium",
+    fontFamily: "sf-regular",
     color: "white",
     fontWeight: "400",
     borderRadius: wp('4'),

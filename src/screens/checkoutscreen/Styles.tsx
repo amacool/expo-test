@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import Colors from "../../constants/Colors";
+import { widthPercentageToDP as wp } from "../../helpers/Responsive";
+import RF from "react-native-responsive-fontsize"
 
 interface HomeScreenStyles {
   container: ViewStyle;
@@ -14,6 +16,13 @@ interface HomeScreenStyles {
   createBotton: ViewStyle;
   claimText: TextStyle;
   problemText: TextStyle;
+  totalRow: ViewStyle;
+  totalContainer: ViewStyle;
+  totalLabel: TextStyle;
+  totalValue: TextStyle;
+  card: ViewStyle;
+  cardWrapper: ViewStyle;
+  btnBottom: TextStyle;
 }
 
 export const styles = StyleSheet.create<HomeScreenStyles>({
@@ -37,7 +46,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     height: 20,
     borderBottomColor: Colors.tabIconDefault,
     fontSize: 14,
-    fontFamily: 'Metropolis-Thin'
+    fontFamily: 'sf-regular'
   },
   inValidForm: {
     borderBottomColor: Colors.buttonRed,
@@ -45,7 +54,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   },
   inputForm: {
     fontSize: 14,
-    fontFamily: 'Metropolis-Thin'
+    fontFamily: 'sf-regular'
   },
   formSwitch: {
     marginTop: 20,
@@ -88,4 +97,52 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     fontFamily: "sf-regular",
     color: Colors.mainfontColor,
   },
+  totalContainer: {
+    backgroundColor: Colors.white,
+    padding: 20,
+    marginHorizontal: '2.5%',
+    borderRadius: 10
+  },
+  totalRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingBottom: 10
+  },
+  totalLabel: {
+    color: '#7F8FA6',
+    fontSize: 17,
+    fontFamily: "sf-regular",
+    textAlign: 'center',
+    marginTop: 5
+  },
+  totalValue: {
+    color: Colors.mainfontColor,
+    fontSize: 17,
+    fontFamily: "sf-regular",
+  },
+  card: {
+    borderRadius: 10,
+    borderColor: 'transparent',
+    backgroundColor: Colors.white
+  },
+  cardWrapper: {
+    elevation: 0,
+    shadowColor: 'transparent',
+    backgroundColor: '#F6F7FB',
+    borderColor: 'transparent',
+    width: '31%'
+  },
+  btnBottom: {
+    fontFamily: "sf-regular",
+    color: "white",
+    fontWeight: "400",
+    borderRadius: wp('4'),
+    backgroundColor: '#FD7468',
+    lineHeight: wp('8'),
+    marginBottom: wp('5'),
+    width: wp('95'),
+    fontSize: RF(2.7),
+    textTransform: 'none',
+    padding: wp(3),
+    textAlign: 'center'}
 });
