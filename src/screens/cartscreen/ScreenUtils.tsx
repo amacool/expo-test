@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ActivityIndicator
 } from "react-native";
-import {Card, CardItem, Body, Content, ListItem, Right, Input} from "native-base";
+import { Body, Right, Input} from "native-base";
 import * as React from "react";
 import CartScreen from "./CartScreen";
 import { styles } from "./Styles";
@@ -14,6 +14,7 @@ import HeaderComponent from "../../components/headerComponent";
 import images from "../../assets/images";
 import CartCard from "../../components/CartCard";
 import Colors from "../../constants/Colors";
+import { widthPercentageToDP as wp } from "../../helpers/Responsive";
 
 export interface Props {}
 
@@ -98,7 +99,7 @@ export const render = (compRef: CartScreen) => (
       <>
         {compRef.state.data.length ?
           <View style={{ flex: 1 }}>
-            <Content style={styles.container}>
+            <View style={[styles.container, { flexDirection: 'column', justifyContent: 'space-between' }]}>
               {compRef.state && compRef.state.isVerifedGit && (
                 <FlatList
                   contentContainerStyle={{ paddingHorizontal: 0, paddingVertical: 5 }}
@@ -120,9 +121,11 @@ export const render = (compRef: CartScreen) => (
                 style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
                 onPress={compRef.state.checkOut}
               >
-                <Image source={images.checkOutBtn} style={{width: '85%', resizeMode: 'contain'}}/>
+                <Text style={[styles.btnBottom, { marginBottom: wp('10') }]}>
+                  Proceed
+                </Text>
               </TouchableOpacity>
-            </Content>
+            </View>
           </View>
           :
           <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>

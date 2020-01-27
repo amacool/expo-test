@@ -19,66 +19,57 @@ export default class CartCard extends React.Component<Props> {
   render() {
     return (
       <Card
-        style={[styles.cardContainer, styles.noPadding]}
+        style={styles.cardContainer}
         key={this.props.index}
         noShadow
       >
         <Body style={styles.cardBody}>
-        <View style={styles.avatarImageView}>
-          {!!this.props.item.photo && (
-            <Image style={styles.avatarImage} source={{ uri: this.props.item.photo }} />
-          )}
-          {!this.props.item.photo && (
-            <Image style={styles.avatarImage} source={images.blankBaby} />
-          )}
-        </View>
-        <View style={styles.informationView}>
-          <View style={styles.inforDetailContainer}>
-            <View style={styles.inforDetaiItem}>
-              <Text style={styles.inforDetail} uppercase>{this.props.item.name}</Text>
-            </View>
-            <View style={styles.inforDetaiItem}>
-              <Text style={styles.inforTitle}>Date:</Text>
-              <Text style={styles.inforDetail}>
-                {moment(this.props.item.issueDate).format("MM-DD-YYYY")}
-              </Text>
+          <View style={styles.avatarImageView}>
+            {!!this.props.item.photo && (
+              <Image style={styles.avatarImage} source={{ uri: this.props.item.photo }} />
+            )}
+            {!this.props.item.photo && (
+              <Image style={styles.avatarImage} source={images.blankBaby} />
+            )}
+          </View>
+          <View style={styles.informationView}>
+            <View style={styles.inforDetailContainer}>
+              <View style={styles.inforDetaiItem}>
+                <Text style={styles.inforName}>{this.props.item.name}</Text>
+              </View>
+              <View style={styles.inforDetaiItem}>
+                <Text style={styles.inforTitle}>ID Color:</Text>
+                <Text style={styles.inforDetail}>
+                  {this.props.item.color}
+                </Text>
+              </View>
+              <View style={styles.inforDetaiItem}>
+                <Text style={styles.inforTitle}>Size:</Text>
+                <Text style={styles.inforDetail}>
+                  {this.props.item.size}
+                </Text>
+              </View>
             </View>
           </View>
           <View style={styles.inforDetailNoteContainer}>
-            <Grid style={{ position: "absolute", bottom: 0, width: "100%", flex: 1, justifyContent: "center", alignItems: "center"  }}>
-              <Col>
+            <View style={{ height: '100%', width: '100%', justifyContent: "space-between", flexDirection: "column" }}>
+              <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
+                <View/>
+                <Image style={styles.btnClose} source={images.closeIcon} />
+              </View>
+              <View style={{ justifyContent: "space-between", alignItems: "center", flexDirection: "row", width: '100%', }}>
                 <TouchableOpacity onPress={() => this.props.deleteCart(this.props.index)}>
-                  <Image
-                    source={images.minusIcon}
-                    resizeMode="contain"
-                    style={{
-                      width: '100%',
-                      marginTop: 8
-                    }}
-                  />
+                  <Text style={styles.btnCounter}>-</Text>
                 </TouchableOpacity>
-              </Col>
-              <Col>
-                <Text style={{ width: "100%", textAlign: 'center'}}>
+                <Text style={{ textAlign: 'center'}}>
                   {this.props.item.count}
                 </Text>
-              </Col>
-              <Col>
                 <TouchableOpacity onPress={() => this.props.addCart(this.props.index)}>
-                  <Image
-                    source={images.pulusIcon}
-                    resizeMode="contain"
-                    style={{
-                      width: '100%',
-                      marginTop: 8
-                    }}
-                  />
+                  <Text style={styles.btnCounter}>+</Text>
                 </TouchableOpacity>
-              </Col>
-              <Col></Col>
-            </Grid>
+              </View>
+            </View>
           </View>
-        </View>
         </Body>
       </Card>
     );
@@ -92,13 +83,15 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     alignItems: "stretch",
-    padding: 0,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0,
     shadowRadius: 5,
     elevation: 0,
     borderWidth: 0,
+    borderColor: 'transparent',
     alignSelf: "center",
     justifyContent: "flex-start",
   },
@@ -115,7 +108,7 @@ const styles = StyleSheet.create({
   },
   avatarImageView: {
     justifyContent: "flex-start",
-    flex: 0.35,
+    flex: 0.25,
     height: Dimensions.get("screen").width * 0.35 - 18,
     color: Colors.mainfontColor,
     borderTopLeftRadius: 10,
@@ -123,24 +116,16 @@ const styles = StyleSheet.create({
   },
   avatarImage: {
     resizeMode: "cover",
-    borderRadius: 10,
-    borderTopRightRadius: 0,
-    borderBottomRightRadius: 0,
-    marginLeft: -5,
     width: "100%",
     height: "100%",
-    justifyContent: "flex-start",
+    borderRadius: 10,
   },
   informationView: {
     paddingHorizontal: 10,
     flexDirection: "column",
-    flex: 0.64,
+    flex: 0.5,
     height: Dimensions.get("screen").width * 0.35 - 18,
     justifyContent: "space-evenly",
-  },
-  inforDetailNameContainer: {
-    flexDirection: "row",
-    flex: 1,
   },
   inforDetailContainer: {
     flexDirection: "column",
@@ -154,14 +139,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inforDetailNoteContainer: {
-    flexDirection: "row",
-    height: 15,
-    flex: 1,
-    marginTop: 5,
-  },
-  inforName: {
-    paddingHorizontal: 10,
-    fontWeight: "bold",
+    flex: 0.3,
+    paddingVertical: 10
   },
   inforIcon: {
     width: 13,
@@ -169,15 +148,21 @@ const styles = StyleSheet.create({
   },
   inforTitle: {
     fontSize: wp("3.5"),
-    fontFamily: "Metropolis-Medium",
+    fontFamily: "sf-regular",
     marginLeft: PlatformConstants.interfaceIdiom == 'pad' ? 15 : 5,
-    color: "#000",
+    color: "#7F8FA6",
   },
   inforDetail: {
-    fontSize: wp("4.8"),
+    fontSize: wp("4"),
     marginLeft: 5,
-    fontFamily: "Metropolis-Bold",
+    fontFamily: "sf-regular",
     fontWeight: "bold",
+    color: "#000",
+  },
+  inforName: {
+    fontSize: wp("6"),
+    marginLeft: 5,
+    fontFamily: "sf-regular",
     color: "#000",
   },
   inforMoney: {
@@ -197,4 +182,17 @@ const styles = StyleSheet.create({
     height: 49,
     resizeMode: "contain",
   },
+  btnCounter: {
+    width: wp("6.5"),
+    height: wp("6.5"),
+    borderRadius: 8,
+    backgroundColor: 'rgba(127, 143, 166, 0.1)',
+    color: Colors.mainfontColor,
+    textAlign: 'center',
+    fontSize: wp("4.5"),
+  },
+  btnClose: {
+    width: wp("4.5"),
+    height: wp("4.5"),
+  }
 });

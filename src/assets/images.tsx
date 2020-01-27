@@ -50,5 +50,6 @@ const images = {
   appleIcon: require("../../src/assets/images/apple.png"),
   dialIcon: require("../../src/assets/images/dial.png"),
   pugIcon: require("../../src/assets/images/pug.png"),
+  closeIcon: require("../../src/assets/images/close.png"),
 };
 export default images;
