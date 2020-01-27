@@ -23,17 +23,19 @@ export const render = (compRef: SuccessScreen) => (
       <View style={styles.welcomeContainer}>
         <Image source={images.successImg}/>
         <Title style={{
-          fontFamily: "Metropolis-Bold",
-          color: Colors.black,
+          fontFamily: "sf-regular",
+          color: Colors.mainfontColor,
           fontSize: 30,
+          fontWeight: 'bold',
           padding: 5,
+          marginTop: 20
         }}
         >
           Success!
         </Title>
         <Title style={{
-          fontFamily: "Metropolis-Medium",
-          color: Colors.black,
+          fontFamily: "sf-regular",
+          color: "#7F8FA6",
           fontSize: 13,
           padding: 5,
         }}>
@@ -45,7 +47,9 @@ export const render = (compRef: SuccessScreen) => (
           style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
           onPress={compRef.state.continueApp}
         >
-          <Image source={images.submitOrder} style={{width: '85%', resizeMode: 'contain'}}/>
+          <Text style={styles.btnBottom}>
+            Done
+          </Text>
         </TouchableOpacity>
       </View>
     </Content>

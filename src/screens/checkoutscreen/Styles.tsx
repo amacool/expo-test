@@ -144,5 +144,6 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     fontSize: RF(2.7),
     textTransform: 'none',
     padding: wp(3),
-    textAlign: 'center'}
+    textAlign: 'center'
+  }
 });
