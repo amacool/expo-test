@@ -85,13 +85,15 @@ export const render = (compRef: CartScreen) => (
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
-          >
-            <Text style={styles.btnBottom}>
-              Next
-            </Text>
-          </TouchableOpacity>
+          <View style={styles.btnBottomWrapper}>
+            <TouchableOpacity
+              style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+            >
+              <Text style={styles.btnBottom}>
+                Next
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     }
@@ -99,32 +101,36 @@ export const render = (compRef: CartScreen) => (
       <>
         {compRef.state.data.length ?
           <View style={{ flex: 1 }}>
-            <View style={[styles.container, { flexDirection: 'column', justifyContent: 'space-between' }]}>
+            <View style={[styles.container, { flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', width: '100%' }]}>
               {compRef.state && compRef.state.isVerifedGit && (
-                <FlatList
-                  contentContainerStyle={{ paddingHorizontal: 0, paddingVertical: 5 }}
-                  renderItem={({ item, index }) => {
-                    return (
-                      <CartCard
-                        item={item}
-                        index={index}
-                        addCart={compRef.state.addCart}
-                        deleteCart={compRef.state.deleteCart}
-                      />
-                    );
-                  }}
-                  data={compRef.state.data}
-                  keyExtractor={(item, index) => index.toString()}
-                />
+                <View style={{ width: '100%' }}>
+                  <FlatList
+                    contentContainerStyle={{ paddingHorizontal: 0, paddingVertical: 5, width: '100%' }}
+                    renderItem={({ item, index }) => {
+                      return (
+                        <CartCard
+                          item={item}
+                          index={index}
+                          addCart={compRef.state.addCart}
+                          deleteCart={compRef.state.deleteCart}
+                        />
+                      );
+                    }}
+                    data={compRef.state.data}
+                    keyExtractor={(item, index) => index.toString()}
+                  />
+                </View>
               )}
-              <TouchableOpacity
-                style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
-                onPress={compRef.state.checkOut}
-              >
-                <Text style={[styles.btnBottom, { marginBottom: wp('10') }]}>
-                  Proceed
-                </Text>
-              </TouchableOpacity>
+              <View style={styles.btnProceedWrapper}>
+                <TouchableOpacity
+                  style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+                  onPress={compRef.state.checkOut}
+                >
+                  <Text style={[styles.btnBottom]}>
+                    Proceed
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
           :

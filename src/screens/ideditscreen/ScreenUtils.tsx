@@ -348,7 +348,9 @@ export const render = (compRef: IDEditScreen) => (
             style={[styles.btnUpload, styles.btnSave]}
             onPress={compRef.state.createKidsId}
           >
-            <Text style={styles.btnUploadText}>Save</Text>
+            <View style={styles.btnUploadTextWrapper}>
+              <Text style={styles.btnUploadText}>Save</Text>
+            </View>
           </TouchableOpacity>
         </View>
       </Form>

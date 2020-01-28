@@ -1,7 +1,6 @@
-import { TouchableOpacity, View, Image, ActivityIndicator } from "react-native";
+import { TouchableOpacity, View, Image, ActivityIndicator, ScrollView } from "react-native";
 import {
   Container,
-  Content,
   Form,
   Icon,
   Picker,
@@ -59,7 +58,7 @@ export const render = (compRef: CheckOutScreen) => (
         <Text style={styles.totalLabel}>Tax</Text>
         <Text style={styles.totalValue}>$0</Text>
       </View>
-      <View style={[styles.totalRow, { borderBottomColor: '#7F8FA6', borderBottomStyle: 'solid', borderBottomWidth: 1 }]}>
+      <View style={[styles.totalRow, { borderBottomColor: '#7F8FA6', borderBottomWidth: 1 }]}>
         <Text style={styles.totalLabel}>Delivery</Text>
         <Text style={styles.totalValue}>$0</Text>
       </View>
@@ -69,225 +68,231 @@ export const render = (compRef: CheckOutScreen) => (
       </View>
     </View>
     {compRef.state && !compRef.state.isLoading &&
-      <Content style={styles.container} disableKBDismissScroll={true}>
-        <Title
-          style={{
-            fontFamily: "sf-regular",
-            fontWeight: 'bold',
-            color: Colors.mainfontColor,
-            textAlign: 'left',
-            padding: 5,
-            marginLeft: 15,
-            marginTop: 25
-          }}
-        >
-          Shipping method
-        </Title>
-        <Form style={{padding: 10}}>
-          <CardInputComponent label="Full Name">
-            <Input
-              onChangeText={(text) => compRef.state.changeInfo('name', text)}
-              maxLength={25}
-              placeholder="Enter Full Name"
-              placeholderTextColor={Colors.placeholder}
-              value={compRef.state.checkOutInfo.name}
-              style={[
-                styles.formText,
-                // compRef.state.checkOutInfoValidation.name &&
-                // !compRef.state.checkOutInfo.name && styles.inValidForm,
-              ]}
-            />
-          </CardInputComponent>
-
-          <CardInputComponent label="Address">
-            <Input
-              onChangeText={(text) => compRef.state.changeInfo('address', text)}
-              maxLength={25}
-              placeholder="Enter Address"
-              placeholderTextColor={Colors.placeholder}
-              value={compRef.state.checkOutInfo.address}
-              style={[
-                styles.formText,
-                compRef.state.checkOutInfoValidation.address &&
-                !compRef.state.checkOutInfo.address && styles.inValidForm,
-              ]}
-            />
-          </CardInputComponent>
-
-          <CardInputComponent label="City">
-            <Input
-              onChangeText={(text) => compRef.state.changeInfo('city', text)}
-              maxLength={25}
-              placeholder="Enter City"
-              placeholderTextColor={Colors.placeholder}
-              value={compRef.state.checkOutInfo.city}
-              style={[
-                styles.formText,
-                compRef.state.checkOutInfoValidation.city &&
-                !compRef.state.checkOutInfo.city && styles.inValidForm,
-              ]}
-            />
-          </CardInputComponent>
-
-          <CardInputComponent label="State/Province/Region">
-            <Input
-              onChangeText={(text) => compRef.state.changeInfo('state', text)}
-              maxLength={25}
-              placeholder="Enter City"
-              placeholderTextColor={Colors.placeholder}
-              value={compRef.state.checkOutInfo.state}
-              style={[
-                styles.formText,
-                compRef.state.checkOutInfoValidation.state &&
-                !compRef.state.checkOutInfo.state && styles.inValidForm,
-              ]}
-            />
-          </CardInputComponent>
-
-
-          <CardInputComponent label="Zip Code(Postal Code)">
-            <Input
-              onChangeText={(text) => compRef.state.changeInfo('zipcode', text)}
-              maxLength={25}
-              placeholder="Enter Zip Code"
-              placeholderTextColor={Colors.placeholder}
-              value={compRef.state.checkOutInfo.zipcode}
-              style={[
-                styles.formText,
-                compRef.state.checkOutInfoValidation.zipcode &&
-                !compRef.state.checkOutInfo.zipcode && styles.inValidForm,
-              ]}
-            />
-          </CardInputComponent>
-
-          <CardPickerComponent label="Country">
-            <Picker
-              mode="dropdown"
-              placeholder="Select Country"
-              placeholderStyle={{ color: Colors.placeholder }}
-              style={{
-                width: "100%",
-                height: 40,
-                borderBottomWidth: 0,
-                color: Colors.activeTextColor,
-                backgroundColor: Colors.itemActive,
-              }}
-              itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
-              iosIcon={
-                <Icon
-                  name="arrow-down"
-                  style={{ fontSize: 25, position: "absolute", right: 0 }}
-                />
-              }
-              selectedValue={
-                compRef.state.checkOutInfo.country !== ""
-                  ? compRef.state.checkOutInfo.country
-                  : "Select State"
-              }
-              onValueChange={(itemValue, itemIndex) =>
-                compRef.state.changeCountry(itemValue, itemIndex)
-              }
-            >
-              {compRef.state.countries &&
-              compRef.state.countries.length &&
-              compRef.state.countries.map((item, key) => {
-                return (
-                  <Item
-                    color={Colors.activeTextColor}
-                    label={item.name}
-                    value={item.name}
-                    key={key}
-                    style={{ width: 100, backgroundColor: Colors.white }}
-                  />
-                );
-              })}
-            </Picker>
-          </CardPickerComponent>
-        </Form>
-        <Title
-          style={{
-            fontFamily: "sf-regular",
-            color: Colors.mainfontColor,
-            fontWeight: 'bold',
-            textAlign: 'left',
-            padding: 5,
-            marginLeft: 15,
-            marginTop: 25
-          }}
-        >
-          Delivery method
-        </Title>
-        <Grid style={{padding: 10, justifyContent: 'space-between'}}>
-          <Card style={styles.cardWrapper}>
-            <CardItem style={styles.card}>
-              <Body style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-                height: 50,
-                padding: 10
-              }}>
-                <Image
-                  source={images.fedexIcon}
-                  resizeMode="contain"
-                  style={{
-                    width: "100%",
-                  }}
-                />
-              </Body>
-            </CardItem>
-            <Text style={styles.totalLabel}>2-3 days</Text>
-          </Card>
-          <Card style={styles.cardWrapper}>
-            <CardItem style={styles.card}>
-              <Body style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-                height: 50,
-              }}>
-                <Image
-                  source={images.uspsIcon}
-                  resizeMode="contain"
-                  style={{
-                    width: "100%",
-                  }}
-                />
-              </Body>
-            </CardItem>
-            <Text style={styles.totalLabel}>2-3 days</Text>
-          </Card>
-          <Card style={styles.cardWrapper}>
-            <CardItem style={styles.card}>
-              <Body style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-                height: 50,
-              }}>
-                <Image
-                  source={images.dhlIcon}
-                  resizeMode="contain"
-                  style={{
-                    width: "100%",
-                  }}
-                />
-              </Body>
-            </CardItem>
-            <Text style={styles.totalLabel}>2-3 days</Text>
-          </Card>
-        </Grid>
-        <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
-          <TouchableOpacity
-            style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
-            onPress={compRef.state.checkOut}
+      <ScrollView>
+        <View style={{ flexDirection: 'column', justifyContent: 'center', width: '100%' }}>
+          <Title
+            style={{
+              fontFamily: "sf-regular",
+              fontWeight: 'bold',
+              color: Colors.mainfontColor,
+              textAlign: 'left',
+              padding: 5,
+              marginLeft: 15,
+              marginTop: 25
+            }}
           >
-            <Text style={styles.btnBottom}>
-              Checkout
-            </Text>
-          </TouchableOpacity>
+            Shipping method
+          </Title>
+          <Form style={{padding: 10}}>
+            <CardInputComponent label="Full Name">
+              <Input
+                onChangeText={(text) => compRef.state.changeInfo('name', text)}
+                maxLength={25}
+                placeholder="Enter Full Name"
+                placeholderTextColor={Colors.placeholder}
+                value={compRef.state.checkOutInfo.name}
+                style={[
+                  styles.formText,
+                  // compRef.state.checkOutInfoValidation.name &&
+                  // !compRef.state.checkOutInfo.name && styles.inValidForm,
+                ]}
+              />
+            </CardInputComponent>
+
+            <CardInputComponent label="Address">
+              <Input
+                onChangeText={(text) => compRef.state.changeInfo('address', text)}
+                maxLength={25}
+                placeholder="Enter Address"
+                placeholderTextColor={Colors.placeholder}
+                value={compRef.state.checkOutInfo.address}
+                style={[
+                  styles.formText,
+                  compRef.state.checkOutInfoValidation.address &&
+                  !compRef.state.checkOutInfo.address && styles.inValidForm,
+                ]}
+              />
+            </CardInputComponent>
+
+            <CardInputComponent label="City">
+              <Input
+                onChangeText={(text) => compRef.state.changeInfo('city', text)}
+                maxLength={25}
+                placeholder="Enter City"
+                placeholderTextColor={Colors.placeholder}
+                value={compRef.state.checkOutInfo.city}
+                style={[
+                  styles.formText,
+                  compRef.state.checkOutInfoValidation.city &&
+                  !compRef.state.checkOutInfo.city && styles.inValidForm,
+                ]}
+              />
+            </CardInputComponent>
+
+            <CardInputComponent label="State/Province/Region">
+              <Input
+                onChangeText={(text) => compRef.state.changeInfo('state', text)}
+                maxLength={25}
+                placeholder="Enter City"
+                placeholderTextColor={Colors.placeholder}
+                value={compRef.state.checkOutInfo.state}
+                style={[
+                  styles.formText,
+                  compRef.state.checkOutInfoValidation.state &&
+                  !compRef.state.checkOutInfo.state && styles.inValidForm,
+                ]}
+              />
+            </CardInputComponent>
+
+
+            <CardInputComponent label="Zip Code(Postal Code)">
+              <Input
+                onChangeText={(text) => compRef.state.changeInfo('zipcode', text)}
+                maxLength={25}
+                placeholder="Enter Zip Code"
+                placeholderTextColor={Colors.placeholder}
+                value={compRef.state.checkOutInfo.zipcode}
+                style={[
+                  styles.formText,
+                  compRef.state.checkOutInfoValidation.zipcode &&
+                  !compRef.state.checkOutInfo.zipcode && styles.inValidForm,
+                ]}
+              />
+            </CardInputComponent>
+
+            <CardPickerComponent label="Country">
+              <Picker
+                mode="dropdown"
+                placeholder="Select Country"
+                placeholderStyle={{ color: Colors.placeholder }}
+                style={{
+                  width: "100%",
+                  height: 40,
+                  borderBottomWidth: 0,
+                  color: Colors.activeTextColor,
+                  backgroundColor: Colors.itemActive,
+                }}
+                itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
+                iosIcon={
+                  <Icon
+                    name="arrow-down"
+                    style={{ fontSize: 25, position: "absolute", right: 0 }}
+                  />
+                }
+                selectedValue={
+                  compRef.state.checkOutInfo.country !== ""
+                    ? compRef.state.checkOutInfo.country
+                    : "Select State"
+                }
+                onValueChange={(itemValue, itemIndex) =>
+                  compRef.state.changeCountry(itemValue, itemIndex)
+                }
+              >
+                {compRef.state.countries &&
+                compRef.state.countries.length &&
+                compRef.state.countries.map((item, key) => {
+                  return (
+                    <Item
+                      color={Colors.activeTextColor}
+                      label={item.name}
+                      value={item.name}
+                      key={key}
+                      style={{ width: 100, backgroundColor: Colors.white }}
+                    />
+                  );
+                })}
+              </Picker>
+            </CardPickerComponent>
+          </Form>
+          <Title
+            style={{
+              fontFamily: "sf-regular",
+              color: Colors.mainfontColor,
+              fontWeight: 'bold',
+              textAlign: 'left',
+              padding: 5,
+              marginLeft: 15,
+              marginTop: 25
+            }}
+          >
+            Delivery method
+          </Title>
+          <Grid style={{padding: 10, justifyContent: 'space-between'}}>
+            <Card style={styles.cardWrapper}>
+              <CardItem style={styles.card}>
+                <Body style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  height: 50,
+                  padding: 10
+                }}>
+                  <Image
+                    source={images.fedexIcon}
+                    resizeMode="contain"
+                    style={{
+                      width: "100%",
+                    }}
+                  />
+                </Body>
+              </CardItem>
+              <Text style={styles.totalLabel}>2-3 days</Text>
+            </Card>
+            <Card style={styles.cardWrapper}>
+              <CardItem style={styles.card}>
+                <Body style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  height: 50,
+                }}>
+                  <Image
+                    source={images.uspsIcon}
+                    resizeMode="contain"
+                    style={{
+                      width: "100%",
+                    }}
+                  />
+                </Body>
+              </CardItem>
+              <Text style={styles.totalLabel}>2-3 days</Text>
+            </Card>
+            <Card style={styles.cardWrapper}>
+              <CardItem style={styles.card}>
+                <Body style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  height: 50,
+                }}>
+                  <Image
+                    source={images.dhlIcon}
+                    resizeMode="contain"
+                    style={{
+                      width: "100%",
+                    }}
+                  />
+                </Body>
+              </CardItem>
+              <Text style={styles.totalLabel}>2-3 days</Text>
+            </Card>
+          </Grid>
+          <View style={{ flexDirection: 'row', marginBottom: 30, justifyContent: 'center', width: '100%' }}>
+            <View style={[styles.buttonContainer, { width: '95%' }]}>
+              <TouchableOpacity
+                style={{
+
+                }}
+                onPress={compRef.state.checkOut}
+              >
+                <Text style={styles.btnBottom}>
+                  Checkout
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
-      </Content>
+      </ScrollView>
     }
   </Container>
 );

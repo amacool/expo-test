@@ -114,9 +114,11 @@ export const render = (compRef: MissingScreen) => (
           style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
           onPress={compRef.state.chooseExistingID}
         >
-          <Text style={styles.btnExisting}>
-            Use Existing ID
-          </Text>
+          <View style={styles.btnExistingWrapper}>
+            <Text style={styles.btnExisting}>
+              Use Existing ID
+            </Text>
+          </View>
         </TouchableOpacity>
       </View>
 

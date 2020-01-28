@@ -38,6 +38,9 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   buttonContainer: {
     marginTop: 20,
     alignItems: "center",
+    borderRadius: wp('4'),
+    backgroundColor: '#FD7468',
+    width: wp('95'),
   },
   formText: {
     width: "100%",
@@ -136,11 +139,6 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     fontFamily: "sf-regular",
     color: "white",
     fontWeight: "400",
-    borderRadius: wp('4'),
-    backgroundColor: '#FD7468',
-    lineHeight: wp('8'),
-    marginBottom: wp('5'),
-    width: wp('95'),
     fontSize: RF(2.7),
     textTransform: 'none',
     padding: wp(3),

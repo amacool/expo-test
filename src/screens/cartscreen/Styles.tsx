@@ -13,6 +13,8 @@ interface CartScreenStyles {
   btnContact: TextStyle;
   buttonContainer: ViewStyle;
   btnBottom: TextStyle;
+  btnBottomWrapper: ViewStyle;
+  btnProceedWrapper: ViewStyle;
 }
 
 export const styles = StyleSheet.create<CartScreenStyles>({
@@ -71,15 +73,22 @@ export const styles = StyleSheet.create<CartScreenStyles>({
     fontFamily: "sf-regular",
     color: "white",
     fontWeight: "400",
-    borderRadius: wp('4'),
-    backgroundColor: '#FD7468',
-    lineHeight: wp('8'),
-    marginBottom: wp('15'),
-    width: wp('95'),
     fontSize: RF(2.7),
     textTransform: 'none',
     padding: wp(3),
     textAlign: 'center'
+  },
+  btnBottomWrapper: {
+    marginBottom: wp('20'),
+    width: wp('95'),
+    borderRadius: wp('4'),
+    backgroundColor: '#FD7468',
+  },
+  btnProceedWrapper: {
+    marginBottom: wp('13'),
+    width: wp('95'),
+    borderRadius: wp('4'),
+    backgroundColor: '#FD7468',
   },
   buttonContainer: {
     width: '95%',

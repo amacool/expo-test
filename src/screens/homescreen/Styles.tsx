@@ -17,6 +17,7 @@ interface HomeScreenStyles {
   claimBotton: ViewStyle;
   claimText: TextStyle;
   createDogIdBtn: TextStyle;
+  createDogIdBtnWrapper: ViewStyle;
 }
 
 export const styles = StyleSheet.create<HomeScreenStyles>({
@@ -64,7 +65,6 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     color: Colors.mainfontColor,
     lineHeight: wp('8'),
     textAlign: "center",
-    fontWeight: "bold"
   },
   bottomTitle: {
     fontSize: RF(2.8),
@@ -91,17 +91,19 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     fontWeight:'600'
   },
   createDogIdBtn: {
-    fontFamily: "Metropolis-Medium",
+    fontFamily: "sf-regular",
     color: "white",
     fontWeight: "400",
-    borderRadius: wp('4'),
-    backgroundColor: '#FD7468',
     lineHeight: wp('8'),
-    marginBottom: wp('20'),
-    width: wp('95'),
     fontSize: RF(2.7),
     textTransform: 'none',
     padding: wp(3),
     textAlign: 'center'
+  },
+  createDogIdBtnWrapper: {
+    marginBottom: wp('20'),
+    width: wp('95'),
+    borderRadius: wp('4'),
+    backgroundColor: '#FD7468',
   }
 });

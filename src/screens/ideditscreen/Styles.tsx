@@ -17,6 +17,7 @@ interface HomeScreenStyles {
   problemText: TextStyle;
   btnUpload: ViewStyle;
   btnUploadText: TextStyle;
+  btnUploadTextWrapper: ViewStyle;
   uploadPhotoBtn: ViewStyle;
   btnSave: ViewStyle;
 }
@@ -98,10 +99,17 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     justifyContent: 'space-between'
   },
   btnUploadText: {
-    color: Colors.white,
     fontFamily: "sf-regular",
+    color: "white",
+    fontWeight: "400",
     fontSize: RF(2.7),
     textTransform: 'none',
+    textAlign: 'center'
+  },
+  btnUploadTextWrapper: {
+    width: wp('95'),
+    borderRadius: wp('4'),
+    backgroundColor: '#FD7468',
   },
   uploadPhotoBtn: {
     width: 30,
@@ -109,5 +117,5 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   },
   btnSave: {
     justifyContent: 'center'
-  }
+  },
 });

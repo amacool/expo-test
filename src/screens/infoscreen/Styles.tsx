@@ -17,6 +17,7 @@ interface HomeScreenStyles {
   claimText: TextStyle;
   problemText: TextStyle;
   btnExisting: TextStyle;
+  btnExistingWrapper: ViewStyle;
   switchReward: TextStyle;
 }
 
@@ -94,20 +95,19 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     fontWeight: '300'
   },
   btnExisting: {
-    fontFamily: "Metropolis-Medium",
+    fontFamily: "sf-regular",
     color: "white",
     fontWeight: "400",
-    borderRadius: wp('4'),
-    backgroundColor: '#FD7468',
-    marginBottom: 1,
-    width: wp('95'),
+    lineHeight: wp('8'),
     fontSize: RF(2.7),
     textTransform: 'none',
-    paddingTop: wp(3),
-    paddingBottom: wp(3),
-    paddingLeft: wp(7),
-    paddingRight: wp(7),
-    textAlign: 'left'
+    padding: wp(3),
+    textAlign: 'center'
+  },
+  btnExistingWrapper: {
+    width: wp('95'),
+    borderRadius: wp('4'),
+    backgroundColor: '#FD7468',
   },
   switchReward: {
     fontFamily: "Metropolis-Medium",
@@ -128,5 +128,5 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     paddingBottom: wp(3),
     paddingLeft: wp(7),
     paddingRight: wp(7),
-  }
+  },
 });

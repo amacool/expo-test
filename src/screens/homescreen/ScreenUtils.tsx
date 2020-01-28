@@ -47,14 +47,16 @@ export const render = (compRef: HomeScreen) => (
         </View>
 
         <View style={[styles.buttonContainer, { marginBottom: 20 }]}>
-          <TouchableOpacity
-            style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
-            onPress={compRef._handleHelpPress}
-          >
-            <Text style={styles.createDogIdBtn}>
-              Create Your Dog's ID
-            </Text>
-          </TouchableOpacity>
+          <View style={styles.createDogIdBtnWrapper}>
+            <TouchableOpacity
+              style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+              onPress={compRef._handleHelpPress}
+            >
+                <Text style={styles.createDogIdBtn}>
+                  Create Your Dog's ID
+                </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     )}
