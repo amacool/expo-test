@@ -29,8 +29,8 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   },
   welcomeContainer: {
     marginTop: 30,
-    alignItems: "center",
-    paddingHorizontal: '2.5%',
+    paddingHorizontal: wp(4),
+    width: '100%'
   },
   buttonContainer: {
     marginTop: 20,
@@ -62,7 +62,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     paddingVertical: 12,
     borderRadius: 12,
     backgroundColor: Colors.tintColor,
-    paddingHorizontal: 25,
+    paddingHorizontal: wp(4),
   },
   problemBotton: {
     justifyContent: "center",
@@ -71,7 +71,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     paddingVertical: 12,
     borderRadius: 12,
     backgroundColor: Colors.transparent,
-    paddingHorizontal: 25,
+    paddingHorizontal: wp(4),
   },
   createBotton: {
     justifyContent: "center",
@@ -80,7 +80,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     paddingVertical: 12,
     borderRadius: 12,
     backgroundColor: Colors.buttonRed,
-    paddingHorizontal: 25,
+    paddingHorizontal: wp(4),
     marginBottom: 70,
   },
   claimText: {

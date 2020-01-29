@@ -337,65 +337,6 @@ export const render = (compRef: MissingScreen) => (
             />
           </CardInputComponent>
 
-          {/* <CardInputComponent label="Country">
-            <Input
-              placeholder="Enter Country..."
-              placeholderTextColor={Colors.placeholder}
-              onChangeText={(text) => compRef.state.changeInfo('country', text)}
-              value={compRef.state.idcardInfo.country}
-              style={[
-                styles.formText,
-                compRef.state.idcardInfoValidation.country &&
-                !compRef.state.idcardInfo.country &&
-                styles.inValidForm,
-              ]}
-            />
-          </CardInputComponent> */}
-          
-          <CardPickerComponent label="Country">
-          <Picker
-            mode="dropdown"
-            placeholder="Select Country"
-            placeholderStyle={{ color: Colors.placeholder }}
-            style={{
-              width: "100%",
-              height: 40,
-              backgroundColor: 'white',
-              borderBottomWidth: 0,
-              color: Colors.activeTextColor
-            }}
-            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Medium" }}
-            iosIcon={
-              <Icon
-                name="arrow-down"
-                style={{ fontSize: 25, position: "absolute", right: 0 }}
-              />
-            }
-            selectedValue={
-              compRef.state.idcardInfo.country !== ""
-                ? compRef.state.idcardInfo.country
-                : "Select State"
-            }
-            onValueChange={(itemValue, itemIndex) =>
-              compRef.state.changeCountry(itemValue, itemIndex)
-            }
-          >
-            {compRef.state.countries &&
-            compRef.state.countries.length &&
-            compRef.state.countries.map((item, key) => {
-              return (
-                <Item
-                  color={Colors.activeTextColor}
-                  label={item.name}
-                  value={item.name}
-                  key={key}
-                  style={{ width: 100, backgroundColor: Colors.white }}
-                />
-              );
-            })}
-          </Picker>
-        </CardPickerComponent>
-
           <CardInputComponent label="Note">
             <Input
               onChangeText={(text) => compRef.state.changeInfo('note', text)}

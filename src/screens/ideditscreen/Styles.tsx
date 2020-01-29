@@ -19,7 +19,6 @@ interface HomeScreenStyles {
   btnUploadText: TextStyle;
   btnUploadTextWrapper: ViewStyle;
   uploadPhotoBtn: ViewStyle;
-  btnSave: ViewStyle;
 }
 
 export const styles = StyleSheet.create<HomeScreenStyles>({
@@ -29,12 +28,12 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   },
   welcomeContainer: {
     marginTop: 30,
-    alignItems: "center",
-    paddingHorizontal: '2.5%'
+    paddingHorizontal: wp(4)
   },
   buttonContainer: {
     marginTop: 20,
     alignItems: "center",
+    paddingHorizontal: wp(4)
   },
   formText: {
     width: "100%",
@@ -64,7 +63,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     paddingVertical: 12,
     borderRadius: 12,
     backgroundColor: Colors.tintColor,
-    paddingHorizontal: 25,
+    paddingHorizontal: wp(4)
   },
   createBotton: {
     justifyContent: "center",
@@ -73,7 +72,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     paddingVertical: 12,
     borderRadius: 12,
     backgroundColor: Colors.buttonRed,
-    paddingHorizontal: 25,
+    paddingHorizontal: wp(4),
     marginBottom: 70,
   },
   claimText: {
@@ -89,8 +88,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   btnUpload: {
     borderRadius: wp('4.5'),
     backgroundColor: '#FD7468',
-    lineHeight: wp('8'),
-    width: wp('95'),
+    width: '100%',
     paddingVertical: wp(4),
     paddingHorizontal: wp(6),
     textAlign: 'center',
@@ -107,15 +105,12 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     textAlign: 'center'
   },
   btnUploadTextWrapper: {
-    width: wp('95'),
+    width: '100%',
     borderRadius: wp('4'),
     backgroundColor: '#FD7468',
   },
   uploadPhotoBtn: {
     width: 30,
     height: 30,
-  },
-  btnSave: {
-    justifyContent: 'center'
-  },
+  }
 });

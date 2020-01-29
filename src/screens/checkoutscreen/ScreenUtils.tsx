@@ -159,50 +159,6 @@ export const render = (compRef: CheckOutScreen) => (
                 ]}
               />
             </CardInputComponent>
-
-            <CardPickerComponent label="Country">
-              <Picker
-                mode="dropdown"
-                placeholder="Select Country"
-                placeholderStyle={{ color: Colors.placeholder }}
-                style={{
-                  width: "100%",
-                  height: 40,
-                  borderBottomWidth: 0,
-                  color: Colors.activeTextColor,
-                  backgroundColor: Colors.itemActive,
-                }}
-                itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Thin" }}
-                iosIcon={
-                  <Icon
-                    name="arrow-down"
-                    style={{ fontSize: 25, position: "absolute", right: 0 }}
-                  />
-                }
-                selectedValue={
-                  compRef.state.checkOutInfo.country !== ""
-                    ? compRef.state.checkOutInfo.country
-                    : "Select State"
-                }
-                onValueChange={(itemValue, itemIndex) =>
-                  compRef.state.changeCountry(itemValue, itemIndex)
-                }
-              >
-                {compRef.state.countries &&
-                compRef.state.countries.length &&
-                compRef.state.countries.map((item, key) => {
-                  return (
-                    <Item
-                      color={Colors.activeTextColor}
-                      label={item.name}
-                      value={item.name}
-                      key={key}
-                      style={{ width: 100, backgroundColor: Colors.white }}
-                    />
-                  );
-                })}
-              </Picker>
-            </CardPickerComponent>
           </Form>
           <Title
             style={{

@@ -13,6 +13,7 @@ import {
 } from "native-base";
 
 import * as React from "react";
+import { widthPercentageToDP as wp} from "../../helpers/Responsive";
 import IDCard from "../../components/IdCard";
 import IDCreateScreen from "./IDCreateScreen";
 import { styles } from "./Styles";
@@ -65,7 +66,7 @@ export const render = (compRef: IDCreateScreen) => (
           <Text style={styles.problemText}>Problem Uploading?</Text>
         </TouchableOpacity>
       </View>
-      <Form style={{padding: 10}}>
+      <Form style={{padding: wp(4)}}>
         <CardInputComponent label="Name">
           <Input
             onChangeText={(text) => compRef.state.changeInfo('name', text)}
@@ -273,50 +274,6 @@ export const render = (compRef: IDCreateScreen) => (
             ]}
           />
         </CardInputComponent>
-
-        <CardPickerComponent label="Country">
-          <Picker
-            mode="dropdown"
-            placeholder="Select Country"
-            placeholderStyle={{ color: Colors.placeholder }}
-            style={{
-              width: "100%",
-              height: 40,
-              backgroundColor: 'white',
-              borderBottomWidth: 0,
-              color: Colors.activeTextColor
-            }}
-            itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Medium" }}
-            iosIcon={
-              <Icon
-                name="arrow-down"
-                style={{ fontSize: 25, position: "absolute", right: 0 }}
-              />
-            }
-            selectedValue={
-              compRef.state.idcardInfo.country !== ""
-                ? compRef.state.idcardInfo.country
-                : "Select State"
-            }
-            onValueChange={(itemValue, itemIndex) =>
-              compRef.state.changeCountry(itemValue, itemIndex)
-            }
-          >
-            {compRef.state.countries &&
-            compRef.state.countries.length &&
-            compRef.state.countries.map((item, key) => {
-              return (
-                <Item
-                  color={Colors.activeTextColor}
-                  label={item.name}
-                  value={item.name}
-                  key={key}
-                  style={{ width: 100, backgroundColor: Colors.white }}
-                />
-              );
-            })}
-          </Picker>
-        </CardPickerComponent>
 
         <CardInputComponent label="Notes">
           <Input
