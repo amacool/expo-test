@@ -50,7 +50,7 @@ export default class IDCard extends React.Component<IDCardInterface> {
             <View style={styles.headerState}>
               <Image source={images.footPrint} style={styles.footPrint} />
               <Text numberOfLines={1} style={styles.headerText}>
-                {this.props.state}
+                {this.props.state || "PET IDENTIFICATION"}
               </Text>
             </View>
           </View>

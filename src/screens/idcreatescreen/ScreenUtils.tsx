@@ -47,7 +47,7 @@ export const render = (compRef: IDCreateScreen) => (
     <HeaderComponent title="Create ID" message back checked={compRef.state.isValid}/>
     <Content disableKBDismissScroll={true}>
       <View style={styles.welcomeContainer}>
-        <IDCard ref={(ref) => (compRef.imageRef = ref)} {...compRef.state.idcardRender} state="PET IDENTIFICATION" />
+        <IDCard ref={(ref) => (compRef.imageRef = ref)} {...compRef.state.idcardRender} />
       </View>
       <View style={[styles.buttonContainer, { marginTop: 30 }]}>
         <TouchableOpacity

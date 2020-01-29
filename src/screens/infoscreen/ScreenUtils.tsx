@@ -109,11 +109,8 @@ export const render = (compRef: MissingScreen) => (
           />
         </View>
       </View>
-      <View style={{ marginBottom: 10 }}>
-        <TouchableOpacity
-          // style={{width: '100%'}}
-          onPress={compRef.state.chooseExistingID}
-        >
+      <View style={{ marginBottom: compRef.state.isIDSelected ? 10 : 50 }}>
+        <TouchableOpacity onPress={compRef.state.chooseExistingID}>
           <View style={styles.btnExistingWrapper}>
             <Text style={styles.btnExisting}>
               Use Existing ID
@@ -122,14 +119,14 @@ export const render = (compRef: MissingScreen) => (
         </TouchableOpacity>
       </View>
 
-      {/* {compRef.state.isIDSelected && ( */}
+      {compRef.state.isIDSelected && (
         <View style={{alignItems: "center"}}>
           <TouchableOpacity style={styles.problemBotton}>
             <Text style={[styles.problemText]}>OR fill the form below</Text>
           </TouchableOpacity>
         </View>
-      {/* )} */}
-      {compRef.state.isIDSelected && (
+      )}
+      {/* {compRef.state.isIDSelected && (
         <View style={[styles.buttonContainer, { marginBottom: 10 }]}>
           <TouchableOpacity
             style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
@@ -138,9 +135,9 @@ export const render = (compRef: MissingScreen) => (
             <Image source={images.downloadPhotoBtn} style={{width: '85%', resizeMode: 'contain'}}/>
           </TouchableOpacity>
         </View>
-      )}
+      )} */}
 
-      {/* {compRef.state.isIDSelected && ( */}
+      {compRef.state.isIDSelected && (
         <Form>
           <CardInputComponent label="Name">
             <Input
@@ -378,16 +375,17 @@ export const render = (compRef: MissingScreen) => (
               ]}
             />
           </CardInputComponent>
-          <View style={[styles.buttonContainer, { marginBottom: 15 }]}>
-            {/* <TouchableOpacity
-              style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
-              onPress={compRef.state.createKidsId}
-            >
-              <Image source={images.createPosterBtn} style={{width: '85%', resizeMode: 'contain'}}/>
-            </TouchableOpacity> */}
+          <View style={{ marginBottom: 50, marginTop: 20 }}>
+            <TouchableOpacity onPress={compRef.state.chooseExistingID}>
+              <View style={[styles.btnExistingWrapper, { backgroundColor: Colors.white }]}>
+                <Text style={[styles.btnExisting, { color: Colors.mainColor }]}>
+                  + Add Reward
+                </Text>
+              </View>
+            </TouchableOpacity>
           </View>
         </Form>
-      {/* )} */}
+      )}
     </Content>
   </Container>
 );

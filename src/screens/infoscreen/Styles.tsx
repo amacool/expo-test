@@ -26,9 +26,11 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   container: {
     flex: 1,
     backgroundColor: Colors.backgroundDefault,
+    
   },
   bodyContainer: {
-    marginBottom: 60,
+    marginTop: wp(4),
+    marginBottom: wp(15),
     paddingHorizontal: wp(4)
   },
   welcomeContainer: {
