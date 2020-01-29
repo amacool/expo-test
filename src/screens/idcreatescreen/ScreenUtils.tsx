@@ -286,12 +286,12 @@ export const render = (compRef: IDCreateScreen) => (
             ]}
           />
         </CardInputComponent>
-        <View style={[styles.buttonContainer, { marginBottom: 30 }]}>
+        <View style={[styles.buttonContainer, { marginBottom: wp(17) }]}>
           <TouchableOpacity
-            style={[styles.btnUpload, styles.btnSave]}
+            style={[styles.uploadPhotoButtonStyle, styles.btnSave]}
             onPress={compRef.state.createKidsId}
           >
-            <Text style={styles.btnUploadText}>Save</Text>
+            <Text style={styles.uploadPhotoText}>Save</Text>
           </TouchableOpacity>
         </View>
       </Form>

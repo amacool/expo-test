@@ -14,7 +14,8 @@ export default class TabBarBigIcon extends React.Component<InterfaceProps> {
       <>
         <Image
           source={this.props.focused ? this.props.active : this.props.inactive}
-          style={{ height: 58,width:58, resizeMode: 'contain', top: -45, zIndex: 50, position: 'absolute' }}
+          style={{ height: 58, width:58, resizeMode: 'contain', marginBottom: 55 }}
+          // style={{ height: 58,width:58, resizeMode: 'contain', top: -45, zIndex: 50, position: 'absolute' }}
         />
       </>
     );

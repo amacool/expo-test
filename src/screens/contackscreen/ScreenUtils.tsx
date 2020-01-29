@@ -1,7 +1,7 @@
 // Define PropTypes
 import { TouchableOpacity, View } from "react-native";
 import { Container, Content, Form, Input, Text } from "native-base";
-
+import { widthPercentageToDP as wp} from "../../helpers/Responsive";
 import * as React from "react";
 import ContactScreen from "./ContactScreen";
 import { styles } from "./Styles";
@@ -23,16 +23,16 @@ export interface State {
 export const render = (compRef: ContactScreen) => (
   <Container style={styles.container}>
     <HeaderComponent title="Contact Us" back checked={compRef.state.isValid}/>
-    <Form>
-      <View style={{ justifyContent: "space-between", height: '86%', paddingHorizontal: '2.5%' }}>
-        <View style={{ paddingTop: 10 }}>
+    <View style={{ justifyContent: "space-between", flex: 1, height: '100%', paddingHorizontal: '2.5%' }}>
+      <View style={{ paddingTop: 10 }}>
+        <Form>
           <CardInputComponent label="Name">
             <Input
               onChangeText={(text) => compRef.state.changeInfo('name', text)}
               value={compRef.state.contactInfo.name}
               placeholder="Enter Name..."
               placeholderTextColor={Colors.placeholder}
-              style={styles.formText}
+              style={[styles.formText, { paddingBottom: 20}]}
             />
           </CardInputComponent>
 
@@ -43,14 +43,17 @@ export const render = (compRef: ContactScreen) => (
               onChangeText={(text) => compRef.state.changeInfo('email', text)}
               value={compRef.state.contactInfo.email}
               style={[
-                styles.formText
+                styles.formText,
+                { paddingBottom: 20}
               ]}
             />
           </CardInputComponent>
 
           <CardInputComponent label="Your Message">
             <View style={{ 
-              maxHeight: 100
+              maxHeight: 100,
+              justifyContent: 'flex-start',
+              flexDirection: 'row'
             }}>
             <Input
               placeholder="Enter Message..."
@@ -61,23 +64,28 @@ export const render = (compRef: ContactScreen) => (
               value={compRef.state.contactInfo.message}
               style={[
                 styles.formText,
-                styles.multilineInput
+                styles.multilineInput,
+                {
+                  textAlign: 'left',
+                  justifyContent: 'flex-start',
+                  flexDirection: 'row'
+                }
               ]}
             />
             </View>
           </CardInputComponent>
-        </View>
-        <View style={[styles.buttonContainer, { marginTop: 30 }]}>
-          <TouchableOpacity
-            style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
-            onPress={compRef.state.sendMessage}
-          >
-            <Text style={styles.btnSendMsg}>
-              Send Message
-            </Text>
-          </TouchableOpacity>
-        </View>
+        </Form>
       </View>
-    </Form>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+          onPress={compRef.state.sendMessage}
+        >
+          <Text style={styles.btnSendMsg}>
+            Send Message
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   </Container>
 );

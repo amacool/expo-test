@@ -123,6 +123,6 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     resizeMode: 'contain'
   },
   btnSave: {
-    justifyContent: 'center'
+    justifyContent: 'center',
   }
 });

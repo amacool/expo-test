@@ -31,6 +31,7 @@ export const styles = StyleSheet.create<CheckOutScreenStyles>({
   buttonContainer: {
     marginTop: 20,
     alignItems: "center",
+    marginBottom: wp(18)
   },
   formText: {
     fontFamily: 'sf-regular',
@@ -39,7 +40,8 @@ export const styles = StyleSheet.create<CheckOutScreenStyles>({
     borderBottomWidth: 0,
     borderBottomColor: 'transparent',
     marginTop: 10,
-    textAlign: 'left'
+    textAlign: 'left',
+    minHeight: 50
   },
   multilineInput: {
     fontFamily: 'sf-regular',
