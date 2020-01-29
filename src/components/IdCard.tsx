@@ -46,10 +46,13 @@ export default class IDCard extends React.Component<IDCardInterface> {
       !!this.state.isFontLoaded && (
         <Card style={styles.container}>
           <View style={{ width: '100%', position: 'relative' }}>
-            <Image source={images.cardTopSlot} style={styles.cardTop}/>
-            <Text numberOfLines={1} style={styles.headerState}>
-              {this.props.state}
-            </Text>
+            <Image source={images.cardTopSlot} style={styles.cardTop} />
+            <View style={styles.headerState}>
+              <Image source={images.footPrint} style={styles.footPrint} />
+              <Text numberOfLines={1} style={styles.headerText}>
+                {this.props.state}
+              </Text>
+            </View>
           </View>
           <Card style={[styles.cardContainer, styles.noPadding]}>
             <View style={styles.infoWrapper}>
@@ -192,6 +195,14 @@ const styles = StyleSheet.create({
     paddingBottom: 0,
   },
   headerState: {
+    position: 'absolute',
+    width: '100%',
+    marginTop: wp("11.3"),
+    marginLeft: wp(-3.5),
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  headerText: {
     lineHeight: wp("5.1"),
     fontSize: wp("5.2"),
     fontFamily: 'sf-regular',
@@ -199,10 +210,6 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     color: 'white',
     textAlign: 'center',
-    position: 'absolute',
-    width: '100%',
-    marginTop: wp("11.3"),
-    marginLeft: wp("1.2"),
   },
   headerIssueDate: {
     color: "#000",
@@ -301,6 +308,13 @@ const styles = StyleSheet.create({
     width: "100%",
     resizeMode: 'stretch',
     height: wp('19')
+  },
+  footPrint: {
+    width: wp(7),
+    height: wp(7),
+    resizeMode: 'contain',
+    marginTop: wp(-1.3),
+    marginRight: wp(3)
   },
   infoWrapper: {
     flex: 1,

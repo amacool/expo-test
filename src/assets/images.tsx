@@ -17,6 +17,7 @@ const images = {
   messageIcon: require("../../src/assets/images/header-message.png"),
   headerCheckIcon: require("../../src/assets/images/header-check.png"),
   cardTopSlot: require("../../src/assets/images/card-top.png"),
+  footPrint: require("../../src/assets/images/foot-print.png"),
   buttonGradient: require("../../src/assets/images/button-gradient.png"),
   arrowForward: require("../../src/assets/images/arrow-forward.png"),
   pulusIcon: require("../../src/assets/images/pulusIcon.png"),
