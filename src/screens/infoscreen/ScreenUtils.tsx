@@ -45,7 +45,7 @@ export interface State {
 export const render = (compRef: MissingScreen) => (
   <Container style={styles.container}>
     <HeaderComponent title={"Report Missing"} message back={false} />
-    <Content style={styles.container} disableKBDismissScroll={true}>
+    <Content style={styles.bodyContainer} disableKBDismissScroll={true}>
       <View style={styles.welcomeContainer}>
         <MissingCard isRewarded={compRef.state.isRewarded} ref={(ref) => (compRef.imageRef = ref)} {...compRef.state.idcardRender} />
         <Text style={[styles.problemText, { marginTop: 15 }]}>Do you have a missing dog?</Text>
@@ -81,7 +81,7 @@ export const render = (compRef: MissingScreen) => (
           </Grid>
         </View>
       )} */}
-      <View style={[styles.buttonContainer, { marginBottom: 10 }]}>
+      <View style={{ marginBottom: 10 }}>
         <View style={styles.switchReward}>
           <Text style={{ fontSize: RF(3) }}>Reward</Text>
           <Switch
@@ -109,9 +109,9 @@ export const render = (compRef: MissingScreen) => (
           />
         </View>
       </View>
-      <View style={[styles.buttonContainer, { marginBottom: 10 }]}>
+      <View style={{ marginBottom: 10 }}>
         <TouchableOpacity
-          style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}
+          // style={{width: '100%'}}
           onPress={compRef.state.chooseExistingID}
         >
           <View style={styles.btnExistingWrapper}>
@@ -141,7 +141,7 @@ export const render = (compRef: MissingScreen) => (
       )}
 
       {/* {compRef.state.isIDSelected && ( */}
-        <Form style={{padding: 10}}>
+        <Form>
           <CardInputComponent label="Name">
             <Input
               onChangeText={(text) => compRef.state.changeInfo('name', text)}

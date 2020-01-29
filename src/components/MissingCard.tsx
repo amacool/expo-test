@@ -113,7 +113,7 @@ export default class MissingCard extends React.Component<MessingCardInterface> {
 
 const styles = StyleSheet.create({
   cardContainer: {
-    width: "95%",
+    width: "100%",
     shadowOpacity: 0,
     elevation: 0,
     borderColor: Colors.mainColor

@@ -5,7 +5,6 @@ import { widthPercentageToDP as wp} from "../../helpers/Responsive";
 interface HomeScreenStyles {
   container: ViewStyle;
   contentContainer: ViewStyle;
-  headerContainer: ViewStyle;
   bodyContainer: ViewStyle;
   welcomeContainer: ViewStyle;
   bottomContainer: ViewStyle;
@@ -28,30 +27,27 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   contentContainer: {
     padding: 0,
   },
-  headerContainer: {
-    marginTop: 80,
-    alignItems: "center",
-    paddingHorizontal: 30,
-  },
   bodyContainer: {
     marginTop: wp('5'),
     alignItems: "center",
-    paddingHorizontal: wp('10'),
+    paddingHorizontal: wp(4),
   },
   welcomeContainer: {
     marginTop: wp('5'),
-    paddingHorizontal: '2.5%',
+    marginLeft: 0,
+    paddingHorizontal: wp(4),
   },
   bottomContainer: {
     marginTop: wp('5'),
     marginBottom: wp('1'),
     alignItems: "center",
-    paddingHorizontal: wp('10'),
   },
   buttonContainer: {
     marginTop:wp('3'),
     alignItems: "center",
     marginBottom: wp('20'),
+    paddingHorizontal: wp(4),
+    width: '100%'
   },
   headerTitle: {
     fontSize: RF(5.3),
@@ -62,6 +58,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   headerBodayTitle: {
     fontSize: RF(3.5),
     fontFamily: 'sf-regular',
+    fontWeight: 'bold',
     color: Colors.mainfontColor,
     lineHeight: wp('8'),
     textAlign: "center",
@@ -102,7 +99,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   },
   createDogIdBtnWrapper: {
     marginBottom: wp('20'),
-    width: wp('95'),
+    width: '100%',
     borderRadius: wp('4'),
     backgroundColor: '#FD7468',
   }

@@ -5,6 +5,7 @@ import RF from "react-native-responsive-fontsize";
 
 interface HomeScreenStyles {
   container: ViewStyle;
+  bodyContainer: ViewStyle;
   welcomeContainer: ViewStyle;
   buttonContainer: ViewStyle;
   formText: ViewStyle;
@@ -25,16 +26,20 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   container: {
     flex: 1,
     backgroundColor: Colors.backgroundDefault,
-    marginBottom: 30,
+  },
+  bodyContainer: {
+    marginBottom: 60,
+    paddingHorizontal: wp(4)
   },
   welcomeContainer: {
     marginTop: 10,
     alignItems: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: 0
   },
   buttonContainer: {
     marginTop: 10,
     alignItems: "center",
+    paddingHorizontal: 0
   },
   formText: {
     width: "100%",
@@ -105,19 +110,16 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     textAlign: 'center'
   },
   btnExistingWrapper: {
-    width: wp('95'),
     borderRadius: wp('4'),
     backgroundColor: '#FD7468',
   },
   switchReward: {
-    fontFamily: "Metropolis-Medium",
-    fontWeight: "400",
+    fontFamily: "sf-regular",
     fontSize: RF(4),
     color: Colors.mainfontColor,
     borderRadius: wp('4'),
     backgroundColor: 'white',
     marginBottom: 1,
-    width: wp('95'),
     textTransform: 'none',
     padding: wp(3),
     textAlign: 'center',

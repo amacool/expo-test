@@ -31,11 +31,8 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
   },
   welcomeContainer: {
     marginTop: 20,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: "center",
-    justifyContent: 'center',
-    paddingHorizontal: '2.5%',
+    paddingHorizontal: wp(4),
+    width: '100%'
   },
   buttonContainer: {
     marginTop: 20,
@@ -119,7 +116,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: '2.5%',
+    paddingHorizontal: wp(4),
   },
   forwardText: {
     color: Colors.mainColor,
