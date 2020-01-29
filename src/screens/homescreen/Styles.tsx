@@ -97,7 +97,7 @@ export const styles = StyleSheet.create<HomeScreenStyles>({
     lineHeight: wp('8'),
     fontSize: RF(2.7),
     textTransform: 'none',
-    padding: wp(3),
+    padding: wp(2.5),
     textAlign: 'center'
   },
   createDogIdBtnWrapper: {

@@ -23,8 +23,6 @@ export default class IDCreateScreen extends React.Component<screenUtils.Props, s
       />
     ),
   };
-
-  public imageRef;
   constructor(props) {
     super(props);
     this.state = {

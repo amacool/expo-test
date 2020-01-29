@@ -472,8 +472,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.tintColor,
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center",
-    zIndex: 2,
+    alignItems: "center"
   },
   iPhoneXBottomFillerStyles: {
     height: DEFAULT_IPHONEX_BOTTOM_PADDING,
@@ -579,7 +578,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageCentered: {
-    marginTop: 30,
     width: "60%",
     height: "60%",
     // borderRadius: 50% ,

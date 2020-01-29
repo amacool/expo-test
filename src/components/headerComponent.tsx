@@ -25,7 +25,6 @@ export default class HeaderComponent extends React.Component<InterfaceProps> {
       <View style={styles.headerStyle}>
         <View style={{ width: 150, marginTop: 10 }}>
           {this.props.back && <Button transparent onPress={() => navigationStore.back()}>
-            {/* <Icon name="arrow-back" style={styles.headerBackIcon} color={Colors.black}/> */}
             <Image style={styles.headerArrowBack} source={images.headerArrowBack} />
             <Text style={styles.headerBackText}>Back</Text>
           </Button>}
@@ -54,11 +53,11 @@ export default class HeaderComponent extends React.Component<InterfaceProps> {
 
 const styles = StyleSheet.create({
   headerStyle: {
-    height: hp("16"),
     marginTop: 25,
     backgroundColor: Colors.tabBar,
     flexDirection: "column",
     justifyContent: "space-between",
+    paddingBottom: 5,
     marginBottom: 10,
   },
   headerTitle: {
@@ -68,7 +67,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: wp("3"),
     alignSelf: 'center',
-    fontSize: wp("8.3"),
+    fontSize: wp("8.5"),
+    letterSpacing: 1,
     justifyContent: "center",
   },
   headerArrowBack: {
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   headerRightIcon: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 5,
     right: 0,
   },
   headerMessageIcon: {

@@ -34,7 +34,7 @@ export interface State {
 
 export const render = (compRef: CartScreen) => (
   <View style={styles.container}>
-    <HeaderComponent title="Cart" message back checked={compRef.state.isValid}/>
+    <HeaderComponent title="Cart" message back={false} checked={compRef.state.isValid}/>
     {compRef.state && compRef.state.isLoading &&
       <ActivityIndicator
         style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
