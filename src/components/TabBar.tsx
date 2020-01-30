@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Animated, AppState, Dimensions, Platform, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import { Animated, AppState, Dimensions, Platform, StyleSheet, TouchableWithoutFeedback, View,TouchableOpacity } from "react-native";
 import SafeAreaView from "react-native-safe-area-view";
 import images from "../assets/images";
 import Colors from "../constants/Colors";
@@ -293,23 +293,45 @@ class TabBar extends React.Component<Props, States> {
         return null;
       }
 
-      return (
-        <ButtonComponent
-          key={route.key}
-          onPress={() => onTabPress({ route })}
-          testID={testID}
-          accessibilityLabel={accessibilityLabel}
-          style={[
-            styles.tab,
-            { backgroundColor },
-            this._shouldUseHorizontalLabels() ? styles.tabLandscape : styles.tabPortrait,
-            tabStyle,
-          ]}
-        >
-          {this._renderIcon(scene)}
-          {this._renderLabel(scene)}
-        </ButtonComponent>
-      );
+      if (index === 2) {
+        return (
+          <ButtonComponent
+            key={route.key}
+            onPress={() => onTabPress({ route })}
+            testID={testID}
+            accessibilityLabel={accessibilityLabel}
+            style={[
+              styles.tab,
+              this._shouldUseHorizontalLabels() ? styles.tabLandscape : styles.tabPortrait,
+              tabStyle,
+              {
+                zIndex: 300,
+                marginTop: -40
+              }
+            ]}
+          >
+              {this._renderIcon(scene)}
+          </ButtonComponent>
+        );
+      }
+      else 
+        return (
+          <ButtonComponent
+            key={route.key}
+            onPress={() => onTabPress({ route })}
+            testID={testID}
+            accessibilityLabel={accessibilityLabel}
+            style={[
+              styles.tab,
+              this._shouldUseHorizontalLabels() ? styles.tabLandscape : styles.tabPortrait,
+              tabStyle,
+              {paddingTop: 10}
+            ]}
+          >
+              {this._renderIcon(scene)}
+              {this._renderLabel(scene)}
+          </ButtonComponent>
+        );
     });
 
     const floatingButtonFillerStyles = [
@@ -360,11 +382,13 @@ class TabBar extends React.Component<Props, States> {
     );
 
     return (
-      <SafeAreaView style={tabBarStyle} pointerEvents="box-none" forceInset={{ bottom: "never" }}>
-        <View style={StyleSheet.flatten([tabBarInternalStyle, styles.tabBarInternal])}>
-          {tabBarButtons.filter((i, index) => index < Math.floor(tabBarButtons.length / 2))}
-           {/*{floatingButtonFiller}*/}
-          {tabBarButtons.filter((i, index) => index >= Math.floor(tabBarButtons.length / 2))}
+      <SafeAreaView style={[tabBarStyle, {height: 90, backgroundColor: '#0000000', borderRadius: 0, shadowOpacity: 0, shadowColor: "transparent", elevation: 0, borderWidth: 0}]} pointerEvents="box-none" forceInset={{ bottom: "never" }}>
+        <View style={StyleSheet.flatten([tabBarInternalStyle, styles.tabBarInternal, { height: 90, backgroundColor: '#00000000'}])}>
+          <View style={{flexDirection: 'row', width: '100%', backgroundColor: '#fff', marginTop: 30, borderTopRightRadius: 10, borderTopLeftRadius: 10, shadowColor: '#000', shadowOffset:2, shadowOpacity: 1,elevation: 4}}>
+            {tabBarButtons.filter((i, index) => index < Math.floor(tabBarButtons.length / 2))}
+            {/*{floatingButtonFiller}*/}
+            {tabBarButtons.filter((i, index) => index >= Math.floor(tabBarButtons.length / 2))}
+          </View>
         </View>
         {isIphoneXorAbove() && <View style={iPhoneXBottomFillerStyles} />}
          {/*{floatingButton}*/}
@@ -390,7 +414,7 @@ const styles = StyleSheet.create({
     borderTopColor: "rgba(0, 0, 0, 0)",
     flexDirection: "column",
     justifyContent: "flex-end",
-    alignItems: "stretch",
+    alignItems: "stretch"
   },
   tabBarInternal: {
     overflow: "visible",
@@ -426,7 +450,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "flex-end",
     position: "absolute",
-    zIndex: 1,
   },
   floatingButtonWrapperCompact: {
     height:
@@ -600,7 +623,6 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   buttonContainer: {
-    borderRadius: 32,
     marginTop: 80,
     flexDirection: "row",
     backgroundColor: Colors.transparent,
