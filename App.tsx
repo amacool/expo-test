@@ -7,10 +7,9 @@ import { AppLoading} from "expo";
 import * as Icon from "@expo/vector-icons";
 import { Asset } from "expo-asset";
 import * as Font from "expo-font";
-import { Provider as MobxProvider } from "mobx-react";
+import { Provider as MobxProvider, observer } from "mobx-react";
 import { AppNavigator } from "./src/navigation/AppNavigator";
 import NavigationStore from "./src/stores/navigationStore";
-import { observer } from "mobx-react/native";
 
 interface InterfaceProps {
   skipLoadingScreen?: boolean;
