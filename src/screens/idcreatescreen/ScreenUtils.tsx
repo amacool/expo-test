@@ -1,5 +1,5 @@
 // Define PropTypes
-import { TouchableOpacity, View, Image } from "react-native";
+import { TouchableOpacity, View, Image, Platform } from "react-native";
 import {
   Container,
   Content,
@@ -41,6 +41,7 @@ export interface State {
   changeContactInfo: (key: string, value: string) => void;
   createKidsId: () => void;
 }
+const isIos = Platform.OS === "ios";
 
 export const render = (compRef: IDCreateScreen) => (
   <Container style={styles.container}>
@@ -120,7 +121,7 @@ export const render = (compRef: IDCreateScreen) => (
               backgroundColor: 'white',
               borderTopWidth: 0,
               paddingLeft: 0,
-              marginLeft: 0
+              marginLeft: isIos ? -10 : 0
             }}
             itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Medium" }}
             iosIcon={

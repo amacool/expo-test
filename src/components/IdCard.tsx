@@ -75,18 +75,24 @@ export default class IDCard extends React.Component<IDCardInterface> {
                     {
                       fontSize: PlatformConstants.interfaceIdiom == 'pad' ? wp("4.6") : wp("4.1"),
                       fontFamily: "sf-regular",
-                      fontWeight: 'bold'
+                      fontWeight: 'bold',
+                      marginBottom: 3,
+                      width: '100%'
                     }
                   ]}
                 >
                   {name}
                 </Text>
+                <View style={{ marginBottom: 5, width: '100%', flexDirection: 'row' }}>
+                  <View style={{ backgroundColor: Colors.mainColor, height: 3, width: wp(7) }}></View>
+                  <View style={{ width: wp(21), height: 1, backgroundColor: Colors.black, marginTop: 1 }}></View>
+                </View>
 
                 <View style={styles.informationView}>
                   <View style={styles.informationViewLabelWrapper}>
                     {!!this.props.contact1 && (
                       <View style={[styles.inforDetailContainer, { height: PlatformConstants.interfaceIdiom == 'pad' ? 50 : 30 }]}>
-                        <Text style={styles.inforTitle} uppercase>{this.props.contact1.name || "PHONE"}</Text>
+                        <Text style={styles.inforTitle} uppercase>{this.props.contact1.name || "NAME"}</Text>
                       </View>
                     )}
                     {!!this.props.birthday && (
@@ -275,7 +281,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inforName: {
-    fontFamily: "Metropolis-Bold",
+    fontFamily: "sf-regular",
     fontSize: 20,
     alignItems: "flex-start",
   },
@@ -286,7 +292,6 @@ const styles = StyleSheet.create({
   inforTitle: {
     fontSize: wp("2.5"),
     fontFamily: "sf-regular",
-    marginLeft: PlatformConstants.interfaceIdiom == 'pad' ? 15 : 5,
     color: "#000",
   },
   inforDetail: {
