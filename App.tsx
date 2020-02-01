@@ -1,4 +1,5 @@
 import * as React from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Platform, StatusBar, StyleSheet, View, ViewStyle, Image } from "react-native";
 import { Root } from "native-base";
 // @ts-ignore
@@ -55,12 +56,14 @@ export default class App extends React.Component<InterfaceProps, InterfaceState>
       );
     } else {
       return (
-        <Root style={styles.container}>
-          {Platform.OS === "ios" && <StatusBar barStyle="dark-content" hidden={false} backgroundColor="#F75356" />}
-          <MobxProvider navigationStore={NavigationStore}>
-            <AppNavigator ref={(r) => NavigationStore.setRef(r)} />
-          </MobxProvider>
-        </Root>
+        <SafeAreaProvider>
+          <Root style={styles.container}>
+            {Platform.OS === "ios" && <StatusBar barStyle="dark-content" hidden={false} backgroundColor="#F75356" />}
+            <MobxProvider navigationStore={NavigationStore}>
+              <AppNavigator ref={(r) => NavigationStore.setRef(r)} />
+            </MobxProvider>
+          </Root>
+        </SafeAreaProvider>
       );
     }
   }
