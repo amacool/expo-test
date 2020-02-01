@@ -1,5 +1,5 @@
 // Define PropTypes
-import { TouchableOpacity, View, Image} from "react-native";
+import { TouchableOpacity, View, Image } from "react-native";
 import {
   Container,
   Content,
@@ -90,7 +90,7 @@ export const render = (compRef: IDCreateScreen) => (
             modalTransparent={false}
             animationType={"fade"}
             androidMode={"default"}
-            textStyle={{fontFamily: 'Metropolis-Medium', color: Colors.black,}}
+            textStyle={{fontFamily: 'sf-regular', color: Colors.black}}
             onDateChange={(date) => compRef.state.changeInfo('birthday', date)}
           />
         </CardPickerComponent>
@@ -113,12 +113,14 @@ export const render = (compRef: IDCreateScreen) => (
             placeholder="Select Gender"
             placeholderStyle={{ color: Colors.placeholder, fontFamily: 'Metropolis-Medium' }}
             style={{
-              width: "90%",
+              width: "100%",
               height: 40,
               borderBottomWidth: 0,
               position: 'relative',
               backgroundColor: 'white',
-              borderTopWidth: 0
+              borderTopWidth: 0,
+              paddingLeft: 0,
+              marginLeft: 0
             }}
             itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Medium" }}
             iosIcon={
@@ -221,7 +223,9 @@ export const render = (compRef: IDCreateScreen) => (
               width: "100%",
               height: 40,
               borderBottomWidth: 0,
-              backgroundColor: 'white'
+              backgroundColor: 'white',
+              paddingLeft: 0,
+              marginLeft: 0
             }}
             itemStyle={{ color: Colors.placeholder, fontFamily:"Metropolis-Medium" }}
             iosIcon={

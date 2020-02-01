@@ -384,7 +384,7 @@ class TabBar extends React.Component<Props, States> {
     return (
       <SafeAreaView style={[tabBarStyle, {height: 90, backgroundColor: '#0000000', borderRadius: 0, shadowOpacity: 0, shadowColor: "transparent", elevation: 0, borderWidth: 0}]} pointerEvents="box-none" forceInset={{ bottom: "never" }}>
         <View style={StyleSheet.flatten([tabBarInternalStyle, styles.tabBarInternal, { height: 90, backgroundColor: '#00000000'}])}>
-          <View style={{flexDirection: 'row', width: '100%', backgroundColor: '#fff', marginTop: 30, borderTopRightRadius: 10, borderTopLeftRadius: 10, shadowColor: '#000', shadowOffset:2, shadowOpacity: 1,elevation: 4}}>
+          <View style={{flexDirection: 'row', width: '100%', backgroundColor: '#fff', marginTop: 30, borderTopRightRadius: 10, borderTopLeftRadius: 10, shadowColor: '#000', shadowOffset:0, shadowOpacity: 0,elevation: 0}}>
             {tabBarButtons.filter((i, index) => index < Math.floor(tabBarButtons.length / 2))}
             {/*{floatingButtonFiller}*/}
             {tabBarButtons.filter((i, index) => index >= Math.floor(tabBarButtons.length / 2))}
